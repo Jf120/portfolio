@@ -52,13 +52,13 @@ span, p {
 }
 
 body {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 body .construction {
-  grid-column: 2;
-  grid-row: 2;
+  width: 80vw;
 }
 body .construction span {
   margin: 5px 0;
@@ -66,4 +66,80 @@ body .construction span {
 body .construction code {
   font-family: "Doto", sans-serif;
   background-color: none;
+}
+
+.gallery-wrapper {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gallery-header h1 {
+  font-size: 2.5em;
+}
+
+.gallery-scroller {
+  display: flex;
+  overflow-x: scroll; /* Allows horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Makes items snap into place */
+  gap: 25px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.gallery-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  width: 350px; /* Adjust as needed for screen size */
+  height: 500px;
+  scroll-snap-align: start; /* Snap alignment */
+  background-color: rgb(2.698630137, 64.7671232877, 95.801369863);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(2, 48, 71, 0.5);
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-item .download-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #FB8500;
+  color: #023047;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.gallery-item .download-btn:hover {
+  opacity: 1;
+}
+
+.scroll-btn {
+  background-color: rgb(3.397260274, 81.5342465753, 120.602739726);
+  color: #8ECAE6;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.2s;
+}
+.scroll-btn:hover {
+  background-color: #FB8500;
+  color: #023047;
 }/*# sourceMappingURL=style.css.map */

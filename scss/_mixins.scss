@@ -1,5 +1,4 @@
 // Mixin to center content using CSS Grid
-@mixin center-grid-item {
-    grid-column: 2;
-    grid-row: 2;
+@mixin eighty-percent-container {
+    width: 80vw;
 }

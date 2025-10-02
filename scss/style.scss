@@ -30,12 +30,13 @@ span, p {
 
 // LAYOUT/COMPONENT STYLES
 body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     .construction {
-        @include center-grid-item; 
+        @include eighty-percent-container; 
         
         span {
             margin: 5px 0;
@@ -45,5 +46,100 @@ body {
             font-family: $body-font;
             background-color: none;
         }
+    }
+}
+
+// In your style.scss or a new _gallery.scss partial
+
+.gallery-wrapper {
+    // Defines the overall width and centers the content
+    @include eighty-percent-container;
+    margin: 0 auto;
+}
+
+.gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h1 {
+        // You can reuse your h1 styles here
+        font-size: 2.5em;
+    }
+}
+
+.gallery-scroller {
+    // --- KEY SCROLLING PROPERTIES ---
+    display: flex;
+    overflow-x: scroll; /* Allows horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Makes items snap into place */
+    
+    // Aesthetic spacing
+    gap: $space-md; 
+    
+    // Hide the default scrollbar
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.gallery-item {
+    // Ensures items don't shrink and always take up a set size
+    width: 350px; /* Adjust as needed for screen size */
+    height: 500px; 
+    
+    scroll-snap-align: start; /* Snap alignment */
+    
+    background-color: lighten($primary-blue, 5%); // Slightly lighter card background
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba($primary-blue, 0.5);
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .download-btn {
+        // Overlay button styling (optional, but good for UX)
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: $accent-orange; 
+        color: $primary-blue;
+        text-align: center;
+        text-decoration: none;
+        font-weight: $font-weight-bold;
+        // Make it slightly transparent or add a hover effect
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.scroll-btn {
+    // Reusing the dark blue background, but with a rounded look
+    background-color: lighten($primary-blue, 10%); 
+    color: $light-blue;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.2s;
+    
+    &:hover {
+        background-color: $accent-orange;
+        color: $primary-blue;
     }
 }
