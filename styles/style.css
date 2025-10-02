@@ -67,65 +67,19 @@ body .construction code {
   font-family: "Doto", sans-serif;
   background-color: none;
 }
-
-.gallery-wrapper {
+body .gallery-wrapper {
   width: 80vw;
   margin: 0 auto;
 }
-
-.gallery-header {
+body .gallery-wrapper .gallery-section .gallery-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.gallery-header h1 {
+body .gallery-wrapper .gallery-section .gallery-header h1 {
   font-size: 2.5em;
 }
-
-.gallery-scroller {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  padding: 0 20px;
-  flex-wrap: nowrap;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.gallery-scroller::-webkit-scrollbar {
-  display: none;
-}
-
-.gallery-item {
-  flex-shrink: 0;
-  width: 100%;
-  height: 80vh;
-  scroll-snap-align: center;
-  background-color: rgb(2.698630137, 64.7671232877, 95.801369863);
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.gallery-item .download-btn {
-  padding: 10px;
-  background-color: #FB8500;
-  color: #023047;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-.gallery-item .download-btn:hover {
-  opacity: 1;
-}
-
-.scroll-btn {
+body .gallery-wrapper .gallery-section .gallery-header .scroll-btn {
   background-color: rgb(3.397260274, 81.5342465753, 120.602739726);
   color: #8ECAE6;
   border: none;
@@ -137,9 +91,50 @@ body .construction code {
   margin-left: 10px;
   transition: background-color 0.2s;
 }
-.scroll-btn:hover {
+body .gallery-wrapper .gallery-section .gallery-header .scroll-btn:hover {
   background-color: #FB8500;
   color: #023047;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 0 20px;
+  flex-wrap: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller::-webkit-scrollbar {
+  display: none;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item {
+  flex-shrink: 0;
+  width: 100%;
+  height: 80vh;
+  scroll-snap-align: center;
+  background-color: rgb(2.698630137, 64.7671232877, 95.801369863);
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item .download-btn {
+  padding: 10px;
+  background-color: #FB8500;
+  color: #023047;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item .download-btn:hover {
+  opacity: 1;
 }
 
 footer {
