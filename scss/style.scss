@@ -69,47 +69,55 @@ body {
 }
 
 .gallery-scroller {
-    // --- KEY SCROLLING PROPERTIES ---
     display: flex;
-    overflow-x: scroll; /* Allows horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Makes items snap into place */
+    overflow-x: scroll; 
+    scroll-snap-type: x mandatory; 
     
-    // Aesthetic spacing
-    gap: $space-md; 
+    // Add a small padding on the sides for aesthetics
+    padding: 0 20px; 
     
-    // Hide the default scrollbar
+    // Crucial: Items should NOT wrap to the next line
+    flex-wrap: nowrap; 
+    
+    // Hide the scrollbar (as before)
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .gallery-item {
-    // Ensures items don't shrink and always take up a set size
-    width: 350px; /* Adjust as needed for screen size */
-    height: 500px; 
+    // --- KEY FIXES ---
+    // 1. Prevent shrinking when space runs out
+    flex-shrink: 0; 
     
-    scroll-snap-align: start; /* Snap alignment */
+    // 2. Make the item fill the available viewport/container width
+    // Use the CSS "calc" function to subtract any padding/gaps from the full width.
+    width: 100%; 
     
-    background-color: lighten($primary-blue, 5%); // Slightly lighter card background
-    border-radius: 10px;
+    // You can adjust the height to maintain aspect ratio, but keep width 100%
+    height: 80vh; 
+    
+    // --- SCROLLING ---
+    scroll-snap-align: center; // Snap to the center of the item
+
+    // Other styles (background, border-radius, etc.)
+    background-color: lighten($primary-blue, 5%); 
+    border-radius: 10px 10px 0 0;
     overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 10px rgba($primary-blue, 0.5);
+
+    display: flex;
+    flex-direction: column;
     
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; // Ensures the image fills the space without distortion
     }
     
     .download-btn {
         // Overlay button styling (optional, but good for UX)
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
         padding: 10px;
         background-color: $accent-orange; 
         color: $primary-blue;
@@ -142,4 +150,13 @@ body {
         background-color: $accent-orange;
         color: $primary-blue;
     }
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    color: $light-blue;
+    font-family: $body-font;
+    font-size: 0.9em;
+    margin-top: 20px;
 }

@@ -1,0 +1,111 @@
+[
+  {
+    "collection_name": "fall",
+    "images": [
+      {
+        "title": "Warm",
+        "filename": "warm.jpg",
+        "alt": "Warm - fall",
+        "image_path": "./../assets/wallpapers/fall/warm-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/warm.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Acorn",
+        "filename": "acorn.jpg",
+        "alt": "Acorn - fall",
+        "image_path": "./../assets/wallpapers/fall/acorn-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/acorn.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Copper",
+        "filename": "copper.jpg",
+        "alt": "Copper - fall",
+        "image_path": "./../assets/wallpapers/fall/copper-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/copper.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Spice",
+        "filename": "spice.jpg",
+        "alt": "Spice - fall",
+        "image_path": "./../assets/wallpapers/fall/spice-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/spice.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Chestnut",
+        "filename": "chestnut.jpg",
+        "alt": "Chestnut - fall",
+        "image_path": "./../assets/wallpapers/fall/chestnut-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/chestnut.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "November",
+        "filename": "november.jpg",
+        "alt": "November - fall",
+        "image_path": "./../assets/wallpapers/fall/november-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/november.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Autumn",
+        "filename": "autumn.jpg",
+        "alt": "Autumn - fall",
+        "image_path": "./../assets/wallpapers/fall/autumn-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/autumn.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Pumpkin",
+        "filename": "pumpkin.jpg",
+        "alt": "Pumpkin - fall",
+        "image_path": "./../assets/wallpapers/fall/pumpkin-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/pumpkin.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Corn",
+        "filename": "corn.jpg",
+        "alt": "Corn - fall",
+        "image_path": "./../assets/wallpapers/fall/corn-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/corn.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Scarecrow",
+        "filename": "scarecrow.jpg",
+        "alt": "Scarecrow - fall",
+        "image_path": "./../assets/wallpapers/fall/scarecrow-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/scarecrow.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Harvest",
+        "filename": "harvest.jpg",
+        "alt": "Harvest - fall",
+        "image_path": "./../assets/wallpapers/fall/harvest-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/harvest.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Bonfire",
+        "filename": "bonfire.jpg",
+        "alt": "Bonfire - fall",
+        "image_path": "./../assets/wallpapers/fall/bonfire-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/bonfire.jpg",
+        "fallback_path": "../assets/no_image.png"
+      },
+      {
+        "title": "Nutmeg",
+        "filename": "nutmeg.jpg",
+        "alt": "Nutmeg - fall",
+        "image_path": "./../assets/wallpapers/fall/nutmeg-min.jpg",
+        "download_path": "./../assets/wallpapers/fall/nutmeg.jpg",
+        "fallback_path": "../assets/no_image.png"
+      }
+    ]
+  }
+]
