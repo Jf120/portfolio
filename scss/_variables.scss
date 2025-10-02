@@ -1,3 +1,6 @@
+// FONT IMPORT
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Doto:wght@100..900&display=swap');
+
 // Brand Colors
 $primary-blue: #023047; // Background Dark Blue
 $accent-orange: #FB8500; // H1 Color
@@ -6,7 +9,7 @@ $light-blue: #8ECAE6; // Paragraph Text Color
 $white: #ffffff;
 
 // Typography
-$header-font: "Bitcount Single Ink", system-ui;
+$header-font: "Bitcount Ink", system-ui;
 $body-font: "Doto", sans-serif;
 
 // Font Weights

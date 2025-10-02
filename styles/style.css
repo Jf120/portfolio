@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Doto:wght@100..900&display=swap");
 .code-block {
   background: #1e1e1e;
   color: #d4d4d4;
@@ -33,11 +33,12 @@ html {
 }
 
 h1, h2 {
-  font-family: "Bitcount Single Ink", system-ui;
+  font-family: "Bitcount Ink", system-ui;
+  font-weight: 300;
 }
 
 h1 {
-  color: #FB8500;
+  text-shadow: 2px 2px #FFB703;
 }
 
 h2 {
@@ -63,6 +64,6 @@ body .construction span {
   margin: 5px 0;
 }
 body .construction code {
-  font-family: "Doto", monospace;
+  font-family: "Doto", sans-serif;
   background-color: none;
 }/*# sourceMappingURL=style.css.map */

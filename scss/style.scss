@@ -3,10 +3,6 @@
 @use 'variables' as *; // Import your color and font variables
 @use 'mixins' as *;   // Import your mixins
 
-// FONT IMPORT
-@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&display=swap');
-
-
 //BASE STYLES
 html {
     background-color: $primary-blue; 
@@ -14,10 +10,11 @@ html {
 
 h1, h2 {
     font-family: $header-font; // Use font variable
+    font-weight: 300;
 }
 
 h1 {
-    color: $accent-orange;
+    text-shadow: 2px 2px $accent-yellow;
 }
 
 h2 {
@@ -45,7 +42,7 @@ body {
         }
 
         code {
-            font-family: "Doto", monospace;
+            font-family: $body-font;
             background-color: none;
         }
     }
