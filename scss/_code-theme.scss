@@ -1,0 +1,26 @@
+$bg-color: #1e1e1e;        // dark background
+$text-color: #d4d4d4;      // default text
+$keyword-color: #569cd6;   // keywords like const, let
+$string-color: #ce9178;    // strings
+$function-color: #dcdcaa;  // functions
+$comment-color: #6a9955;   // comments
+$number-color: #b5cea8;    // numbers
+
+.code-block {
+    background: $bg-color;
+    color: $text-color;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    white-space: pre-wrap;  // wrap when needed
+    word-break: break-word; // break very long words
+
+    .keyword { color: $keyword-color; }
+    .string { color: $string-color; }
+    .function { color: $function-color; }
+    .comment { color: $comment-color; font-style: italic; }
+    .number { color: $number-color; }
+}

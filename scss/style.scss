@@ -1,0 +1,52 @@
+//IMPORTS
+@use 'code-theme'; // Import code block styles
+@use 'variables' as *; // Import your color and font variables
+@use 'mixins' as *;   // Import your mixins
+
+// FONT IMPORT
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&display=swap');
+
+
+//BASE STYLES
+html {
+    background-color: $primary-blue; 
+}
+
+h1, h2 {
+    font-family: $header-font; // Use font variable
+}
+
+h1 {
+    color: $accent-orange;
+}
+
+h2 {
+    color: $accent-yellow;
+}
+
+span, p {
+    font-family: $body-font; // Use font variable
+    font-weight: $font-weight-bold; // Use weight variable
+    color: $light-blue;
+}
+
+
+// LAYOUT/COMPONENT STYLES
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .construction {
+        @include center-grid-item; 
+        
+        span {
+            margin: 5px 0;
+        }
+
+        code {
+            font-family: "Doto", monospace;
+            background-color: none;
+        }
+    }
+}
