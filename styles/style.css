@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&display=swap");
+* {
+  background-color: #023047;
+}
+
+h1, h2 {
+  font-family: "Bitcount Single Ink", system-ui;
+}
+
+h1 {
+  color: #FB8500;
+}
+
+h2 {
+  color: #FFB703;
+}
+
+p {
+  font-family: "Doto", sans-serif;
+  font-weight: 600;
+  color: #8ECAE6;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+body .container {
+  grid-column: 2;
+  grid-row: 2;
+}
+body .container p {
+  margin: 10px 0;
+}/*# sourceMappingURL=style.css.map */
