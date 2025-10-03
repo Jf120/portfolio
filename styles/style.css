@@ -78,6 +78,7 @@ body .gallery-wrapper {
 @media (min-width: 700px) {
   body .gallery-wrapper {
     display: flex;
+    gap: 4vw;
   }
 }
 @media (min-width: 700px) {

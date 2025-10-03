@@ -59,6 +59,7 @@ body {
 
         @media (min-width: $breakpoint-desktop) {
             display: flex;
+            gap: 4vw;
         }
 
         .gallery-section {
