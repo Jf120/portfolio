@@ -50,7 +50,7 @@ body {
 
     .gallery-wrapper {
         // Defines the overall width and centers the content
-        @include eighty-percent-container;
+        @include container-width;
         margin: 0 auto;
 
         .gallery-section {
