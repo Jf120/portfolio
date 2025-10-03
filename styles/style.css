@@ -75,6 +75,11 @@ body .gallery-wrapper {
   width: 90vw;
   margin: 0 auto;
 }
+@media (min-width: 700px) {
+  body .gallery-wrapper .gallery-section {
+    width: 25vw;
+  }
+}
 body .gallery-wrapper .gallery-section .gallery-header {
   display: flex;
   justify-content: space-between;

@@ -28,7 +28,7 @@ span, p {
 }
 
 a {
-    font-family: $body-font;
+    font-family: $body-font;  // Use font variable
 }
 
 
@@ -58,7 +58,10 @@ body {
         margin: 0 auto;
 
         .gallery-section {
-            // height: 25vw; // Fixed height for the gallery section
+
+            @media (min-width: $breakpoint-desktop) {
+                width: 25vw;
+            }
 
             .gallery-header {
                 display: flex;
@@ -66,12 +69,10 @@ body {
                 align-items: center;
                 
                 h1 {
-                    // You can reuse your h1 styles here
                     font-size: 2.5em;
                 }
 
                     .scroll-btn {
-                        // Reusing the dark blue background, but with a rounded look
                         background-color: lighten($primary-blue, 10%); 
                         color: $light-blue;
                         border: none;
@@ -95,13 +96,12 @@ body {
                 overflow-x: scroll; 
                 scroll-snap-type: x mandatory; 
                 
-                // Add a small padding on the sides for aesthetics
                 padding: 0 20px; 
                 
                 // Crucial: Items should NOT wrap to the next line
                 flex-wrap: nowrap; 
                 
-                // Hide the scrollbar (as before)
+                // Hide the scrollbar
                 &::-webkit-scrollbar {
                     display: none;
                 }
@@ -109,21 +109,13 @@ body {
                 scrollbar-width: none;
 
                 .gallery-item {
-                    // --- KEY FIXES ---
-                    // 1. Prevent shrinking when space runs out
-                    flex-shrink: 0; 
+                    flex-shrink: 0;  // Prevent shrinking when space runs out
                     
-                    // 2. Make the item fill the available viewport/container width
-                    // Use the CSS "calc" function to subtract any padding/gaps from the full width.
-                    width: 100%; 
-                    
-                    // You can adjust the height to maintain aspect ratio, but keep width 100%
+                    width: 100%;                     
                     height: 100%; 
                     
-                    // --- SCROLLING ---
                     scroll-snap-align: center; // Snap to the center of the item
 
-                    // Other styles (background, border-radius, etc.)
                     background-color: lighten($primary-blue, 5%); 
                     border-radius: 10px 10px 0 0;
                     overflow: hidden;
@@ -134,18 +126,16 @@ body {
                     img {
                         width: 100%;
                         height: 100%;
-                        object-fit: cover; // Ensures the image fills the space without distortion
+                        object-fit: cover; 
                     }
                     
                     .download-btn {
-                        // Overlay button styling (optional, but good for UX)
                         padding: 10px;
                         background-color: $accent-orange; 
                         color: $primary-blue;
                         text-align: center;
                         text-decoration: none;
                         font-weight: $font-weight-bold;
-                        // Make it slightly transparent or add a hover effect
                         opacity: 0.8;
                         transition: opacity 0.3s;
                         &:hover {
