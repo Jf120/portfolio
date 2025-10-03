@@ -87,15 +87,15 @@ for item_name in os.listdir(WALLPAPER_ROOT_DIR):
             # Create the paths
             if min_file and full_file:
                 # Both files exist - use min for display, full for download
-                image_url = f"/portfolio/{WALLPAPER_ROOT_DIR}/{collection_name}/{min_file}"
-                download_url = f"/portfolio/{WALLPAPER_ROOT_DIR}/{collection_name}/{full_file}"
+                image_url = f"/portfolio/{WALLPAPER_ROOT_DIR.strip("../")}/{collection_name}/{min_file}"
+                download_url = f"/portfolio/{WALLPAPER_ROOT_DIR.strip("../")}/{collection_name}/{full_file}"
             elif min_file:
                 # Only min file exists - use it for both
-                image_url = f"/portfolio/{WALLPAPER_ROOT_DIR}/{collection_name}/{min_file}"
+                image_url = f"/portfolio/{WALLPAPER_ROOT_DIR.strip("../")}/{collection_name}/{min_file}"
                 download_url = image_url
             elif full_file:
                 # Only full file exists - use it for both
-                image_url = f"/portfolio/{WALLPAPER_ROOT_DIR}/{collection_name}/{full_file}"
+                image_url = f"/portfolio/{WALLPAPER_ROOT_DIR.strip("../")}/{collection_name}/{full_file}"
                 download_url = image_url
             else:
                 # Skip if no files (shouldn't happen)
