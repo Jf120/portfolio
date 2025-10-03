@@ -58,7 +58,7 @@ body {
   align-items: center;
 }
 body .construction {
-  width: 80vw;
+  width: 90vw;
 }
 body .construction span {
   margin: 5px 0;
@@ -68,7 +68,7 @@ body .construction code {
   background-color: none;
 }
 body .gallery-wrapper {
-  width: 80vw;
+  width: 90vw;
   margin: 0 auto;
 }
 body .gallery-wrapper .gallery-section .gallery-header {
@@ -110,7 +110,7 @@ body .gallery-wrapper .gallery-section .gallery-scroller::-webkit-scrollbar {
 body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item {
   flex-shrink: 0;
   width: 100%;
-  height: 80vh;
+  height: 100%;
   scroll-snap-align: center;
   background-color: rgb(2.698630137, 64.7671232877, 95.801369863);
   border-radius: 10px 10px 0 0;
