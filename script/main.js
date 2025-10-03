@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const masterContainer = document.getElementById('master-gallery-container');
 
     // 1. Fetch the JSON data file
-    fetch('../data/gallery_data.json')
+    fetch('/portfolio/data/gallery_data.json')
         .then(response => response.json())
         .then(collections => {
 
