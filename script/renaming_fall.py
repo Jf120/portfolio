@@ -1,14 +1,16 @@
 import os
 import random
+import argparse
 from pathlib import Path
 
-def rename_jpg_files_to_fall_themes(folder_path):
+def rename_jpg_files_to_fall_themes(folder_path, prefix=None):
     """
     Renames JPG files in a folder to Fall-themed words, keeping pairs together.
     Files like IMG_0046.jpg and IMG_0046-min.jpg will become autumn.jpg and autumn-min.jpg
     
     Args:
         folder_path: Path to the folder containing JPG files
+        prefix: Optional prefix to add before the fall word (e.g., "moody" -> "moody-autumn.jpg")
     """
     # Fall-themed words (lowercase)
     fall_words = [
@@ -60,23 +62,41 @@ def rename_jpg_files_to_fall_themes(folder_path):
     
     # Rename file groups
     renamed_count = 0
+    word_counter = {}  # Track how many times each word has been used
+    
     for i, (base_name, files) in enumerate(file_groups.items()):
-        # Use modulo to cycle through words if more groups than words
-        word_index = i % len(fall_words)
-        fall_word = fall_words[word_index]
+        # Pop a word from the list if available
+        if fall_words:
+            fall_word = fall_words.pop(0)
+        else:
+            # If we run out of words, reuse from the beginning with numbered suffix
+            # Use the original shuffled order
+            base_word = list(word_counter.keys())[i % len(word_counter)] if word_counter else "autumn"
+            word_counter[base_word] = word_counter.get(base_word, 1) + 1
+            fall_word = f"{base_word}_{word_counter[base_word]}"
         
-        print(f"\nGroup '{base_name}' -> '{fall_word}':")
+        # Track used words
+        if '_' not in fall_word:  # Only track base words
+            word_counter[fall_word] = word_counter.get(fall_word, 0)
+        
+        # Add prefix if provided
+        if prefix:
+            final_name = f"{prefix}-{fall_word}"
+        else:
+            final_name = fall_word
+        
+        print(f"\nGroup '{base_name}' -> '{final_name}':")
         
         # Rename all files in the group
         for file_path, suffix in files:
             # Create new filename
-            new_name = f"{fall_word}{suffix}.jpg"
+            new_name = f"{final_name}{suffix}.jpg"
             new_path = folder / new_name
             
-            # Handle name conflicts
+            # Handle name conflicts (shouldn't happen now, but just in case)
             counter = 1
             while new_path.exists() and new_path != file_path:
-                new_name = f"{fall_word}{suffix}_{counter}.jpg"
+                new_name = f"{fall_word}{suffix}_conflict{counter}.jpg"
                 new_path = folder / new_name
                 counter += 1
             
@@ -89,14 +109,36 @@ def rename_jpg_files_to_fall_themes(folder_path):
                 print(f"  Error renaming {file_path.name}: {e}")
     
     print(f"\nCompleted! Renamed {renamed_count} files in {len(file_groups)} groups.")
+    if len(file_groups) > 36:
+        print(f"Note: Had {len(file_groups)} groups but only 36 unique words. Some names have numbered suffixes.")
 
 
 # Example usage
 if __name__ == "__main__":
-    # Replace with your folder path
-    folder_path = "../assets/wallpapers/fall"  # Current directory's 'photos' folder
+    # Set up command line argument parser
+    parser = argparse.ArgumentParser(
+        description='Rename JPG files to Fall-themed names',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog='''
+Examples:
+  python script.py ./photos
+  python script.py ./photos --prefix moody
+  python script.py ./photos -p joyful
+        '''
+    )
     
-    # Or use absolute path:
-    # folder_path = "/path/to/your/folder"
+    parser.add_argument(
+        'folder',
+        help='Path to the folder containing JPG files'
+    )
     
-    rename_jpg_files_to_fall_themes(folder_path)
+    parser.add_argument(
+        '-p', '--prefix',
+        help='Optional prefix to add before fall words (e.g., "moody" creates "moody-autumn.jpg")',
+        default=None
+    )
+    
+    args = parser.parse_args()
+    
+    # Run the renaming function
+    rename_jpg_files_to_fall_themes(args.folder, args.prefix)
