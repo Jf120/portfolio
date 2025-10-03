@@ -56,17 +56,34 @@ document.addEventListener('DOMContentLoaded', () => {
             masterContainer.innerHTML = '<p>Could not load the wallpaper gallery.</p>';
         });
         
+    // // Function to handle horizontal scrolling
+    // function setupScrollButtons() {
+    //     const scrollAmount = 400; // Match your item width
+        
+    //     document.querySelectorAll('.scroll-btn').forEach(button => {
+    //         button.addEventListener('click', (e) => {
+    //             const targetId = e.currentTarget.dataset.targetId;
+    //             const scroller = document.getElementById(targetId);
+                
+    //             if (!scroller) return;
+
+    //             const direction = e.currentTarget.classList.contains('next-btn') ? 1 : -1;
+    //             scroller.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    //         });
+    //     });
+    // }
+
     // Function to handle horizontal scrolling
     function setupScrollButtons() {
-        const scrollAmount = 400; // Match your item width
-        
         document.querySelectorAll('.scroll-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const targetId = e.currentTarget.dataset.targetId;
                 const scroller = document.getElementById(targetId);
-                
                 if (!scroller) return;
-
+                
+                // Calculate scroll amount based on viewport width (25vw)
+                const scrollAmount = window.innerWidth * 0.25; // 25% of viewport width
+                
                 const direction = e.currentTarget.classList.contains('next-btn') ? 1 : -1;
                 scroller.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
             });

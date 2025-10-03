@@ -57,10 +57,16 @@ body {
         @include container-width;
         margin: 0 auto;
 
+        @media (min-width: $breakpoint-desktop) {
+            display: flex;
+        }
+
         .gallery-section {
 
             @media (min-width: $breakpoint-desktop) {
                 width: 25vw;
+                display: flex;
+                flex-direction: column;
             }
 
             .gallery-header {
