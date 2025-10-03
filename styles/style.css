@@ -51,6 +51,10 @@ span, p {
   color: #8ECAE6;
 }
 
+a {
+  font-family: "Doto", sans-serif;
+}
+
 body {
   display: flex;
   justify-content: center;
