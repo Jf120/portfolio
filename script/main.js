@@ -1,93 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const masterContainer = document.getElementById('master-gallery-container');
 
-    // 1. Fetch the JSON data file
-    fetch('/portfolio/data/gallery_data.json')
-        .then(response => response.json())
-        .then(collections => {
+// Scroll / keyboard driven stack reordering for the `.cards` container.
+(function () {
+	const container = document.querySelector('.cards');
+	if (!container) return;
 
-            // 2. Loop through each collection (e.g., "Cityscapes", "Nature")
-            collections.forEach(collection => {
-                
-                // --- A. Build the HTML for the scrolling image items ---
-                let scrollerContent = '';
-                collection.images.forEach(image => {
-                    scrollerContent += `
-                        <div class="gallery-item">
-                            <img 
-                                src="${image.image_path}" 
-                                alt="${image.alt}" 
-                                onerror="this.onerror=null; this.src='${image.fallback_path}';"
-                            >
-                            <a href="${image.download_path}" download class="download-btn">Download</a>
-                        </div>
-                    `;
-                });
+	let isAnimating = false;
+	let lastEvent = 0;
+	const THROTTLE_MS = 320;
 
-                // --- B. Assemble the full collection gallery section ---
-                const gallerySection = `
-                    <div class="gallery-section">
-                        <div class="gallery-header">
-                            <h2>${collection.collection_name}</h2>
-                            <div class="scroll-buttons">
-                                <button class="scroll-btn prev-btn" 
-                                    data-target-id="scroller-${collection.collection_name}">&lt;</button>
-                                <button class="scroll-btn next-btn" 
-                                    data-target-id="scroller-${collection.collection_name}">&gt;</button>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-scroller" id="scroller-${collection.collection_name}">
-                            ${scrollerContent}
-                        </div>
-                    </div>
-                `;
+	function rotateForward() {
+		// move first child to end
+		const first = container.firstElementChild;
+		if (!first) return;
+		isAnimating = true;
+		container.classList.add('is-animating');
+		container.appendChild(first);
+		// block events until CSS transition likely finished
+		setTimeout(() => {
+			isAnimating = false;
+			container.classList.remove('is-animating');
+		}, THROTTLE_MS + 40);
+	}
 
-                // --- C. Add the entire section to the page ---
-                masterContainer.insertAdjacentHTML('beforeend', gallerySection);
-            });
-            
-            // 3. Re-enable scroll button functionality after content is loaded
-            setupScrollButtons();
+	function rotateBackward() {
+		// move last child to front
+		const last = container.lastElementChild;
+		if (!last) return;
+		isAnimating = true;
+		container.classList.add('is-animating');
+		container.insertBefore(last, container.firstElementChild);
+		setTimeout(() => {
+			isAnimating = false;
+			container.classList.remove('is-animating');
+		}, THROTTLE_MS + 40);
+	}
 
-        })
-        .catch(error => {
-            console.error('Error loading gallery data:', error);
-            masterContainer.innerHTML = '<p>Could not load the wallpaper gallery.</p>';
-        });
-        
-    // // Function to handle horizontal scrolling
-    // function setupScrollButtons() {
-    //     const scrollAmount = 400; // Match your item width
-        
-    //     document.querySelectorAll('.scroll-btn').forEach(button => {
-    //         button.addEventListener('click', (e) => {
-    //             const targetId = e.currentTarget.dataset.targetId;
-    //             const scroller = document.getElementById(targetId);
-                
-    //             if (!scroller) return;
+	function handleWheel(e) {
+		const now = Date.now();
+		if (isAnimating || now - lastEvent < THROTTLE_MS) return;
+		lastEvent = now;
+		if (e.deltaY > 0) {
+			rotateForward();
+		} else if (e.deltaY < 0) {
+			rotateBackward();
+		}
+	}
 
-    //             const direction = e.currentTarget.classList.contains('next-btn') ? 1 : -1;
-    //             scroller.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-    //         });
-    //     });
-    // }
+	function handleKey(e) {
+		if (isAnimating) return;
+		if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+			rotateForward();
+		} else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+			rotateBackward();
+		}
+	}
 
-    // Function to handle horizontal scrolling
-    function setupScrollButtons() {
-        document.querySelectorAll('.scroll-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const targetId = e.currentTarget.dataset.targetId;
-                const scroller = document.getElementById(targetId);
-                if (!scroller) return;
-                
-                // Calculate scroll amount based on viewport width (25vw)
-                const scrollAmount = window.innerWidth * 0.25; // 25% of viewport width
-                
-                const direction = e.currentTarget.classList.contains('next-btn') ? 1 : -1;
-                scroller.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-            });
-        });
-    }
+	// Improve touch: simple swipe detection
+	let touchStartY = null;
+	container.addEventListener('touchstart', (e) => {
+		if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
+	}, {passive: true});
+	container.addEventListener('touchend', (e) => {
+		if (touchStartY == null) return;
+		const touchEndY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : null;
+		if (touchEndY == null) return;
+		const diff = touchStartY - touchEndY;
+		if (Math.abs(diff) > 24) {
+			if (diff > 0) rotateForward(); else rotateBackward();
+		}
+		touchStartY = null;
+	}, {passive: true});
 
-});
+	// Wheel + mouse support
+	container.addEventListener('wheel', handleWheel, {passive: true});
+	// Keyboard on container for accessibility
+	container.setAttribute('tabindex', '0');
+	container.addEventListener('keydown', handleKey);
+
+	// Small UX: allow clicking the top card to send it to back
+	container.addEventListener('click', (e) => {
+		// Only act when clicking the top-most card
+		if (e.target.closest('.card') === container.firstElementChild) {
+			rotateForward();
+		}
+	});
+
+	// Optional: expose functions for debugging
+	window._stackRotate = { forward: rotateForward, backward: rotateBackward };
+})();

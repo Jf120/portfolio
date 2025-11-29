@@ -37,12 +37,12 @@ h1, h2 {
   font-weight: 300;
 }
 
-h1 {
-  text-shadow: 2px 2px #FFB703;
+h3 {
+  color: rgba(128, 122, 142, 0.5607843137);
 }
 
-h2 {
-  color: #FFB703;
+h1 {
+  text-shadow: 2px 2px #FFB703;
 }
 
 span, p {
@@ -53,6 +53,15 @@ span, p {
 
 a {
   font-family: "Doto", sans-serif;
+}
+
+nav {
+  font-size: 1.2em;
+}
+nav a:hover {
+  text-shadow: 2px 2px #FFB703;
+  font-size: 1.25em;
+  transition: all 0.2s ease-in-out;
 }
 
 body {
@@ -70,6 +79,65 @@ body .construction span {
 body .construction code {
   font-family: "Doto", sans-serif;
   background-color: none;
+}
+body .about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20vh 0;
+}
+body .about .intro {
+  margin: auto 40px;
+  text-align: right;
+}
+body .about .cards {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+}
+body .about .cards .card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 560px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 320ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 320ms ease, z-index 0ms linear 320ms;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+body .about .cards .card:first-child {
+  pointer-events: auto;
+}
+body .about .cards .card:nth-child(1) {
+  transform: translateY(0) scale(1);
+  z-index: 6;
+  opacity: 1;
+}
+body .about .cards .card:nth-child(2) {
+  transform: translateY(16px) scale(0.985);
+  z-index: 5;
+  opacity: 0.95;
+}
+body .about .cards .card:nth-child(3) {
+  transform: translateY(34px) scale(0.97);
+  z-index: 4;
+  opacity: 0.9;
+}
+body .about .cards .card:nth-child(4) {
+  transform: translateY(54px) scale(0.955);
+  z-index: 3;
+  opacity: 0.8;
+}
+body .about .cards .card:nth-child(n+5) {
+  transform: translateY(74px) scale(0.94);
+  z-index: 2;
+  opacity: 0.7;
+}
+body .about .cards.is-animating .card {
+  transition-duration: 360ms;
 }
 body .gallery-wrapper {
   width: 90vw;
@@ -161,4 +229,6 @@ footer {
   font-family: "Doto", sans-serif;
   font-size: 0.9em;
   margin-top: 20px;
+  position: fixed;
+  bottom: 0;
 }/*# sourceMappingURL=style.css.map */

@@ -8,14 +8,28 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
     <script defer src="./script/main.js"></script>
+    <script src="components.js"></script>
 </head>
 <body>
-    <main class="construction">
-        <h1>jafc.portfolio()</h1>
-        <pre class="code-block"><code><span class="comment">// autumn compiled</span>
-<span class="keyword">const</span> subject = <span class="string">"fall";</span>
-<span class="keyword">const</span> details = <span class="string">["amber", "crimson", "gold"];</span>
-<span class="function">render</span>(<span class="function">vignette</span>(<span class="keyword">subject, details</span>));</code></pre>
+    <app-navbar></app-navbar>
+    <main class="construction about">
+        <section class="intro">
+            <h1>jafc.portfolio()</h1>
+            <h2>Jack Of All Trades, Master of None...?</h2>
+            <h3>but oftentimes better than a master of one.</h3>    
+        </section>
+
+        <section class="cards">
+            <div class="code-block card">
+                <p>I don't just write code; I build systems. At JMF Asesores, I realized standard tools weren't enough, so I designed and developed a custom PHP framework to handle complex survey data. I love the logic of database design, optimization, and SQL query writing. My goal is always efficiency—like when I improved data collection efficiency by 300%.</p>
+            </div>
+            <div class="code-block card">
+                <p>Software doesn't exist in a vacuum. My background isn't just in syntax, but in strategy. I’ve led logistics for expeditions involving over 500 volunteers and managed social media strategies that boosted online presence by 60%. I understand that a great application must solve a business problem, whether that's reducing client downtime or streamlining inventory management.</p>
+            </div>
+            <div class="code-block card">
+                <p>This site started as a place for my photography because I believe in the power of visuals. In my professional work, I apply this to UI/UX design. I led the complete redesign of a company website, focusing on responsiveness and accessibility. I bridge the gap between how an application works and how it feels.</p>
+            </div>
+        </section>
     </main>    
 
     <section class="gallery-wrapper" id="master-gallery-container">
