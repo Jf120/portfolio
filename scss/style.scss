@@ -3,10 +3,6 @@
 @use 'variables' as *; // Import your color and font variables
 @use 'mixins' as *;   // Import your mixins
 
-// FONT IMPORT
-@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&display=swap');
-
-
 //BASE STYLES
 html {
     background-color: $primary-blue; 
@@ -14,10 +10,11 @@ html {
 
 h1, h2 {
     font-family: $header-font; // Use font variable
+    font-weight: 300;
 }
 
 h1 {
-    color: $accent-orange;
+    text-shadow: 2px 2px $accent-yellow;
 }
 
 h2 {
@@ -30,23 +27,139 @@ span, p {
     color: $light-blue;
 }
 
+a {
+    font-family: $body-font;  // Use font variable
+}
+
 
 // LAYOUT/COMPONENT STYLES
 body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     .construction {
-        @include center-grid-item; 
+        @include container-width; 
         
         span {
             margin: 5px 0;
         }
 
         code {
-            font-family: "Doto", monospace;
+            font-family: $body-font;
             background-color: none;
         }
     }
+
+    .gallery-wrapper {
+        // Defines the overall width and centers the content
+        @include container-width;
+        margin: 0 auto;
+
+        @media (min-width: $breakpoint-desktop) {
+            display: flex;
+            gap: 4vw;
+        }
+
+        .gallery-section {
+
+            @media (min-width: $breakpoint-desktop) {
+                width: 25vw;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .gallery-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                h1 {
+                    font-size: 2.5em;
+                }
+
+                    .scroll-btn {
+                        background-color: lighten($primary-blue, 10%); 
+                        color: $light-blue;
+                        border: none;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        font-size: 1.2em;
+                        cursor: pointer;
+                        margin-left: 10px;
+                        transition: background-color 0.2s;
+                        
+                        &:hover {
+                            background-color: $accent-orange;
+                            color: $primary-blue;
+                        }
+                    }
+            }
+
+            .gallery-scroller {
+                display: flex;
+                overflow-x: scroll; 
+                scroll-snap-type: x mandatory; 
+                
+                padding: 0 20px; 
+                
+                // Crucial: Items should NOT wrap to the next line
+                flex-wrap: nowrap; 
+                
+                // Hide the scrollbar
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+                .gallery-item {
+                    flex-shrink: 0;  // Prevent shrinking when space runs out
+                    
+                    width: 100%;                     
+                    height: 100%; 
+                    
+                    scroll-snap-align: center; // Snap to the center of the item
+
+                    background-color: lighten($primary-blue, 5%); 
+                    border-radius: 10px 10px 0 0;
+                    overflow: hidden;
+
+                    display: flex;
+                    flex-direction: column;
+                    
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover; 
+                    }
+                    
+                    .download-btn {
+                        padding: 10px;
+                        background-color: $accent-orange; 
+                        color: $primary-blue;
+                        text-align: center;
+                        text-decoration: none;
+                        font-weight: $font-weight-bold;
+                        opacity: 0.8;
+                        transition: opacity 0.3s;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    color: $light-blue;
+    font-family: $body-font;
+    font-size: 0.9em;
+    margin-top: 20px;
 }

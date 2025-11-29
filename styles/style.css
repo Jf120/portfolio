@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&family=Doto:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Doto:wght@100..900&display=swap");
 .code-block {
   background: #1e1e1e;
   color: #d4d4d4;
@@ -33,11 +33,12 @@ html {
 }
 
 h1, h2 {
-  font-family: "Bitcount Single Ink", system-ui;
+  font-family: "Bitcount Ink", system-ui;
+  font-weight: 300;
 }
 
 h1 {
-  color: #FB8500;
+  text-shadow: 2px 2px #FFB703;
 }
 
 h2 {
@@ -50,19 +51,114 @@ span, p {
   color: #8ECAE6;
 }
 
+a {
+  font-family: "Doto", sans-serif;
+}
+
 body {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 body .construction {
-  grid-column: 2;
-  grid-row: 2;
+  width: 90vw;
 }
 body .construction span {
   margin: 5px 0;
 }
 body .construction code {
-  font-family: "Doto", monospace;
+  font-family: "Doto", sans-serif;
   background-color: none;
+}
+body .gallery-wrapper {
+  width: 90vw;
+  margin: 0 auto;
+}
+@media (min-width: 700px) {
+  body .gallery-wrapper {
+    display: flex;
+    gap: 4vw;
+  }
+}
+@media (min-width: 700px) {
+  body .gallery-wrapper .gallery-section {
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+  }
+}
+body .gallery-wrapper .gallery-section .gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .gallery-wrapper .gallery-section .gallery-header h1 {
+  font-size: 2.5em;
+}
+body .gallery-wrapper .gallery-section .gallery-header .scroll-btn {
+  background-color: rgb(3.397260274, 81.5342465753, 120.602739726);
+  color: #8ECAE6;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.2s;
+}
+body .gallery-wrapper .gallery-section .gallery-header .scroll-btn:hover {
+  background-color: #FB8500;
+  color: #023047;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 0 20px;
+  flex-wrap: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller::-webkit-scrollbar {
+  display: none;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  background-color: rgb(2.698630137, 64.7671232877, 95.801369863);
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item .download-btn {
+  padding: 10px;
+  background-color: #FB8500;
+  color: #023047;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+body .gallery-wrapper .gallery-section .gallery-scroller .gallery-item .download-btn:hover {
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  color: #8ECAE6;
+  font-family: "Doto", sans-serif;
+  font-size: 0.9em;
+  margin-top: 20px;
 }/*# sourceMappingURL=style.css.map */

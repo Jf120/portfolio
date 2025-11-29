@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="photography, wallpaper, portfolio, Jorge Flores Coronado, photo gallery, free downloads">
     <title>jafc.portfolio()</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+    <script defer src="./script/main.js"></script>
 </head>
 <body>
-    <container class="construction">
+    <main class="construction">
         <h1>jafc.portfolio()</h1>
-        <pre class="code-block"><code><span class="comment">// compiling wallpapers</span>
-<span class="keyword">const</span> status = <span class="string">"gallery in progress";</span>
-<span class="function">launch</span>(<span class="keyword">soon</span>);</span></code></pre></container>    
+        <pre class="code-block"><code><span class="comment">// autumn compiled</span>
+<span class="keyword">const</span> subject = <span class="string">"fall";</span>
+<span class="keyword">const</span> details = <span class="string">["amber", "crimson", "gold"];</span>
+<span class="function">render</span>(<span class="function">vignette</span>(<span class="keyword">subject, details</span>));</code></pre>
+    </main>    
+
+    <section class="gallery-wrapper" id="master-gallery-container">
+    </section>
 </body>
+<footer>
+    <p>© 2025 jafc120</p>
+</footer>
 </html>
