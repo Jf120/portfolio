@@ -3,27 +3,11 @@
     "collection_name": "joyful_fall",
     "images": [
       {
-        "title": "Joyful Sweater",
-        "filename": "joyful-sweater.jpg",
-        "alt": "Joyful Sweater - joyful_fall",
-        "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-sweater-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-sweater.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
         "title": "Joyful Acorn",
         "filename": "joyful-acorn.jpg",
         "alt": "Joyful Acorn - joyful_fall",
         "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-acorn-min.jpg",
         "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-acorn.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Joyful Scarecrow",
-        "filename": "joyful-scarecrow.jpg",
-        "alt": "Joyful Scarecrow - joyful_fall",
-        "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-scarecrow-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-scarecrow.jpg",
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
@@ -51,6 +35,14 @@
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
+        "title": "Joyful October",
+        "filename": "joyful-october.jpg",
+        "alt": "Joyful October - joyful_fall",
+        "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-october-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-october.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
         "title": "Joyful Rustic",
         "filename": "joyful-rustic.jpg",
         "alt": "Joyful Rustic - joyful_fall",
@@ -59,11 +51,19 @@
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
-        "title": "Joyful October",
-        "filename": "joyful-october.jpg",
-        "alt": "Joyful October - joyful_fall",
-        "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-october-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-october.jpg",
+        "title": "Joyful Scarecrow",
+        "filename": "joyful-scarecrow.jpg",
+        "alt": "Joyful Scarecrow - joyful_fall",
+        "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-scarecrow-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-scarecrow.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Joyful Sweater",
+        "filename": "joyful-sweater.jpg",
+        "alt": "Joyful Sweater - joyful_fall",
+        "image_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-sweater-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/joyful_fall/joyful-sweater.jpg",
         "fallback_path": "/portfolio/assets/no_image.png"
       }
     ]
@@ -71,62 +71,6 @@
   {
     "collection_name": "moody_fall",
     "images": [
-      {
-        "title": "Moody Cider",
-        "filename": "moody-cider.jpg",
-        "alt": "Moody Cider - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-cider-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-cider.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Moody Rustic",
-        "filename": "moody-rustic.jpg",
-        "alt": "Moody Rustic - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-rustic-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-rustic.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Moody Sweater",
-        "filename": "moody-sweater.jpg",
-        "alt": "Moody Sweater - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-sweater-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-sweater.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Moody Gourd",
-        "filename": "moody-gourd.jpg",
-        "alt": "Moody Gourd - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-gourd-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-gourd.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Moody Crisp",
-        "filename": "moody-crisp.jpg",
-        "alt": "Moody Crisp - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-crisp-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-crisp.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Moody Maple",
-        "filename": "moody-maple.jpg",
-        "alt": "Moody Maple - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-maple-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-maple.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
-        "title": "Moody Spice",
-        "filename": "moody-spice.jpg",
-        "alt": "Moody Spice - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-spice-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-spice.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
       {
         "title": "Moody Bonfire",
         "filename": "moody-bonfire.jpg",
@@ -136,11 +80,11 @@
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
-        "title": "Moody Woods",
-        "filename": "moody-woods.jpg",
-        "alt": "Moody Woods - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-woods-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-woods.jpg",
+        "title": "Moody Cider",
+        "filename": "moody-cider.jpg",
+        "alt": "Moody Cider - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-cider-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-cider.jpg",
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
@@ -152,14 +96,6 @@
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
-        "title": "Moody Warm",
-        "filename": "moody-warm.jpg",
-        "alt": "Moody Warm - moody_fall",
-        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-warm-min.jpg",
-        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-warm.jpg",
-        "fallback_path": "/portfolio/assets/no_image.png"
-      },
-      {
         "title": "Moody Corn",
         "filename": "moody-corn.jpg",
         "alt": "Moody Corn - moody_fall",
@@ -168,11 +104,128 @@
         "fallback_path": "/portfolio/assets/no_image.png"
       },
       {
+        "title": "Moody Crisp",
+        "filename": "moody-crisp.jpg",
+        "alt": "Moody Crisp - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-crisp-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-crisp.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Gourd",
+        "filename": "moody-gourd.jpg",
+        "alt": "Moody Gourd - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-gourd-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-gourd.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Maple",
+        "filename": "moody-maple.jpg",
+        "alt": "Moody Maple - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-maple-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-maple.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
         "title": "Moody October",
         "filename": "moody-october.jpg",
         "alt": "Moody October - moody_fall",
         "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-october-min.jpg",
         "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-october.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Rustic",
+        "filename": "moody-rustic.jpg",
+        "alt": "Moody Rustic - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-rustic-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-rustic.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Spice",
+        "filename": "moody-spice.jpg",
+        "alt": "Moody Spice - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-spice-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-spice.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Sweater",
+        "filename": "moody-sweater.jpg",
+        "alt": "Moody Sweater - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-sweater-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-sweater.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Warm",
+        "filename": "moody-warm.jpg",
+        "alt": "Moody Warm - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-warm-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-warm.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Moody Woods",
+        "filename": "moody-woods.jpg",
+        "alt": "Moody Woods - moody_fall",
+        "image_path": "/portfolio/assets/wallpapers/moody_fall/moody-woods-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moody_fall/moody-woods.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      }
+    ]
+  },
+  {
+    "collection_name": "moab",
+    "images": [
+      {
+        "title": "Timothygreen",
+        "filename": "timothyGreen.jpg",
+        "alt": "Timothygreen - moab",
+        "image_path": "/portfolio/assets/wallpapers/moab/timothyGreen-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moab/timothyGreen.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Arch",
+        "filename": "arch.jpg",
+        "alt": "Arch - moab",
+        "image_path": "/portfolio/assets/wallpapers/moab/arch-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moab/arch.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Hallway",
+        "filename": "hallway.jpg",
+        "alt": "Hallway - moab",
+        "image_path": "/portfolio/assets/wallpapers/moab/hallway-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moab/hallway.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Floatingman",
+        "filename": "floatingMan.jpg",
+        "alt": "Floatingman - moab",
+        "image_path": "/portfolio/assets/wallpapers/moab/floatingMan-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moab/floatingMan.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Takemegosh",
+        "filename": "takeMeGosh.jpg",
+        "alt": "Takemegosh - moab",
+        "image_path": "/portfolio/assets/wallpapers/moab/takeMeGosh-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moab/takeMeGosh.jpg",
+        "fallback_path": "/portfolio/assets/no_image.png"
+      },
+      {
+        "title": "Landscape",
+        "filename": "landscape.jpg",
+        "alt": "Landscape - moab",
+        "image_path": "/portfolio/assets/wallpapers/moab/landscape-min.jpg",
+        "download_path": "/portfolio/assets/wallpapers/moab/landscape.jpg",
         "fallback_path": "/portfolio/assets/no_image.png"
       }
     ]
