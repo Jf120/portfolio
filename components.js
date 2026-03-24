@@ -6,7 +6,7 @@ class AppNavbar extends HTMLElement {
                 <a href="photos.html" style="color: white;">Photos</a>
             </nav>
             `;
-        }
+    }
 }
 
 // Define the custom element
@@ -15,12 +15,13 @@ customElements.define('app-navbar', AppNavbar);
 class collectionIntro extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `    
-        <pre class="code-block"><code><span class="comment">// autumn compiled</span>
-<span class="keyword">const</span> subject = <span class="string">"fall";</span>
-<span class="keyword">const</span> details = <span class="string">["amber", "crimson", "gold"];</span>
-<span class="function">render</span>(<span class="function">vignette</span>(<span class="keyword">subject, details</span>));</code></pre>
+        <pre class="code-block"><code><span class="comment">// photographer wannabe</span>
+<span class="keyword">const</span> subject = <span class="string">"whatever is on my sight";</span>
+<span class="keyword">const</span> filters = <span class="string">["graininess", "vignette", "exposure", "contrast"];</span>
+<span class="function">render</span>(<span class="function">vibrance</span>(<span class="keyword">subject, filters</span>));</code></pre>
+<pre class="code-block"><code><span class="comment">// download to get full quality picture</span>
             `;
-        }
+    }
 }
 
 customElements.define('collection-intro', collectionIntro);
