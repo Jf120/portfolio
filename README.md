@@ -1,42 +1,44 @@
-# Jorge Flores - Personal Portfolio
+# Jorge Flores - Personal Portfolio (`jafc.portfolio()`)
 
 > **"Jack of all trades, master of none... but oftentimes better than a master of one."**
 
 ## 📖 About This Project
 
-This repository hosts my personal portfolio website, transforming what began as a simple static page for photography wallpapers into a comprehensive professional hub.
+This repository hosts my personal portfolio website deployed on **GitHub Pages**, built completely with zero-dependency **HTML5, Vanilla CSS, and JavaScript (ES6+)** in a **Neo-Brutalist** design system with **Light & Dark mode** support.
 
-The site is built using **HTML, JS and SCSS** and hosted on **GitHub Pages**, serving as a showcase for my diverse background—ranging from coordinating logistics for 500+ volunteers to architecting custom PHP frameworks for data analysis.
+## 🏗️ Architecture & Tech Stack
 
-## 🏗️ Tech Stack
+* **Core Stack:** Pure HTML5, Modular Vanilla CSS (`css/`), and ES6+ JavaScript (`js/`) with Web Components
+* **Hosting:** GitHub Pages (zero build tools required)
+* **Data-Driven Content:** JSON catalogs in `data/projects_data.json` and `data/gallery_data.json`
 
-* **Static Site:** HTML & JS
-* **Styling:** SCSS / CSS3
-* **Hosting:** GitHub Pages
+```text
+├── index.html          # Home landing page + interactive discipline card stack
+├── about.html          # About Me, experience timeline, skills, and contact
+├── projects.html       # Filterable project catalog + case study modal
+├── photos.html         # Wallpaper collections with horizontal scrollers & lightbox
+├── 404.html            # Custom GitHub Pages 404 page
+├── css/                # Neo-Brutalist tokens, base, components, and page styles
+├── js/                 # Theme toggle, Web Components, card stack, projects & gallery logic
+├── data/               # JSON manifests for projects and wallpaper collections
+├── assets/             # Icons, fallback graphic, and wallpaper collections
+└── script/             # Python helper scripts for renaming and indexing wallpapers
+```
 
-## 📂 Site Sections
+## 📂 Site Pages
 
-### 1. The Engineer (Software Development)
-Showcasing my work in full-stack development, specifically:
-* **JMF Asesores:** A custom PHP framework I developed to handle survey data analysis, improving data collection efficiency by 300%.
-* **Database Design:** SQL optimization, stored procedures, and normalization.
-* **Python Automation:** Inventory management scripts used to increase operational productivity.
-
-### 2. The Strategist (Logistics & Leadership)
-Highlighting my operational experience:
-* Leading logistics for the **Miguel Vargas Association**, managing transportation and supplies for large-scale volunteer expeditions.
-* Experience as a Chat Support Agent at **Clipboard Health**, maintaining a 98% first-contact resolution rate.
-
-### 3. The Creator (UI/UX & Photography)
-* A dedicated section for my photography and wallpaper downloads.
-* Demonstrating my approach to responsive web design and accessibility.
+* **Home (`index.html`):** Interactive stacked card deck (`click`, `wheel`, `swipe`, `arrow keys`, or buttons), core discipline pillars, featured project previews, and collection links.
+* **About Me (`about.html`):** Background spanning software engineering, logistics leadership, and UI/UX design, with timeline, toolkit matrix, and copyable email.
+* **Projects (`projects.html`):** Category-filterable showcase covering JMF Asesores PHP framework, Python automation, volunteer logistics & web redesign, plus editable placeholder entries.
+* **Photos (`photos.html`):** Original mobile wallpaper collections (`joyful_fall`, `moody_fall`, `moab`) with horizontal carousels, lightbox preview, and full-resolution downloads.
 
 ## 📬 Contact
 
 * **Jorge Flores**
-* **Location:** Salt Lake City, UT 
+* **Location:** Salt Lake City, UT
 * **Email:** jafc120@gmail.com
-* **LinkedIn:** [linkedin.com/in/ja-flores/](https://www.linkedin.com/in/ja-flores/) 
+* **LinkedIn:** [linkedin.com/in/ja-flores/](https://www.linkedin.com/in/ja-flores/)
+* **GitHub:** [github.com/Jf120](https://github.com/Jf120)
 
 ---
-*© 2025 Jorge Flores. All rights reserved.*
+*© 2025–2026 Jorge Flores. All rights reserved.*

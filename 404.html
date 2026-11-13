@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found on jafc.portfolio() — return to Home, About Me, Projects, or Photos.">
+  <title>404 Not Found | jafc.portfolio()</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/components.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="container error-page-wrap">
+      <article class="nb-card error-card">
+        <span class="nb-tag nb-tag--orange" style="width: fit-content;">ERROR 404 // ROUTE NOT FOUND</span>
+        <h1>Lost in the stack.</h1>
+        <p>
+          The page you requested doesn't exist or was moved during the Neo-Brutalist portfolio refactor.
+        </p>
+        <div class="hero-cta-group">
+          <a class="btn btn-primary" href="./index.html">Back to Home →</a>
+          <a class="btn btn-surface" href="./projects.html">Projects</a>
+          <a class="btn btn-secondary" href="./photos.html">Photos</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</body>
+</html>

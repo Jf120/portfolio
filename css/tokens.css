@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Design Tokens — Neo-Brutalist Portfolio System
+   Light ("Warm Paper & Ink") & Dark ("Abyssal Slate & Amber") Themes
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 2.5vw, 2rem);
+  --text-3xl: clamp(2rem, 4vw, 2.85rem);
+  --text-hero: clamp(2.5rem, 6vw, 4.5rem);
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 5.5rem;
+
+  /* Layout */
+  --container-max: 1200px;
+  --header-height: 74px;
+
+  /* Neo-Brutalist Geometry */
+  --border-width: 2.5px;
+  --border-heavy: 3px;
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Shadows */
+  --shadow-sm: 3px 3px 0 var(--shadow-color);
+  --shadow-md: 6px 6px 0 var(--shadow-color);
+  --shadow-lg: 9px 9px 0 var(--shadow-color);
+  --shadow-hover: 8px 8px 0 var(--shadow-color);
+
+  /* Transitions */
+  --ease-snappy: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --transition-fast: 140ms var(--ease-snappy);
+  --transition-med: 260ms var(--ease-snappy);
+
+  /* Brand Accents (Consistent High-Contrast Identity) */
+  --accent-amber: #ffb703;
+  --accent-orange: #fb8500;
+  --accent-sky: #8ecae6;
+  --accent-teal: #219ebc;
+  --accent-navy: #023047;
+  --accent-green: #2a9d8f;
+  --accent-red: #e63946;
+
+  /* Default Light Theme Tokens */
+  --bg-page: #f4efe6;
+  --bg-surface: #fffdf8;
+  --bg-muted: #e6dfd1;
+  --bg-elevated: #ffffff;
+
+  --ink-primary: #111315;
+  --ink-secondary: #39424a;
+  --ink-on-accent: #111315;
+  --ink-on-dark: #f4efe6;
+
+  --border-color: #111315;
+  --shadow-color: #111315;
+
+  --focus-ring: #fb8500;
+
+  /* Code Window Tokens */
+  --code-bg: #14191f;
+  --code-header: #1d252e;
+  --code-text: #e6edf3;
+  --code-comment: #7d9685;
+  --code-keyword: #8ecae6;
+  --code-string: #ffb703;
+  --code-function: #fb8500;
+  --code-number: #b5cea8;
+}
+
+/* Dark Theme — Abyssal Navy-Slate & Warm Bone Ink (Zero Purple) */
+[data-theme='dark'] {
+  --bg-page: #13202b;
+  --bg-surface: #1b2c3b;
+  --bg-muted: #22384b;
+  --bg-elevated: #203445;
+
+  --ink-primary: #f1ece1;
+  --ink-secondary: #b7cad8;
+  --ink-on-accent: #111315;
+  --ink-on-dark: #f1ece1;
+
+  --border-color: #e6e0d2;
+  --shadow-color: #060b10;
+
+  --focus-ring: #ffb703;
+
+  --code-bg: #0c141b;
+  --code-header: #15232f;
+  --code-text: #f1ece1;
+  --code-comment: #88a496;
+  --code-keyword: #8ecae6;
+  --code-string: #ffb703;
+  --code-function: #fb8500;
+  --code-number: #b8d8be;
+}

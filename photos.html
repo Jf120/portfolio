@@ -1,27 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="photography, wallpaper, portfolio, Jorge Flores Coronado, photo gallery, free downloads">
-    <title>jafc.portfolio()</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
-    <script defer src="./script/photos.js"></script>
-    <script src="components.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Original photography collections and free full-resolution phone wallpapers by Jorge Flores Coronado (jafc120).">
+  <meta name="keywords" content="photography, wallpaper, portfolio, Jorge Flores Coronado, photo gallery, free downloads">
+  <title>Photos &amp; Wallpapers | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+  <script defer src="./js/photos.js"></script>
 </head>
 <body>
-    <app-navbar></app-navbar>
-    
-    <main class="construction">
-        <h1>jafc.portfolio()</h1>
-        <collection-intro></collection-intro>
-    </main>    
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
 
-    <section class="gallery-wrapper" id="master-gallery-container">
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <span class="eyebrow">03 // Mobile Photography &amp; Wallpapers</span>
+          <h1>Photos &amp; Wallpapers</h1>
+          <p class="page-hero-lead">
+            Curated phone-aspect wallpapers captured on the road—from Utah red rock formations in Moab
+            to warm and moody autumn scenes. Click any frame to preview or download in full quality.
+          </p>
+        </div>
+
+        <div class="photos-intro-wrap">
+          <collection-intro></collection-intro>
+        </div>
+      </div>
     </section>
+
+    <section class="section" aria-label="Wallpaper collections">
+      <div class="container">
+        <div class="collection-jump-bar">
+          <div class="filter-pills" id="collection-filters" role="group" aria-label="Filter wallpaper collections">
+            <button type="button" class="filter-btn is-active" data-collection-filter="all" aria-pressed="true">
+              All
+            </button>
+          </div>
+          <span class="eyebrow" id="gallery-total-count">Loading collections...</span>
+        </div>
+
+        <div class="gallery-wrapper" id="master-gallery-container">
+          <div class="nb-card"><p>Loading wallpaper collections...</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div
+    class="nb-modal-backdrop"
+    id="photo-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightbox-title"
+    hidden
+  >
+    <div class="nb-modal nb-modal--wide">
+      <div class="nb-modal-header">
+        <div>
+          <span class="eyebrow" id="lightbox-collection">Collection</span>
+          <h2 id="lightbox-title" style="font-size: 1.4rem; margin-top: 0.2rem;">Wallpaper Preview</h2>
+        </div>
+        <button type="button" class="btn btn-sm btn-surface" id="lightbox-close" aria-label="Close photo preview">
+          Close ✕
+        </button>
+      </div>
+      <div class="nb-modal-body">
+        <div class="lightbox-layout">
+          <div class="lightbox-image-frame">
+            <img id="lightbox-img" src="./assets/no_image.png" alt="Selected wallpaper preview">
+          </div>
+          <div class="lightbox-sidebar">
+            <div>
+              <span class="eyebrow">Source File</span>
+              <p id="lightbox-filename" style="font-family: var(--font-mono); margin-top: 0.35rem;">image.jpg</p>
+            </div>
+            <p>
+              Thumbnails are compressed for fast browsing. Use the button below to save the full-resolution file.
+            </p>
+            <a id="lightbox-download" href="#" download class="btn btn-accent">
+              Download Full Quality
+            </a>
+            <div class="lightbox-nav-row">
+              <button type="button" class="btn btn-sm btn-surface" id="lightbox-prev" style="flex: 1;">
+                ← Previous
+              </button>
+              <button type="button" class="btn btn-sm btn-surface" id="lightbox-next" style="flex: 1;">
+                Next →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
 </body>
-<footer>
-    <p>© 2025 jafc120</p>
-</footer>
 </html>

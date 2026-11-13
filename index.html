@@ -1,41 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="photography, wallpaper, portfolio, Jorge Flores Coronado, photo gallery, free downloads">
-    <title>jafc.portfolio()</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
-    <script defer src="./script/main.js"></script>
-    <script src="components.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jorge Flores Coronado (jafc120) — Software engineer, operational strategist, UI/UX designer, and mobile photographer based in Salt Lake City, UT.">
+  <meta name="keywords" content="Jorge Flores Coronado, jafc120, portfolio, software engineer, neo brutalist, photography, wallpapers, full stack">
+  <title>Home | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+  <script defer src="./js/card-stack.js"></script>
+  <script defer src="./js/home.js"></script>
 </head>
 <body>
-    <app-navbar></app-navbar>
-    <main class="construction about">
-        <section class="intro">
-            <h1>jafc.portfolio()</h1>
-            <h2>Jack Of All Trades, Master of None...?</h2>
-            <h3>but oftentimes better than a master of one.</h3>    
-        </section>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
 
-        <section class="cards">
-            <div class="code-block card">
-                <p>I don't just write code; I build systems. At JMF Asesores, I realized standard tools weren't enough, so I designed and developed a custom PHP framework to handle complex survey data. I love the logic of database design, optimization, and SQL query writing. My goal is always efficiency—like when I improved data collection efficiency by 300%.</p>
-            </div>
-            <div class="code-block card">
-                <p>Software doesn't exist in a vacuum. My background isn't just in syntax, but in strategy. I’ve led logistics for expeditions involving over 500 volunteers and managed social media strategies that boosted online presence by 60%. I understand that a great application must solve a business problem, whether that's reducing client downtime or streamlining inventory management.</p>
-            </div>
-            <div class="code-block card">
-                <p>This site started as a place for my photography because I believe in the power of visuals. In my professional work, I apply this to UI/UX design. I led the complete redesign of a company website, focusing on responsiveness and accessibility. I bridge the gap between how an application works and how it feels.</p>
-            </div>
-        </section>
-    </main>    
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="hero-kicker">// Salt Lake City, UT · Jorge Flores Coronado</span>
+          <h1 class="hero-title">
+            jafc.<span class="hero-title-mark">portfolio()</span>
+          </h1>
+          <h2 class="hero-subtitle">Jack Of All Trades, Master of None...?</h2>
+          <p class="hero-tagline">...but oftentimes better than a master of one.</p>
+          <p class="hero-lead">
+            I design practical software systems, coordinate large-scale operations, and craft responsive
+            web interfaces alongside original mobile photography.
+          </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="./projects.html">Explore Projects →</a>
+            <a class="btn btn-surface" href="./about.html">About Me</a>
+            <a class="btn btn-secondary" href="./photos.html">Wallpaper Gallery</a>
+          </div>
+        </div>
 
-    <section class="gallery-wrapper" id="master-gallery-container">
+        <div class="card-stack-region" aria-label="Interactive discipline card deck">
+          <div class="cards" aria-live="polite" aria-label="Scroll, swipe, click, or use arrow keys to cycle cards">
+            <article class="card" data-card-index="01">
+              <div class="card-header-bar">
+                <span>01 // systems.php</span>
+                <span class="card-role-badge">THE ENGINEER</span>
+              </div>
+              <div class="card-body">
+                <p>
+                  I don't just write code; I build systems. At JMF Asesores, I realized standard tools
+                  weren't enough, so I designed and developed a custom PHP framework to handle complex
+                  survey data. I love the logic of database design, optimization, and SQL query writing.
+                </p>
+                <div class="card-metric-line">Impact: +300% data collection efficiency</div>
+              </div>
+            </article>
+
+            <article class="card" data-card-index="02">
+              <div class="card-header-bar">
+                <span>02 // logistics.ops</span>
+                <span class="card-role-badge">THE STRATEGIST</span>
+              </div>
+              <div class="card-body">
+                <p>
+                  Software doesn't exist in a vacuum. My background isn't just in syntax, but in strategy.
+                  I've led logistics for expeditions involving over 500 volunteers and managed social media
+                  strategies that boosted online presence by 60%.
+                </p>
+                <div class="card-metric-line">Impact: 500+ volunteers coordinated · 98% FCR</div>
+              </div>
+            </article>
+
+            <article class="card" data-card-index="03">
+              <div class="card-header-bar">
+                <span>03 // visual.css</span>
+                <span class="card-role-badge">THE CREATOR</span>
+              </div>
+              <div class="card-body">
+                <p>
+                  This site started as a place for my photography because I believe in the power of visuals.
+                  In my professional work, I apply this to UI/UX design—leading complete company website
+                  redesigns focused on responsiveness and accessibility.
+                </p>
+                <div class="card-metric-line">Focus: Accessible interfaces &amp; 27 mobile wallpapers</div>
+              </div>
+            </article>
+          </div>
+
+          <div class="deck-controls">
+            <span class="deck-counter" id="stack-counter">01 / 03</span>
+            <span class="deck-hint">Click, scroll, or swipe deck</span>
+            <div class="deck-btns">
+              <button type="button" id="stack-prev-btn" class="btn btn-sm btn-surface" aria-label="Previous discipline card">
+                ← Prev
+              </button>
+              <button type="button" id="stack-next-btn" class="btn btn-sm btn-primary" aria-label="Next discipline card">
+                Next →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <section class="section" aria-labelledby="pillars-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">Core Architecture</span>
+            <h2 id="pillars-heading">Three Disciplines, One Craft</h2>
+          </div>
+          <a class="btn btn-sm btn-surface" href="./about.html">Full Background →</a>
+        </div>
+
+        <div class="pillars-strip">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">01 // ENGINEER</span>
+            <h3>Backend &amp; Data</h3>
+            <p>
+              Custom PHP frameworks, SQL normalization, stored procedures, and Python automation scripts
+              built to eliminate operational bottlenecks.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">02 // STRATEGIST</span>
+            <h3>Logistics &amp; Operations</h3>
+            <p>
+              Coordinating multi-team volunteer expeditions, transport schedules, high-volume support
+              workflows, and digital growth campaigns.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">03 // CREATOR</span>
+            <h3>UI/UX &amp; Photography</h3>
+            <p>
+              Accessible web redesigns, crisp design systems, and curated phone wallpaper collections
+              shot and edited for daily use.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="featured-projects-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">Selected Work</span>
+            <h2 id="featured-projects-heading">Featured Projects</h2>
+          </div>
+          <a class="btn btn-sm btn-primary" href="./projects.html">All Projects →</a>
+        </div>
+
+        <div class="featured-grid" id="home-featured-projects">
+          <div class="nb-card"><p>Loading featured projects...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="featured-photos-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">Original Wallpapers</span>
+            <h2 id="featured-photos-heading">Photo Collections</h2>
+          </div>
+          <a class="btn btn-sm btn-secondary" href="./photos.html">Browse Gallery →</a>
+        </div>
+
+        <div class="featured-grid" id="home-gallery-preview">
+          <div class="nb-card"><p>Loading wallpaper collections...</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Contact call to action">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <span class="eyebrow" style="color: #111315;">Let's Connect</span>
+            <h2>Have a system to build or a team problem to solve?</h2>
+            <p style="margin-top: 0.75rem;">
+              Based in Salt Lake City, UT. Reach out directly via email or explore my repositories and experience.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <button type="button" class="btn btn-surface" data-copy-email="jafc120@gmail.com">
+              Copy Email
+            </button>
+            <a class="btn btn-surface" href="https://www.linkedin.com/in/ja-flores/" target="_blank" rel="noopener noreferrer">
+              LinkedIn ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
 </body>
-<footer>
-    <p>© 2025 jafc120</p>
-</footer>
 </html>

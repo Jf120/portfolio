@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selected software systems, Python automation scripts, UI/UX redesigns, and project placeholders by Jorge Flores Coronado.">
+  <meta name="keywords" content="Jorge Flores projects, PHP framework, SQL optimization, Python automation, Neo-Brutalist portfolio">
+  <title>Projects | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+  <script defer src="./js/projects.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <span class="eyebrow">02 // Archive &amp; Case Studies</span>
+          <h1>Projects &amp; Systems</h1>
+          <p class="page-hero-lead">
+            Production systems, automation scripts, and UI/UX builds—alongside structured template
+            placeholders ready to expand via <code>data/projects_data.json</code>.
+          </p>
+        </div>
+
+        <aside class="code-window" aria-label="Projects JSON data hint">
+          <div class="code-window-bar">
+            <div class="window-dots" aria-hidden="true">
+              <span class="window-dot window-dot--orange"></span>
+              <span class="window-dot window-dot--amber"></span>
+              <span class="window-dot window-dot--sky"></span>
+            </div>
+            <span>data/projects_data.json</span>
+          </div>
+          <pre class="code-block"><code><span class="comment">// Add or customize projects without editing HTML</span>
+<span class="keyword">const</span> source = <span class="string">"./data/projects_data.json"</span>;
+<span class="function">renderCatalog</span>(source, { filterable: <span class="keyword">true</span> });</code></pre>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="catalog-heading">
+      <div class="container">
+        <h2 id="catalog-heading" class="sr-only">Project Catalog</h2>
+
+        <div class="filter-toolbar">
+          <div class="filter-pills" role="group" aria-label="Filter projects by category">
+            <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">
+              All
+            </button>
+            <button type="button" class="filter-btn" data-filter="engineering" aria-pressed="false">
+              Engineering
+            </button>
+            <button type="button" class="filter-btn" data-filter="automation" aria-pressed="false">
+              Automation
+            </button>
+            <button type="button" class="filter-btn" data-filter="design" aria-pressed="false">
+              Design &amp; Web
+            </button>
+            <button type="button" class="filter-btn" data-filter="placeholders" aria-pressed="false">
+              Placeholders
+            </button>
+          </div>
+
+          <span class="eyebrow" id="projects-count">Loading projects...</span>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <div class="nb-card"><p>Loading project catalog...</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div
+    class="nb-modal-backdrop"
+    id="project-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="project-modal-title"
+    hidden
+  >
+    <div class="nb-modal">
+      <div class="nb-modal-header">
+        <div>
+          <span class="eyebrow" id="project-modal-meta">Case Study</span>
+          <h2 id="project-modal-title" style="font-size: 1.5rem; margin-top: 0.2rem;">Project Title</h2>
+        </div>
+        <button type="button" class="btn btn-sm btn-surface" id="project-modal-close" aria-label="Close project details">
+          Close ✕
+        </button>
+      </div>
+      <div class="nb-modal-body" id="project-modal-body"></div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</body>
+</html>
