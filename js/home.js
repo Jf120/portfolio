@@ -32,8 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     .join('')}
                 </ul>
                 <div style="margin-top: auto; padding-top: 0.5rem;">
-                  <a class="btn btn-sm btn-surface" href="./projects.html#${escapeHtml(project.id)}">
-                    Inspect Project →
+                  <a
+                    class="btn btn-sm ${project.case_study_url ? 'btn-primary' : 'btn-surface'}"
+                    href="${escapeHtml(project.case_study_url || `./projects.html#${project.id}`)}"
+                  >
+                    ${project.case_study_url ? 'Read Case Study →' : 'Inspect Project →'}
                   </a>
                 </div>
               </article>

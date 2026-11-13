@@ -13,12 +13,15 @@
   function getActivePageFilename() {
     const path = window.location.pathname || '/';
     const segments = path.split('/').filter(Boolean);
-    const last = segments[segments.length - 1] || '';
+    const last = (segments[segments.length - 1] || '').toLowerCase();
 
     if (!last || !last.includes('.')) {
       return 'index.html';
     }
-    return last.toLowerCase();
+    if (last === 'jmf-survey.html') {
+      return 'projects.html';
+    }
+    return last;
   }
 
   function showToast(message) {

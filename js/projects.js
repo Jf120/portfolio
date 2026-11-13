@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
           ? 'nb-tag nb-tag--placeholder'
           : 'nb-tag nb-tag--amber';
 
+        const caseStudyPageBtn = project.case_study_url
+          ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.case_study_url)}">Full Case Study →</a>`
+          : '';
+
         const repoButton = project.repo_url
           ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(project.repo_url)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
           : '';
@@ -82,12 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
 
               <div class="project-card-actions">
+                ${caseStudyPageBtn}
                 <button
                   type="button"
-                  class="btn btn-sm btn-primary"
+                  class="btn btn-sm ${project.case_study_url ? 'btn-surface' : 'btn-primary'}"
                   data-open-project="${escapeHtml(project.id)}"
                 >
-                  Case Study
+                  ${project.case_study_url ? 'Quick Summary' : 'Case Study'}
                 </button>
                 ${repoButton}
                 ${liveButton}
@@ -114,6 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
           with your project repository, metrics, and screenshots when ready.
         </div>
       `
+      : '';
+
+    const fullStudyLink = project.case_study_url
+      ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.case_study_url)}">Open Full Case Study →</a>`
       : '';
 
     const repoLink = project.repo_url
@@ -148,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
       </div>
       <div class="project-card-actions" style="padding-top: 1rem;">
+        ${fullStudyLink}
         ${liveLink}
         ${repoLink}
       </div>

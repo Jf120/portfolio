@@ -16,6 +16,7 @@ This repository hosts my personal portfolio website deployed on **GitHub Pages**
 ├── index.html          # Home landing page + interactive discipline card stack
 ├── about.html          # About Me, full resume timeline, Ensign/BYU-I education, skills, print CV
 ├── projects.html       # Filterable project catalog + case study modal
+├── jmf-survey.html     # Dedicated engineering case study for the JMF Survey SNA platform
 ├── photos.html         # Wallpaper collections with horizontal scrollers & lightbox
 ├── 404.html            # Custom GitHub Pages 404 page
 ├── css/                # Neo-Brutalist tokens, base + print styles, components, and page layouts

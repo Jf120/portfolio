@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Engineering case study for JMF Survey — a multi-tenant Social Network Analysis (SNA) web platform built in PHP 8.1, MongoDB, and Vanilla JavaScript supporting ~4,000 concurrent users.">
+  <meta name="keywords" content="JMF Asesores, JMF Survey, Social Network Analysis, SNA, PHP 8.1, MongoDB, Case Study, Jorge Flores">
+  <title>JMF Survey Case Study | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <a class="breadcrumb-link" href="./projects.html">← Back to Projects</a>
+          <span class="eyebrow">Case Study 01 // Enterprise SNA Platform</span>
+          <h1>JMF Survey</h1>
+          <p class="page-hero-lead">
+            A multi-tenant web platform built from scratch for <strong>JMF Asesores</strong> to run
+            organizational Social Network Analysis (SNA) engagements—enabling thousands of
+            employees to visually verify colleagues and generating weighted <em>N × N</em> directed
+            adjacency matrices for consulting teams.
+          </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="#architecture">Explore Architecture ↓</a>
+            <a class="btn btn-surface" href="#scale">How It Scaled ↓</a>
+          </div>
+        </div>
+
+        <aside class="nb-card profile-facts-card" aria-label="Case study specifications">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">CASE_STUDY.SPEC</span>
+            <span class="eyebrow">Production</span>
+          </div>
+
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>Role</dt>
+              <dd>Sole Full-Stack Developer</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Client</dt>
+              <dd>JMF Asesores</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Timeline</dt>
+              <dd>Aug 2024 – Mar 2026</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Peak Scale</dt>
+              <dd>~4,000 Concurrent Users</dd>
+            </div>
+          </dl>
+
+          <div>
+            <span class="eyebrow" style="display: block; margin-bottom: 0.5rem;">Core Stack</span>
+            <ul class="tag-list">
+              <li class="nb-tag nb-tag--sky">PHP 8.1 (MVC)</li>
+              <li class="nb-tag">MongoDB</li>
+              <li class="nb-tag">Vanilla ES6 JS</li>
+              <li class="nb-tag">SCSS</li>
+              <li class="nb-tag">PhpSpreadsheet</li>
+              <li class="nb-tag">AWS S3</li>
+              <li class="nb-tag">Python</li>
+              <li class="nb-tag">Docker</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Key production metrics">
+      <div class="container">
+        <div class="kpi-grid">
+          <article class="nb-card nb-card--amber kpi-card">
+            <span class="eyebrow" style="color: #111315;">Concurrency</span>
+            <span class="kpi-value">~4,000</span>
+            <p>Simultaneous respondents supported during enterprise and municipal rollouts.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Database Efficiency</span>
+            <span class="kpi-value">~3 Trips</span>
+            <p>Per-respondent DB interactions: initial batch read plus a single completion write.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Roster Ingestion</span>
+            <span class="kpi-value">500 Rows</span>
+            <p>Chunked Excel streaming paired with bulk upserts for zero-timeout onboarding.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Analytics Output</span>
+            <span class="kpi-value">5 Exports</span>
+            <p>Multi-sheet weighted <em>N × N</em> matrices, qualitative CSVs, and branch reports.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="challenge-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">01 // Problem Domain</span>
+            <h2 id="challenge-heading">Why Standard Survey Tools Fall Short for SNA</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">01 // ROSTER DISAMBIGUATION</span>
+            <h3>Searching Thousands of Colleagues Visually</h3>
+            <p>
+              In large corporate and municipal rosters, plain text dropdowns fail and duplicate names
+              are common. Respondents need fast searchable cards displaying employee headshots, job
+              titles, departments, regions, and branches (<em>sucursal</em>), while automatically
+              excluding themselves from nomination.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">02 // WEIGHTED GRAPH EDGES</span>
+            <h3>Order-Ranked Sociometric Ties</h3>
+            <p>
+              SNA measures informal trust, communication, and collaboration—such as asking which 5
+              coworkers an employee relies on most. Selection order directly encodes tie strength
+              (1st = 5 down to 5th = 1), alongside optional open-ended qualitative responses.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">03 // MATRIX TRANSFORMATION</span>
+            <h3>Graph-Ready <em>N × N</em> Adjacency Matrices</h3>
+            <p>
+              Analysts cannot work directly from flat form rows. The platform converts submitted peer
+              rankings into square <em>N × N</em> directed matrices per question (respondents as rows,
+              nominees as columns, weights 0–5 as cells) ready for immediate network analysis.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">04 // CONCURRENCY &amp; ACCESS</span>
+            <h3>Enterprise Launch Spikes &amp; Field Teams</h3>
+            <p>
+              Client rollouts across logistics, agribusiness, municipal government, and microfinance
+              create massive traffic spikes when thousands of employees—many without corporate email
+              addresses—complete the survey simultaneously during live sessions.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture" aria-labelledby="architecture-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">02 // System Architecture</span>
+            <h2 id="architecture-heading">Lightweight Custom MVC &amp; Data Flow</h2>
+          </div>
+          <span class="nb-tag nb-tag--sky">~5,300 Lines Custom Code</span>
+        </div>
+
+        <div class="arch-diagram-frame" role="region" aria-label="High-level system architecture flow">
+          <div class="arch-flow">
+            <div class="arch-node">
+              <span class="eyebrow">Client Tier</span>
+              <h3>Respondent &amp; Admin Browsers</h3>
+              <p>Access via National ID, login token, or credentials. Caches roster locally for instant 0-latency search.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--accent">
+              <span class="eyebrow" style="color: #111315;">Application Tier</span>
+              <h3>Custom PHP 8.1 MVC</h3>
+              <p>Separates onboarding, respondent JSON APIs, and admin controls in a containerized Apache runtime.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node">
+              <span class="eyebrow">Persistence &amp; Media</span>
+              <h3>MongoDB + Cloud Object Storage</h3>
+              <p>Tenant-isolated document collections paired with compressed 300×320 JPEG headshots on AWS S3.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--sky">
+              <span class="eyebrow" style="color: #111315;">Analytics Tier</span>
+              <h3>SNA Matrix &amp; Branch Exports</h3>
+              <p>Batch-populated <em>N × N</em> spreadsheets, qualitative CSVs, and branch completion summaries.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-grid-3">
+          <article class="nb-card pillar-card">
+            <h3>Custom MVC Without Framework Bloat</h3>
+            <p>
+              Designed dedicated routing, controller, and data-model layers in pure PHP 8.1—avoiding
+              heavy ORM and dependency-injection overhead per request so lean server containers stay
+              responsive under peak load.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <h3>Multi-Tenant Document Isolation</h3>
+            <p>
+              Each client organization is dynamically isolated into dedicated tenant collections
+              storing employee profiles with arbitrary custom attributes (department, region,
+              location, branch), expiration-bound questions, and weighted survey responses.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <h3>Automated Media &amp; Prep Pipeline</h3>
+            <p>
+              Built a Python (<code>openpyxl</code>) extractor to pull embedded photos out of client
+              spreadsheets, combined with PHP GD resizing (300×320 JPEG at 80% quality) and cloud
+              object storage hosting with graceful image fallbacks.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="scale" aria-labelledby="scale-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">03 // Performance Engineering</span>
+            <h2 id="scale-heading">How It Scaled to ~4,000 Concurrent Users</h2>
+          </div>
+        </div>
+
+        <div class="scale-list">
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">01</div>
+            <div class="timeline-content">
+              <h3>Client-Side Offloading &amp; Single Atomic Submission</h3>
+              <p>
+                Upon entering the survey, the browser fetches the complete tenant employee roster and
+                all survey questions in a single concurrent batch, caching them in
+                <code>localStorage</code> and <code>sessionStorage</code>. Searching across thousands
+                of colleagues uses 300ms debouncing, Unicode accent normalization, multi-word matching,
+                and 6-card pagination completely in the browser—requiring zero database queries while
+                browsing and persisting answers in one atomic submission request.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">02</div>
+            <div class="timeline-content">
+              <h3>Image Bandwidth Offloading to Cloud Storage</h3>
+              <p>
+                Employee headshots are pre-compressed at ingestion and served directly from AWS S3
+                rather than streaming binary assets through application workers. This kept Apache and
+                PHP processes focused strictly on lightweight JSON payloads and authentication.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">03</div>
+            <div class="timeline-content">
+              <h3>Container Layer Caching &amp; Runtime Upgrades</h3>
+              <p>
+                Refactored the Docker build pipeline to optimize dependency caching ahead of source
+                layers and upgraded the MongoDB driver stack for lower memory consumption and faster
+                container deployments.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">04</div>
+            <div class="timeline-content">
+              <h3>500-Row Chunked Ingestion &amp; Batch Matrix Generation</h3>
+              <p>
+                Large employee spreadsheets stream in 500-row chunks via a custom read filter paired
+                with database bulk upserts so onboarding thousands of users never times out. For
+                <em>N × N</em> exports containing millions of cells, matrix generation was refactored
+                to assemble native PHP arrays and write entire sheets via batch
+                <code>fromArray()</code> operations rather than slow cell-by-cell formatting loops.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">05</div>
+            <div class="timeline-content">
+              <h3>Frictionless Authentication for Field Workforces</h3>
+              <p>
+                Replaced costly SMS delivery bottlenecks with two scalable onboarding modes tailored to
+                distributed operations: instant National ID verification for frontline staff and unique
+                token-based login links distributed directly by client HR teams.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="capabilities-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">04 // Product Surface</span>
+            <h2 id="capabilities-heading">Respondent &amp; Admin Capabilities</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <article class="nb-card pillar-card">
+            <span class="nb-tag nb-tag--amber" style="width: fit-content;">Respondent Experience</span>
+            <h3>Guided Sociometric Survey Flow</h3>
+            <ul class="timeline-bullets">
+              <li><strong>Branded Multi-Client Onboarding:</strong> Client-tailored welcome views for enterprise logistics, agribusiness, municipal, and microfinance rollouts that clear stale browser caches cleanly before starting.</li>
+              <li><strong>Interactive Peer Selection:</strong> Paginated 6-card colleague grid displaying photos, roles, departments, regions, and branches; enforces 5 ranked selections (5 → 1 weights) and prevents self-nomination across both client and server.</li>
+              <li><strong>Open-Ended Qualitative Mode:</strong> Dynamically swaps the card selector for a validated text response view when a question captures qualitative commentary.</li>
+              <li><strong>Completion &amp; Schedule Governance:</strong> Enforces survey expiration windows, blocks duplicate submissions, and cleans up session state on completion.</li>
+            </ul>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="nb-tag nb-tag--sky" style="width: fit-content;">Admin &amp; Exports</span>
+            <h3>Operations Dashboard &amp; 5 Report Formats</h3>
+            <p>
+              Includes live Completed vs. Pending tracking, bilingual (English/Spanish) spreadsheet
+              column mapping, dynamic question management (up to 10 prompts), and 5 export pipelines:
+            </p>
+            <ul class="export-list">
+              <li>
+                <strong>1. Weighted SNA Adjacency Matrices (.xlsx)</strong>
+                <span>Multi-sheet workbook containing one <em>N × N</em> directed score matrix per sociometric question.</span>
+              </li>
+              <li>
+                <strong>2. Open-Ended Responses (.csv)</strong>
+                <span>Question-specific qualitative exports paired with respondent identifiers.</span>
+              </li>
+              <li>
+                <strong>3. Branch Completion Status (.xlsx)</strong>
+                <span>Two-sheet status report combining detailed lists and aggregated completion by branch (<em>sucursal</em>).</span>
+              </li>
+              <li>
+                <strong>4. HR Onboarding Link Sheet (.csv)</strong>
+                <span>Ready-to-distribute CSV exports providing unique onboarding links for client HR teams.</span>
+              </li>
+              <li>
+                <strong>5. Full Roster Dump (.xlsx)</strong>
+                <span>Dynamic-header workbook exporting all stored profile records and custom client attributes.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="timeline-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">05 // Delivery History</span>
+            <h2 id="timeline-heading">Project Phases &amp; Milestones</h2>
+          </div>
+        </div>
+
+        <div class="case-table-wrap">
+          <table class="case-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Period</th>
+                <th>Key Engineering Milestones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Core Platform &amp; Genesis</strong></td>
+                <td><code>Aug – Sep 2024</code></td>
+                <td>Built custom PHP MVC architecture, MongoDB multi-tenant isolation, token links, chunked roster uploads, browser search &amp; pagination, and initial <em>N × N</em> matrix exports.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Dynamic Multi-Client Support</strong></td>
+                <td><code>Mar 2025</code></td>
+                <td>Added bilingual Excel header mapping, flexible custom profile attributes, branded client welcome flows, Python embedded-image extraction, and self-exclusion safeguards.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Containerization &amp; Municipal Launch</strong></td>
+                <td><code>Jul 2025</code></td>
+                <td>Shipped municipal deployment, upgraded database driver layer, and optimized Docker layer caching for reliable production builds.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Enterprise Scale Rollout</strong></td>
+                <td><code>Feb – Mar 2026</code></td>
+                <td>Replaced SMS links with National ID authentication, added open-ended questions, branch (<em>sucursal</em>) search &amp; reporting, bulk lifecycle controls, and batch <code>fromArray()</code> matrix optimization for ~4,000 concurrent users.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Case study navigation">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <span class="eyebrow" style="color: #111315;">Explore More</span>
+            <h2>Want to review other builds or discuss system architecture?</h2>
+            <p style="margin-top: 0.75rem;">
+              Browse more engineering and operations case studies or check out my full background.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-surface" href="./projects.html">← All Projects</a>
+            <a class="btn btn-surface" href="./about.html">About &amp; Resume</a>
+            <button type="button" class="btn btn-surface" data-copy-email="jafc120@gmail.com">
+              Copy Email
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</body>
+</html>
