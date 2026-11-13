@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Case Study: ElizaPlaybill — a zero-dependency, mobile-first Broadway Playbill web application built in Vanilla JS, SCSS, and Semantic HTML5.">
+  <meta name="keywords" content="ElizaPlaybill, Case Study, Vanilla JavaScript, SCSS, TouchEvent, Broadway Playbill, Personal Project, Jorge Flores">
+  <title>ElizaPlaybill Case Study | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <div class="breadcrumb-row">
+            <a class="breadcrumb-link" href="./personal.html">← Personal Builds</a>
+            <a class="breadcrumb-link" href="./projects.html?category=personal">All Personal Projects</a>
+          </div>
+          <span class="eyebrow">Personal Case Study 01 // Interactive Birthday Experience</span>
+          <h1>ElizaPlaybill</h1>
+          <p class="page-hero-lead">
+            A bespoke, mobile-first web application modeled after an authentic Broadway
+            <em>Playbill</em> magazine for Eliza's 26th birthday—reframed from blank-card paralysis
+            into pure frontend engineering, with zero AI prose, zero templates, and zero runtime
+            dependencies.
+          </p>
+          <div class="hero-cta-group">
+            <a
+              class="btn btn-primary"
+              href="https://elizaact26.onrender.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Launch Live Playbill ↗
+            </a>
+            <a class="btn btn-surface" href="#architecture">Architecture &amp; Engineering ↓</a>
+          </div>
+        </div>
+
+        <aside class="nb-card profile-facts-card" aria-label="ElizaPlaybill specifications">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">PERSONAL_BUILD.SPEC</span>
+            <span class="eyebrow">Live on Render</span>
+          </div>
+
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>Role</dt>
+              <dd>Creator &amp; Sole Developer</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Occasion</dt>
+              <dd>Eliza's 26th Birthday</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Sprint</dt>
+              <dd>~30 Hours (April 2026)</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Outcome</dt>
+              <dd>We're Now Married!</dd>
+            </div>
+          </dl>
+
+          <div>
+            <span class="eyebrow" style="display: block; margin-bottom: 0.5rem;">Core Stack</span>
+            <ul class="tag-list">
+              <li class="nb-tag nb-tag--amber">Semantic HTML5</li>
+              <li class="nb-tag">SCSS / CSS</li>
+              <li class="nb-tag">Vanilla ES6 JS</li>
+              <li class="nb-tag">TouchEvent API</li>
+              <li class="nb-tag">Static JSON</li>
+              <li class="nb-tag">Google Fonts</li>
+              <li class="nb-tag">Render Static</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Key technical metrics">
+      <div class="container">
+        <div class="kpi-grid">
+          <article class="nb-card nb-card--amber kpi-card">
+            <span class="eyebrow" style="color: #111315;">JavaScript Bundle</span>
+            <span class="kpi-value">~4.1 KB</span>
+            <p>122 lines of pure Vanilla ES6+ logic powered directly by native Browser APIs.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Compiled Styles</span>
+            <span class="kpi-value">~4.8 KB</span>
+            <p>266 lines of Flexbox, Grid, Playbill typography rules, transitions &amp; cues.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Booklet Structure</span>
+            <span class="kpi-value">7 Pages</span>
+            <p>Unified horizontal booklet spanning Playbill cover, cast, Act I/II songs &amp; finale.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Authorship</span>
+            <span class="kpi-value">0 AI</span>
+            <p>Zero templates, zero external JS packages—100% personal writing and inside jokes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="story-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">01 // Problem &amp; Creative Reframing</span>
+            <h2 id="story-heading">Turning Blank-Card Paralysis Into Information Architecture</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">01 // THE CHALLENGE</span>
+            <h3>Why Physical Cards Fell Short</h3>
+            <p>
+              I wanted to make an unforgettable 26th birthday card for my New York &amp; Broadway
+              Playbill–collecting partner—our first birthday celebrated together. Hand-lettering,
+              picking stationery colors from scratch, and facing an empty white page made creative
+              work stall out fast.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">02 // DOMAIN MODELING</span>
+            <h3>Using Broadway Playbill Grammar as a Spec</h3>
+            <p>
+              Instead of fighting a blank canvas, I treated software as my artistic medium. Locking
+              the visual grammar to Playbill yellow (<code>#fde513</code>), crisp <code>1px</code>
+              black rules, and an <code>Oswald</code> + <code>Lora</code> + <code>Playfair Display</code>
+              type hierarchy eliminated guesswork instantly.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">03 // COLLABORATIVE STORYTELLING</span>
+            <h3>Close Friends Disguised as Musical Numbers</h3>
+            <p>
+              Rather than packing every feeling into a single block of prose, friends became cast
+              members performing Act I &amp; Act II songs titled after Eliza's traits
+              (<em>Whimsical</em>, <em>Indescribable</em>, <em>Genuine</em>, <em>Assertive</em>,
+              <em>Extraordinary</em>, <em>Thoughtful</em>, <em>Lighthearted</em>)—opening heartfelt
+              tributes when tapped.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">04 // RAPID DATA UPDATES</span>
+            <h3>Zero-Stress Sprint Edits via Decoupled JSON</h3>
+            <p>
+              With active building compressed into a focused ~30-hour birthday sprint, friend
+              messages kept arriving up to the morning of the surprise. Storing tributes cleanly inside
+              static <code>messages.json</code> meant cast and message changes took seconds with zero
+              layout risk.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture" aria-labelledby="architecture-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">02 // Booklet Architecture</span>
+            <h2 id="architecture-heading">Dual-Axis Viewport Isolation &amp; Seven-Page SPA</h2>
+          </div>
+          <span class="nb-tag nb-tag--sky">MPA Prototype → Unified Horizontal SPA</span>
+        </div>
+
+        <div class="arch-diagram-frame" role="region" aria-label="Horizontal booklet architecture flow">
+          <div class="arch-flow">
+            <div class="arch-node">
+              <span class="eyebrow">Viewport Lock</span>
+              <h3><code>#app-container</code></h3>
+              <p>Locked to <code>100vw × 100vh</code> with <code>overflow: hidden</code> to stop native browser rubber-banding.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--accent">
+              <span class="eyebrow" style="color: #111315;">GPU Track</span>
+              <h3><code>#page-track</code></h3>
+              <p>Flex row housing 7 full-width pages animated via GPU-composited <code>translateX(-100vw)</code> transforms.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node">
+              <span class="eyebrow">Scroll Isolation</span>
+              <h3>7 <code>.page</code> Panels</h3>
+              <p>Each booklet page enables independent vertical <code>overflow-y: auto</code> for long billing credits or letters.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--sky">
+              <span class="eyebrow" style="color: #111315;">Flyweight UI</span>
+              <h3>JSON + Single Modal</h3>
+              <p>One startup <code>fetch('messages.json')</code> populates a reusable XSS-safe overlay modal across songs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-table-wrap">
+          <table class="case-table">
+            <thead>
+              <tr>
+                <th>Page</th>
+                <th>Theatrical Section</th>
+                <th>Interactive &amp; Styling Mechanics</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>01</strong></td>
+                <td>Playbill Cover</td>
+                <td>Signature <code>#fde513</code> masthead, custom venue billing (Eccles Theater), portrait artwork, and animated swipe cue.</td>
+              </tr>
+              <tr>
+                <td><strong>02</strong></td>
+                <td>Billing &amp; Credits</td>
+                <td>3-column CSS Grid cast roster celebrating friends &amp; family, humorous production credits, and parody sponsors.</td>
+              </tr>
+              <tr>
+                <td><strong>03</strong></td>
+                <td>Musical Numbers (Act I &amp; II)</td>
+                <td>Print-faithful flexbox <code>.leader-dots</code> aligning songs and cast; tapping any title opens that friend's tribute.</td>
+              </tr>
+              <tr>
+                <td><strong>04</strong></td>
+                <td>Interactive Ad I (<em>MemoryMix</em>)</td>
+                <td>Playbill-style parody ad hiding a tap-to-cycle 4-photo cross-fade collage behind an animated prompt badge.</td>
+              </tr>
+              <tr>
+                <td><strong>05</strong></td>
+                <td>Director's Note</td>
+                <td>Justified long-form personal birthday letter rendered in crisp <code>Playfair Display</code> closed with a signature PNG.</td>
+              </tr>
+              <tr>
+                <td><strong>06</strong></td>
+                <td>Interactive Ad II (<em>BF-26 Model</em>)</td>
+                <td>Tongue-in-cheek relationship parody product ad matching vintage Broadway magazine copywriting.</td>
+              </tr>
+              <tr>
+                <td><strong>07</strong></td>
+                <td>Birthday Finale</td>
+                <td>5-star Broadway critic review framing a final birthday salute over custom commemorative photography.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="highlights" aria-labelledby="highlights-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">03 // Engineering Highlights</span>
+            <h2 id="highlights-heading">Zero-Library Precision Mechanics</h2>
+          </div>
+        </div>
+
+        <div class="scale-list">
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">01</div>
+            <div class="timeline-content">
+              <h3>Consolidating Multi-Page Files Into an Instant Booklet</h3>
+              <p>
+                Early sketches separated views across standalone HTML documents, which broke booklet
+                immersion with full-page flashes and repeatedly discarded fetched tribute state.
+                Consolidating all seven scenes into one horizontal track eliminated page transitions
+                and kept startup fetching to a single request.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">02</div>
+            <div class="timeline-content">
+              <h3>Tap vs. Swipe Disambiguation &amp; Scroll Dead-Zone Filtering</h3>
+              <p>
+                Supporting horizontal swipes, vertical reading scroll, and clickable song/photo elements
+                on one mobile screen requires guarding against zero-drag taps. Because simple taps never
+                trigger <code>touchmove</code> (leaving <code>currentX === 0</code>), checking
+                <code>startX !== 0 &amp;&amp; currentX !== 0</code> and requiring a <code>50px</code>
+                swipe threshold guarantees intentional flips without fighting vertical reading.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">03</div>
+            <div class="timeline-content">
+              <h3>Race-Condition-Safe Cross-Fade Carousel &amp; XSS-Safe Modals</h3>
+              <p>
+                For the <em>MemoryMix</em> ad carousel, assigning <code>carouselImg.onload</code>
+                <em>before</em> updating <code>carouselImg.src</code> eliminates a classic browser-cache
+                race condition where cached JPEGs complete synchronously and stall at
+                <code>opacity: 0</code>. Meanwhile, assigning <code>textContent</code> in the singleton
+                song modal renders emojis and punctuation cleanly with zero HTML injection exposure.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="case-grid-2" style="margin-top: var(--space-6);">
+          <aside class="code-window" aria-label="Touch swipe navigation snippet">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>touch_swipe_guard.js</span>
+            </div>
+            <pre class="code-block"><code><span class="keyword">const</span> swipeThreshold = <span class="number">50</span>;
+
+appContainer.<span class="function">addEventListener</span>(<span class="string">'touchend'</span>, () =&gt; {
+  <span class="keyword">if</span> (startX !== <span class="number">0</span> &amp;&amp; currentX !== <span class="number">0</span>) {
+    <span class="keyword">const</span> deltaX = currentX - startX;
+    <span class="keyword">if</span> (Math.<span class="function">abs</span>(deltaX) &gt; swipeThreshold) {
+      <span class="keyword">if</span> (deltaX &lt; <span class="number">0</span> &amp;&amp; currentPageIndex &lt; totalPages - <span class="number">1</span>) {
+        currentPageIndex++;
+      } <span class="keyword">else if</span> (deltaX &gt; <span class="number">0</span> &amp;&amp; currentPageIndex &gt; <span class="number">0</span>) {
+        currentPageIndex--;
+      }
+      pageTrack.style.transform = <span class="string">`translateX(-${currentPageIndex * 100}vw)`</span>;
+    }
+  }
+  startX = <span class="number">0</span>; currentX = <span class="number">0</span>;
+});</code></pre>
+          </aside>
+
+          <aside class="code-window" aria-label="Cache-safe image fade transition snippet">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>carousel_crossfade.js</span>
+            </div>
+            <pre class="code-block"><code>carouselImg.style.transition = <span class="string">'opacity 0.3s ease-in-out'</span>;
+
+carouselImg.<span class="function">addEventListener</span>(<span class="string">'click'</span>, () =&gt; {
+  carouselImg.style.opacity = <span class="number">0</span>;
+  <span class="function">setTimeout</span>(() =&gt; {
+    currentImageIndex = (currentImageIndex + <span class="number">1</span>) % images.length;
+    <span class="comment">// Bind onload before src assignment to survive browser cache hits</span>
+    carouselImg.onload = () =&gt; {
+      carouselImg.style.opacity = <span class="number">1</span>;
+    };
+    carouselImg.src = images[currentImageIndex];
+  }, <span class="number">300</span>);
+});</code></pre>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="outcome-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">04 // Impact &amp; Reflection</span>
+            <h2 id="outcome-heading">Why Building for People You Love Matters</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <article class="nb-card nb-card--amber manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow" style="color: #111315;">Best Possible Product Metric</span>
+              <h3>From First Birthday Surprise to Marriage</h3>
+              <p>
+                ElizaPlaybill turned a personal creative block into an interactive keepsake tailored to
+                Eliza's love of Broadway and New York—delivered free over HTTPS with zero server
+                maintenance. Best of all, that story worked out: <strong>we are now married!</strong>
+              </p>
+            </div>
+            <a
+              class="btn btn-surface"
+              href="https://elizaact26.onrender.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="width: fit-content;"
+            >
+              Visit Live Playbill (elizaact26.onrender.com) ↗
+            </a>
+          </article>
+
+          <article class="nb-card manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow">Engineering Takeaway</span>
+              <h3>Right-Sizing Tech Beats Framework Overkill</h3>
+              <p>
+                Skipping bundlers and heavy SPA frameworks for a 30-hour weekend build kept code small
+                (~9 KB total JS + CSS), deployment instant on Render's free tier, and iteration joyful.
+                It proved that the exact same instinct behind enterprise architecture—modularity, clear
+                state boundaries, clean constraints—makes personal coding endlessly fun.
+              </p>
+            </div>
+            <div class="hero-cta-group" style="margin-top: 0;">
+              <a class="btn btn-sm btn-primary" href="./family-captions.html">Next: Family Captions Study →</a>
+              <a class="btn btn-sm btn-surface" href="./personal.html">All Personal Builds</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Case study footer CTA">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <span class="eyebrow" style="color: #111315;">Keep Exploring</span>
+            <h2>See more personal builds or inspect full-stack architecture</h2>
+            <p style="margin-top: 0.75rem;">
+              Read how hardening Family Captions sparked this site's Neo-Brutalist design, or explore
+              JMF Survey.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-surface" href="./family-captions.html">Family Captions Study →</a>
+            <a class="btn btn-surface" href="./personal.html">Personal Builds</a>
+            <a class="btn btn-surface" href="./projects.html">Full Catalog</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</body>
+</html>

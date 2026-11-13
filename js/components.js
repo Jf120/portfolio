@@ -7,6 +7,7 @@
     { href: 'index.html', label: 'Home' },
     { href: 'about.html', label: 'About Me' },
     { href: 'projects.html', label: 'Projects' },
+    { href: 'personal.html', label: 'Personal' },
     { href: 'photos.html', label: 'Photos' },
   ];
 
@@ -20,6 +21,9 @@
     }
     if (last === 'jmf-survey.html') {
       return 'projects.html';
+    }
+    if (last === 'eliza-playbill.html' || last === 'family-captions.html') {
+      return 'personal.html';
     }
     return last;
   }
@@ -199,6 +203,7 @@
                   <li><a href="./index.html">Home</a></li>
                   <li><a href="./about.html">About Me</a></li>
                   <li><a href="./projects.html">Projects</a></li>
+                  <li><a href="./personal.html">Personal Builds</a></li>
                   <li><a href="./photos.html">Photos &amp; Wallpapers</a></li>
                 </ul>
               </div>

@@ -58,8 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
           ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(project.repo_url)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
           : '';
 
+        const isExternalLive = project.live_url && project.live_url.startsWith('http');
         const liveButton = project.live_url
-          ? `<a class="btn btn-sm btn-secondary" href="${escapeHtml(project.live_url)}">Live View ↗</a>`
+          ? `<a class="btn btn-sm btn-secondary" href="${escapeHtml(project.live_url)}"${
+              isExternalLive ? ' target="_blank" rel="noopener noreferrer"' : ''
+            }>Live View ↗</a>`
           : '';
 
         return `
@@ -129,8 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(project.repo_url)}" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>`
       : '';
 
+    const isExternalLive = project.live_url && project.live_url.startsWith('http');
     const liveLink = project.live_url
-      ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.live_url)}">Open Live Demo ↗</a>`
+      ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.live_url)}"${
+          isExternalLive ? ' target="_blank" rel="noopener noreferrer"' : ''
+        }>Open Live View ↗</a>`
       : '';
 
     modalBody.innerHTML = `
@@ -175,6 +181,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
       lastFocusedTrigger.focus();
     }
+  }
+
+  const initialCategory = new URLSearchParams(window.location.search).get('category');
+  if (
+    initialCategory &&
+    filterBtns.some((btn) => btn.dataset.filter === initialCategory)
+  ) {
+    activeFilter = initialCategory;
+    filterBtns.forEach((b) => {
+      const isActive = b.dataset.filter === activeFilter;
+      b.classList.toggle('is-active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
+    });
   }
 
   filterBtns.forEach((btn) => {

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Case Study: Family Captions — a collaborative mobile-first reunion web app built with React 18, Express 4, node:sqlite WAL, Sharp, and Apple Photos bridging across 20,000+ photos.">
+  <meta name="keywords" content="Family Captions, Case Study, React 18, Node.js, node:sqlite, Sharp, osxphotos, Neo-Brutalism, Genealogy, Jorge Flores">
+  <title>Family Captions Case Study | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <div class="breadcrumb-row">
+            <a class="breadcrumb-link" href="./personal.html">← Personal Builds</a>
+            <a class="breadcrumb-link" href="./projects.html?category=personal">All Personal Projects</a>
+          </div>
+          <span class="eyebrow">Personal Case Study 02 // Collaborative Genealogy Archive</span>
+          <h1>Family Captions</h1>
+          <p class="page-hero-lead">
+            A mobile-first collaborative web platform built ahead of a family reunion to preserve
+            perishable oral history across <strong>20,000+ photographs</strong>—elevating an early
+            prototype kicked off by my father-in-law <strong>Chris</strong> into a hardened,
+            zero-lock-in multi-user archive that also sparked my lasting love for
+            <strong>Neo-Brutalist web design</strong>.
+          </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="#architecture">Explore Architecture ↓</a>
+            <a class="btn btn-surface" href="#engineering">Engineering Deep Dive ↓</a>
+          </div>
+        </div>
+
+        <aside class="nb-card profile-facts-card" aria-label="Family Captions specifications">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">PERSONAL_BUILD.SPEC</span>
+            <span class="eyebrow">Family Tool</span>
+          </div>
+
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>Role</dt>
+              <dd>Hardening &amp; Full-Stack Engineer</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Concept Lead</dt>
+              <dd>Chris (Father-in-Law)</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Archive Scale</dt>
+              <dd>20,000+ Apple Photos</dd>
+            </div>
+            <div class="facts-row">
+              <dt>UI Legacy</dt>
+              <dd>Inspired This Site's Neo-Brutalism</dd>
+            </div>
+          </dl>
+
+          <div>
+            <span class="eyebrow" style="display: block; margin-bottom: 0.5rem;">Core Stack</span>
+            <ul class="tag-list">
+              <li class="nb-tag nb-tag--amber">React 18 + Vite 5</li>
+              <li class="nb-tag">Node.js v26 + Express 4</li>
+              <li class="nb-tag">node:sqlite (WAL)</li>
+              <li class="nb-tag">Sharp + Multer</li>
+              <li class="nb-tag">Python (osxphotos)</li>
+              <li class="nb-tag">Archiver ZIP</li>
+              <li class="nb-tag">Vanilla CSS</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Key architectural metrics">
+      <div class="container">
+        <div class="kpi-grid">
+          <article class="nb-card nb-card--amber kpi-card">
+            <span class="eyebrow" style="color: #111315;">Archive Scale</span>
+            <span class="kpi-value">20,000+</span>
+            <p>Apple Photos &amp; external drive images indexed and bridged via immutable UUIDs.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Built-In Storage</span>
+            <span class="kpi-value">4 Tables</span>
+            <p>Concurrent SQLite WAL schema with transactional edit audit history and skips.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Backend Footprint</span>
+            <span class="kpi-value">4 Deps</span>
+            <p>Only 4 production npm packages—zero ORMs and zero runtime bloat to maintain.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Data Portability</span>
+            <span class="kpi-value">ZIP + .TXT</span>
+            <p>Streaming selective ZIP archives pairing photos with human-readable story files &amp; JSON.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="origin-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">01 // Origin Story &amp; Human Constraints</span>
+            <h2 id="origin-heading">Turning a Stakeholder Sketch Into a Multi-Generational Tool</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">01 // FROM PROTOTYPE TO SHIPPABLE PRODUCT</span>
+            <h3>Elevating Chris's Foundation</h3>
+            <p>
+              Chris initiated the vision, wrote the reunion brief, and spun up an initial prototype on
+              his Mac to rescue fading family memories. Rather than starting over, I treated his brief
+              and instincts as the spec—hardening concurrency, ingesting cross-platform uploads, adding
+              audit trails, and making it rock-solid for every relative's phone.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">02 // FRICTIONLESS REUNION ACCESS</span>
+            <h3>Simple Name Entry Meets Protected Uploads</h3>
+            <p>
+              Requiring passwords or app store installs stops older aunts, uncles, and grandparents cold
+              in a living room. Contributors simply enter their first name to browse, verify, and add
+              memories—while batch media uploads sit cleanly behind a separate passphrase gate.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">03 // GENEALOGICAL INTEGRITY</span>
+            <h3>Preserving Disagreement Rather Than Overwriting</h3>
+            <p>
+              When two siblings remember different years or faces in a photo, both guesses are vital
+              historical clues. Omitting unique constraints per contributor lets multiple relatives save
+              memories side-by-side tagged as <em>"pretty sure"</em> or <em>"just guessing"</em>, with
+              existing notes displayed above the form for corroboration.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">04 // DESIGN DISCOVERY</span>
+            <h3>How Reunion Readability Sparked Neo-Brutalism</h3>
+            <p>
+              Polishing this utility-first interface around <code>IBM Plex Mono</code>, a strict
+              <code>16px</code> minimum font floor, sharp <code>0px</code> radii, high-contrast monochrome
+              surfaces, and oversized <code>52px</code> buttons let historical photos stand as the sole
+              source of color—and sparked my love for Neo-Brutalism.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture" aria-labelledby="architecture-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">02 // System Architecture</span>
+            <h2 id="architecture-heading">Temporary Work Surface &amp; Concurrent Data Layer</h2>
+          </div>
+          <span class="nb-tag nb-tag--sky">GDPR-Ready Low-Cost EU VPS Spec</span>
+        </div>
+
+        <div class="arch-diagram-frame" role="region" aria-label="Temporary Work Surface architecture flow">
+          <div class="arch-flow">
+            <div class="arch-node">
+              <span class="eyebrow">Hybrid Ingestion</span>
+              <h3>Apple Photos + Browser</h3>
+              <p>Python (<code>osxphotos</code> + <code>sips</code>) bridges Chris's Mac library while phones/PCs upload through Sharp + Multer.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--accent">
+              <span class="eyebrow" style="color: #111315;">Database Engine</span>
+              <h3><code>node:sqlite</code> (WAL)</h3>
+              <p>Built-in synchronous SQLite in Write-Ahead Logging mode with 4 UUID-anchored tables &amp; edit history.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node">
+              <span class="eyebrow">SPA Views</span>
+              <h3>5 Focused Screens</h3>
+              <p>Sequential queue with history back-stack, 60-item paginated light-table grid, peer notes, and batch upload.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--sky">
+              <span class="eyebrow" style="color: #111315;">Zero Lock-In</span>
+              <h3>Streaming ZIP + Sidecars</h3>
+              <p><code>archiver</code> streams collision-safe <code>{stem}_{uuid8}.jpg</code> photos alongside readable <code>.txt</code> stories &amp; JSON.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-grid-3">
+          <article class="nb-card pillar-card">
+            <h3>UUID-Anchored Archive Safety</h3>
+            <p>
+              Photos never touch private iCloud credentials online. Records key on immutable Apple
+              Photos UUIDs (or <code>randomUUID()</code> on browser uploads), preventing classic
+              <code>IMG_0001.JPG</code> collisions and enabling future round-trip metadata write-back.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <h3>Four-Table Relational Core</h3>
+            <p>
+              Models <code>photos</code>, multi-author <code>captions</code> (with SQL-checked
+              confidence labels), composite-key <code>skips</code> via <code>INSERT OR IGNORE</code> so
+              skipping unfamiliar faces never blocks anyone else, and append-only <code>caption_history</code>.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <h3>Zero Router Bloat on Frontend</h3>
+            <p>
+              Instead of dragging in heavy state managers or routing dependencies, the React SPA
+              coordinates sequential captioning, "My Notes", 60-thumb pagination, and batch downloads
+              cleanly with return-position tracking so light-table browsing never loses your place.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="engineering" aria-labelledby="engineering-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">03 // Hardening &amp; Pipeline Highlights</span>
+            <h2 id="engineering-heading">Built for Reunion Wi-Fi, Safety &amp; Longevity</h2>
+          </div>
+        </div>
+
+        <div class="scale-list">
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">01</div>
+            <div class="timeline-content">
+              <h3>Non-Destructive Edit Auditing via Atomic SQL Transactions</h3>
+              <p>
+                Allowing inline edits on "My Notes" creates risk if a relative accidentally erases an
+                earlier story. Refactoring caption updates to copy the existing row into
+                <code>caption_history</code> inside an explicit <code>BEGIN / COMMIT / ROLLBACK</code>
+                SQLite transaction ensures past memories are always recoverable from a clean
+                on-demand drawer.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">02</div>
+            <div class="timeline-content">
+              <h3>Zero-Compile Portability Using Native <code>node:sqlite</code></h3>
+              <p>
+                Because native C++ bindings (<code>better-sqlite3</code>) failed V8 compilation on
+                Chris's Node v26 runtime, migrating to Node's built-in <code>node:sqlite</code>
+                (<code>DatabaseSync</code>) paired with <code>WAL</code> concurrency eliminated native
+                build chains completely across macOS development and Linux hosting.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">03</div>
+            <div class="timeline-content">
+              <h3>Hybrid Media Pipeline: iCloud Fallback + EXIF Auto-Rotation</h3>
+              <p>
+                Because iCloud-optimized Macs frequently mark non-destructive edits without caching
+                rendered files locally, the Python <code>osxphotos</code> extractor gracefully falls
+                back to unedited originals instead of skipping precious photos. Meanwhile, browser
+                uploads on Windows, Android, or iOS pass through <code>sharp().rotate()</code> to bake
+                smartphone EXIF orientation directly into standardized <code>1920px</code> views and
+                <code>400px</code> grid thumbnails.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">04</div>
+            <div class="timeline-content">
+              <h3>Streaming Portable Exports &amp; WCAG Contrast Hardening</h3>
+              <p>
+                Selectively exporting albums pipes directly into HTTP responses via streaming
+                <code>archiver</code> ZIP generation without buffering large photo sets in memory.
+                During UI hardening, replacing faded <code>opacity: 0.35</code> disabled styling with
+                opaque neutral grey (<code>opacity: 1</code>) preserved strict WCAG legibility for every
+                family member.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="case-grid-2" style="margin-top: var(--space-6);">
+          <aside class="code-window" aria-label="Transactional audit snapshot snippet">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>caption_audit_tx.js</span>
+            </div>
+            <pre class="code-block"><code>db.<span class="function">exec</span>(<span class="string">'BEGIN'</span>);
+<span class="keyword">try</span> {
+  db.<span class="function">prepare</span>(<span class="string">`
+    INSERT INTO caption_history
+      (caption_id, photo_uuid, contributor_name, people, place, approx_date, story, confidence)
+    VALUES
+      (@id, @photo_uuid, @contributor_name, @people, @place, @approx_date, @story, @confidence)
+  `</span>).<span class="function">run</span>(existingSnapshot);
+
+  db.<span class="function">prepare</span>(<span class="string">`
+    UPDATE captions
+    SET people=@people, place=@place, approx_date=@approx_date, story=@story, confidence=@confidence
+    WHERE id=@id
+  `</span>).<span class="function">run</span>(updatedFields);
+
+  db.<span class="function">exec</span>(<span class="string">'COMMIT'</span>);
+} <span class="keyword">catch</span> (err) {
+  db.<span class="function">exec</span>(<span class="string">'ROLLBACK'</span>);
+  <span class="keyword">throw</span> err;
+}</code></pre>
+          </aside>
+
+          <aside class="code-window" aria-label="Sharp EXIF dual-resolution transcode and WCAG button fix">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>media_ingest_and_a11y.js</span>
+            </div>
+            <pre class="code-block"><code><span class="comment">// Bake smartphone EXIF orientation into crisp reunion JPEGs</span>
+<span class="keyword">await</span> <span class="function">sharp</span>(file.buffer)
+  .<span class="function">rotate</span>()
+  .<span class="function">resize</span>({ width: <span class="number">1920</span>, height: <span class="number">1920</span>, fit: <span class="string">'inside'</span>, withoutEnlargement: <span class="keyword">true</span> })
+  .<span class="function">jpeg</span>({ quality: <span class="number">85</span> })
+  .<span class="function">toFile</span>(displayPath);
+
+<span class="keyword">await</span> <span class="function">sharp</span>(file.buffer)
+  .<span class="function">rotate</span>()
+  .<span class="function">resize</span>({ width: <span class="number">400</span>, height: <span class="number">400</span>, fit: <span class="string">'inside'</span>, withoutEnlargement: <span class="keyword">true</span> })
+  .<span class="function">jpeg</span>({ quality: <span class="number">80</span> })
+  .<span class="function">toFile</span>(thumbPath);</code></pre>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="decisions-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">04 // Technical Decisions Summary</span>
+            <h2 id="decisions-heading">Constraints &amp; Architectural Solutions</h2>
+          </div>
+        </div>
+
+        <div class="case-table-wrap">
+          <table class="case-table">
+            <thead>
+              <tr>
+                <th>Challenge</th>
+                <th>Context &amp; Constraint</th>
+                <th>Engineering Decision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Node v26 SQLite Builds</strong></td>
+                <td>Native C++ addons failed against modern Node v26 headers across dev environments.</td>
+                <td>Adopted built-in <code>node:sqlite</code> (<code>DatabaseSync</code>) with WAL concurrency—zero native compile steps.</td>
+              </tr>
+              <tr>
+                <td><strong>Uncached iCloud Edits</strong></td>
+                <td>iCloud Macs flag edited images whose rendered outputs may not exist locally.</td>
+                <td>Built a fallback path in Python <code>osxphotos</code> exporting unedited originals rather than dropping photos.</td>
+              </tr>
+              <tr>
+                <td><strong>Non-Mac Relatives</strong></td>
+                <td>Family members on Android, Windows, or phones couldn't use local macOS export scripts.</td>
+                <td>Engineered cross-platform browser upload ingestion using <code>multer</code> + <code>sharp</code> with instant SQLite registration.</td>
+              </tr>
+              <tr>
+                <td><strong>Multi-Author Memory Edits</strong></td>
+                <td>Inline edits risked losing earlier nuances; conflicting stories needed equal visibility.</td>
+                <td>Logged immutable snapshots into <code>caption_history</code> inside transactions and displayed peer notes above forms.</td>
+              </tr>
+              <tr>
+                <td><strong>Long-Term Family Custody</strong></td>
+                <td>Oral history must outlive any single web server or framework.</td>
+                <td>Built streaming collision-safe ZIP archives bundling JPEGs, human-readable <code>.txt</code> sidecars, and JSON manifests.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="takeaway-heading">
+      <div class="container">
+        <div class="case-grid-2">
+          <article class="nb-card nb-card--amber manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow" style="color: #111315;">05 // Personal Takeaway</span>
+              <h2 id="takeaway-heading" style="font-size: var(--text-2xl);">Falling in Love with Neo-Brutalism</h2>
+              <p>
+                More than any database trick, hardening Family Captions permanently shaped my design
+                compass. Stripping decorative fluff down to honest monochrome typography, crisp rules,
+                WCAG contrast even on disabled states, and giant clickable targets directly helped my
+                family interact naturally—and inspired the Neo-Brutalist portfolio you are exploring right
+                now.
+              </p>
+            </div>
+            <blockquote class="manifesto-quote">
+              "Bridging 'it works on a laptop' to 'my whole family can preserve 20,000 memories together'
+              is why building software from scratch feels like magic."
+            </blockquote>
+          </article>
+
+          <article class="nb-card manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow">Open Architecture &amp; Next Iterations</span>
+              <h3>Built to Stay Maintainable &amp; Portable</h3>
+              <p>
+                Running on just four production npm dependencies makes future additions—like bundling
+                <code>IBM Plex Mono</code> locally for offline rural reunions, conflict-merge admin tools,
+                or writing verified metadata back into Apple Photos by UUID—completely clean thanks to
+                a strict data model.
+              </p>
+            </div>
+            <div class="hero-cta-group" style="margin-top: 0;">
+              <a class="btn btn-sm btn-primary" href="./eliza-playbill.html">Read ElizaPlaybill Study →</a>
+              <a class="btn btn-sm btn-surface" href="./jmf-survey.html">Read JMF Survey Study →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Case study footer CTA">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <span class="eyebrow" style="color: #111315;">Explore More</span>
+            <h2>See how programming drives both everyday joy and enterprise scale</h2>
+            <p style="margin-top: 0.75rem;">
+              Browse all personal builds, inspect full-stack enterprise architecture, or copy my email.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-surface" href="./personal.html">← Personal Builds</a>
+            <a class="btn btn-surface" href="./eliza-playbill.html">ElizaPlaybill Study</a>
+            <a class="btn btn-surface" href="./projects.html">All Projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</body>
+</html>

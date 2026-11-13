@@ -133,7 +133,7 @@
     const cards = Array.from(container.children);
     if (!cards.length) return;
     const maxCardHeight = Math.max(...cards.map((card) => card.offsetHeight));
-    const stackOffset = Math.max(0, cards.length - 1) * 16;
+    const stackOffset = Math.max(0, cards.length - 1) * 14;
     container.style.height = `${maxCardHeight + stackOffset}px`;
   }
 

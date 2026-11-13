@@ -40,9 +40,10 @@
             mobile photography.
           </p>
           <div class="hero-cta-group">
-            <a class="btn btn-primary" href="./projects.html">Explore Projects →</a>
-            <a class="btn btn-surface" href="./about.html">About &amp; Resume</a>
-            <a class="btn btn-secondary" href="./photos.html">Wallpaper Gallery</a>
+            <a class="btn btn-primary" href="./projects.html">Projects →</a>
+            <a class="btn btn-accent" href="./personal.html">Personal Builds</a>
+            <a class="btn btn-surface" href="./about.html">About Me</a>
+            <a class="btn btn-secondary" href="./photos.html">Wallpapers</a>
           </div>
         </div>
 
@@ -81,21 +82,36 @@
             <article class="card" data-card-index="03">
               <div class="card-header-bar">
                 <span>03 // visual.css</span>
-                <span class="card-role-badge">THE CREATOR</span>
+                <span class="card-role-badge">THE DESIGNER</span>
               </div>
               <div class="card-body">
                 <p>
-                  This site started as a home for my photography because visual craft matters. Professionally,
-                  I led JMF Asesores' complete WordPress website redesign with custom HTML, CSS, and PHP
-                  focused on accessibility and responsiveness.
+                  From leading JMF Asesores' accessible WordPress redesign to hardening a starkly usable
+                  monochrome reunion tool, I build clean Neo-Brutalist interfaces paired with original mobile
+                  photography.
                 </p>
                 <div class="card-metric-line">Certs: BYU–Idaho Full-Stack, Databases &amp; Web Prog</div>
+              </div>
+            </article>
+
+            <article class="card" data-card-index="04">
+              <div class="card-header-bar">
+                <span>04 // craft.js</span>
+                <span class="card-role-badge">THE BUILDER</span>
+              </div>
+              <div class="card-body">
+                <p>
+                  I don't leave programming at the office—coding can be pure fun, and I use my skills
+                  every chance I get. Starting from a blank file and conjuring working software out of
+                  nothing makes me feel like a God.
+                </p>
+                <div class="card-metric-line">Personal: ElizaPlaybill · Family Captions (20k+ photos)</div>
               </div>
             </article>
           </div>
 
           <div class="deck-controls">
-            <span class="deck-counter" id="stack-counter">01 / 03</span>
+            <span class="deck-counter" id="stack-counter">01 / 04</span>
             <span class="deck-hint">Click, scroll, or swipe deck</span>
             <div class="deck-btns">
               <button type="button" id="stack-prev-btn" class="btn btn-sm btn-surface" aria-label="Previous discipline card">
@@ -141,12 +157,74 @@
 
           <article class="nb-card pillar-card">
             <span class="pillar-index">03 // CREATOR</span>
-            <h3>UI/UX &amp; Photography</h3>
+            <h3>Personal Apps &amp; Lens</h3>
             <p>
-              Custom WordPress themes, accessible responsive design systems, and 27 original mobile
-              wallpapers free to preview and download in full quality.
+              Using code for everyday joy—shipping Broadway Playbill birthday gifts, 20,000-photo family
+              archives, and 27 downloadable mobile wallpapers.
             </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="coding-passion-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">Manifesto // Coding Can Be Fun</span>
+            <h2 id="coding-passion-heading">Why I Build Things From Scratch</h2>
+          </div>
+          <a class="btn btn-sm btn-primary" href="./personal.html">See Personal Case Studies →</a>
+        </div>
+
+        <div class="manifesto-grid">
+          <article class="nb-card nb-card--amber manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow" style="color: #111315;">Using My Abilities Every Chance I Get</span>
+              <h3>From an Empty File to a Living World</h3>
+              <p>
+                Programming isn't just something I clock in to do—I genuinely love building software and
+                pulling my toolkit out whenever real life offers an excuse. Whether I'm turning a
+                birthday card into a playable Broadway Playbill or rescuing oral history across 20,000+
+                family photographs, coding can and should be fun.
+              </p>
+            </div>
+
+            <blockquote class="manifesto-quote">
+              "Creating something completely from scratch—turning zero lines and thin air into a real,
+              interactive product people can hold in their hands—makes me feel like a God."
+            </blockquote>
+
+            <div class="hero-cta-group" style="margin-top: 0;">
+              <a class="btn btn-sm btn-surface" href="./personal.html">Personal Hub →</a>
+              <a class="btn btn-sm btn-surface" href="./eliza-playbill.html">ElizaPlaybill</a>
+              <a class="btn btn-sm btn-surface" href="./family-captions.html">Family Captions</a>
+            </div>
+          </article>
+
+          <aside class="code-window" aria-label="Creator philosophy snippet">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>creator_mode.js</span>
+            </div>
+            <pre class="code-block"><code><span class="comment">// Coding doesn't stop at 5 PM</span>
+<span class="keyword">const</span> mindset = {
+  joy: <span class="string">"building from zero to real"</span>,
+  habit: <span class="string">"use engineering everywhere"</span>,
+  personalProjects: [
+    <span class="string">"ElizaPlaybill"</span>,   <span class="comment">// birthday card -> SPA</span>
+    <span class="string">"FamilyCaptions"</span>,  <span class="comment">// 20k+ reunion photos</span>
+  ]
+};
+
+<span class="keyword">function</span> <span class="function">createFromScratch</span>(idea) {
+  <span class="keyword">return</span> <span class="function">shipWithLove</span>(<span class="function">architect</span>(idea));
+}</code></pre>
+          </aside>
         </div>
       </div>
     </section>

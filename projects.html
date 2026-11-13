@@ -30,9 +30,13 @@
           <span class="eyebrow">02 // Archive &amp; Case Studies</span>
           <h1>Projects &amp; Systems</h1>
           <p class="page-hero-lead">
-            Production systems, automation scripts, and UI/UX builds—alongside structured template
-            placeholders ready to expand via <code>data/projects_data.json</code>.
+            Production systems, automation scripts, UI/UX builds, and personal passion projects—alongside
+            structured template placeholders ready to expand via <code>data/projects_data.json</code>.
           </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="./personal.html">Explore Personal Hub →</a>
+            <a class="btn btn-surface" href="./jmf-survey.html">Featured Enterprise Case Study →</a>
+          </div>
         </div>
 
         <aside class="code-window" aria-label="Projects JSON data hint">
@@ -44,7 +48,7 @@
             </div>
             <span>data/projects_data.json</span>
           </div>
-          <pre class="code-block"><code><span class="comment">// Add or customize projects without editing HTML</span>
+          <pre class="code-block"><code><span class="comment">// Every case study gets its own dedicated page</span>
 <span class="keyword">const</span> source = <span class="string">"./data/projects_data.json"</span>;
 <span class="function">renderCatalog</span>(source, { filterable: <span class="keyword">true</span> });</code></pre>
         </aside>
@@ -62,6 +66,9 @@
             </button>
             <button type="button" class="filter-btn" data-filter="engineering" aria-pressed="false">
               Engineering
+            </button>
+            <button type="button" class="filter-btn" data-filter="personal" aria-pressed="false">
+              Personal
             </button>
             <button type="button" class="filter-btn" data-filter="automation" aria-pressed="false">
               Automation

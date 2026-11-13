@@ -106,10 +106,9 @@
 
 .cards .card {
   position: absolute;
-  inset-inline: 0;
+  left: 0;
   top: 0;
-  margin-inline: auto;
-  width: 100%;
+  width: calc(100% - 18px);
   background-color: var(--code-bg);
   color: var(--code-text);
   border: var(--border-heavy) solid var(--border-color);
@@ -134,27 +133,27 @@
 }
 
 .cards .card:nth-child(2) {
-  transform: translate(8px, 16px) scale(0.98);
+  transform: translate(6px, 14px) scale(0.985);
   z-index: 5;
   opacity: 0.94;
 }
 
 .cards .card:nth-child(3) {
-  transform: translate(16px, 32px) scale(0.96);
+  transform: translate(12px, 28px) scale(0.97);
   z-index: 4;
   opacity: 0.88;
 }
 
 .cards .card:nth-child(4) {
-  transform: translate(24px, 48px) scale(0.94);
+  transform: translate(18px, 42px) scale(0.955);
   z-index: 3;
-  opacity: 0.8;
+  opacity: 0.82;
 }
 
 .cards .card:nth-child(n + 5) {
-  transform: translate(32px, 64px) scale(0.92);
+  transform: translate(24px, 56px) scale(0.94);
   z-index: 2;
-  opacity: 0.7;
+  opacity: 0.72;
 }
 
 .cards.is-animating .card {
@@ -1130,3 +1129,60 @@
   border-bottom: 0;
 }
 
+/* ==========================================================================
+   PERSONAL BUILDS, CODING MANIFESTO & MULTI-BREADCRUMBS
+   ========================================================================== */
+.breadcrumb-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.breadcrumb-row .breadcrumb-link {
+  margin-bottom: 0;
+}
+
+.manifesto-grid {
+  display: grid;
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  .manifesto-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.manifesto-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.manifesto-quote {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--bg-surface);
+  color: var(--ink-primary);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.nb-card--amber .manifesto-quote {
+  color: #111315;
+}
+
+[data-theme='dark'] .nb-card--amber .manifesto-quote {
+  background-color: #111315;
+  color: #f1ece1;
+  border-color: #111315;
+  box-shadow: 3px 3px 0 rgba(6, 11, 16, 0.6);
+}

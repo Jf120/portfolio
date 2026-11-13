@@ -110,7 +110,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-@media (min-width: 820px) {
+@media (min-width: 900px) {
   .nav-links {
     display: flex;
   }
@@ -133,7 +133,7 @@
   display: block;
 }
 
-@media (min-width: 820px) {
+@media (min-width: 900px) {
   .mobile-drawer {
     display: none !important;
   }

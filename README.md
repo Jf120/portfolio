@@ -6,6 +6,8 @@
 
 This repository hosts my personal portfolio website deployed on **GitHub Pages**, built completely with zero-dependency **HTML5, Vanilla CSS, and JavaScript (ES6+)** in a **Neo-Brutalist** design system with **Light & Dark mode** support.
 
+Coding can be pure fun—I use software engineering whenever real life gives me an excuse, from enterprise analytics systems to personal gifts and family tools built from scratch.
+
 ## 🏗️ Architecture & Tech Stack
 
 * **Core Stack:** Pure HTML5, Modular Vanilla CSS (`css/`), and ES6+ JavaScript (`js/`) with Web Components
@@ -13,24 +15,28 @@ This repository hosts my personal portfolio website deployed on **GitHub Pages**
 * **Data-Driven Content:** JSON catalogs in `data/projects_data.json` and `data/gallery_data.json`
 
 ```text
-├── index.html          # Home landing page + interactive discipline card stack
-├── about.html          # About Me, full resume timeline, Ensign/BYU-I education, skills, print CV
-├── projects.html       # Filterable project catalog + case study modal
-├── jmf-survey.html     # Dedicated engineering case study for the JMF Survey SNA platform
-├── photos.html         # Wallpaper collections with horizontal scrollers & lightbox
-├── 404.html            # Custom GitHub Pages 404 page
-├── css/                # Neo-Brutalist tokens, base + print styles, components, and page layouts
-├── js/                 # Theme toggle, Web Components, card stack, projects & gallery logic
-├── data/               # JSON manifests for projects and wallpaper collections
-├── assets/             # Icons, fallback graphic, and wallpaper collections
-└── script/             # Python helper scripts for renaming and indexing wallpapers
+├── index.html            # Home landing page + 4-card interactive discipline stack & coding manifesto
+├── about.html            # About Me, full resume timeline, Ensign/BYU-I education, skills, print CV
+├── projects.html         # Filterable project catalog (incl. Personal) + case study modal
+├── personal.html         # Dedicated Personal Builds hub & "Creating From Scratch" manifesto
+├── jmf-survey.html       # Dedicated case study: JMF Survey multi-tenant enterprise SNA platform
+├── eliza-playbill.html   # Dedicated case study: ElizaPlaybill interactive Broadway birthday SPA
+├── family-captions.html  # Dedicated case study: Family Captions 20,000+ reunion photo archive
+├── photos.html           # Wallpaper collections with horizontal scrollers & lightbox
+├── 404.html              # Custom GitHub Pages 404 page
+├── css/                  # Neo-Brutalist tokens, base + print styles, components, and page layouts
+├── js/                   # Theme toggle, Web Components, card stack, projects, personal & gallery logic
+├── data/                 # JSON manifests for projects and wallpaper collections
+├── assets/               # Icons, fallback graphic, and wallpaper collections
+└── script/               # Python helper scripts for renaming and indexing wallpapers
 ```
 
 ## 📂 Site Pages
 
-* **Home (`index.html`):** Interactive stacked card deck (`click`, `wheel`, `swipe`, `arrow keys`, or buttons), core discipline pillars, featured project previews, and collection links.
-* **About Me (`about.html`):** Full career timeline (Miguel Vargas Association, JMF Asesores, Clipboard Health, Grupo Provea), Ensign College B.A.S. & BYU–Idaho certificates, toolkit matrix, copyable email, and print-to-PDF support.
-* **Projects (`projects.html`):** Category-filterable showcase highlighting JMF Asesores PHP survey framework & WordPress redesign, Grupo Provea Python/SQL automation, Miguel Vargas logistics, plus editable capstone placeholders.
+* **Home (`index.html`):** Interactive 4-card stack (`click`, `wheel`, `swipe`, `arrow keys`, or buttons), *"Why I Build Things From Scratch"* manifesto, featured case study previews, and collection links.
+* **About Me (`about.html`):** Why I Code philosophy, Neo-Brutalism origin story, full career timeline (Miguel Vargas Association, JMF Asesores, Clipboard Health, Grupo Provea), Ensign College B.A.S. & BYU–Idaho certificates, toolkit matrix, and print-to-PDF support.
+* **Projects (`projects.html`):** Category-filterable showcase (`Engineering`, `Personal`, `Automation`, `Design & Web`, `Placeholders`) with deep-dive case studies and modal summaries.
+* **Personal (`personal.html`):** Dedicated hub celebrating programming for fun and linking directly into full case studies ([`eliza-playbill.html`](./eliza-playbill.html), [`family-captions.html`](./family-captions.html)).
 * **Photos (`photos.html`):** Original mobile wallpaper collections (`joyful_fall`, `moody_fall`, `moab`) with horizontal carousels, lightbox preview, and full-resolution downloads.
 
 ## 📬 Contact

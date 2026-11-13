@@ -79,6 +79,39 @@
             <rect x="278" y="106" width="64" height="36" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
           </svg>
         `;
+      case 'playbill':
+        return `
+          <svg viewBox="0 0 400 170" fill="none" aria-hidden="true">
+            <rect x="78" y="16" width="118" height="138" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="78" y="16" width="118" height="32" fill="#fde513" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="94" y1="32" x2="180" y2="32" stroke="#111315" stroke-width="4"/>
+            <rect x="92" y="60" width="90" height="78" fill="var(--accent-sky)" stroke="var(--border-color)" stroke-width="2.5"/>
+            <rect x="208" y="26" width="118" height="128" fill="var(--bg-elevated)" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="224" y1="52" x2="270" y2="52" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="276" y1="52" x2="310" y2="52" stroke="var(--border-color)" stroke-width="2.5" stroke-dasharray="3 4"/>
+            <line x1="224" y1="76" x2="262" y2="76" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="268" y1="76" x2="310" y2="76" stroke="var(--border-color)" stroke-width="2.5" stroke-dasharray="3 4"/>
+            <line x1="224" y1="100" x2="278" y2="100" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="284" y1="100" x2="310" y2="100" stroke="var(--border-color)" stroke-width="2.5" stroke-dasharray="3 4"/>
+            <rect x="224" y="118" width="86" height="22" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="2.5"/>
+          </svg>
+        `;
+      case 'archive':
+        return `
+          <svg viewBox="0 0 400 170" fill="none" aria-hidden="true">
+            <rect x="46" y="24" width="144" height="122" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="58" y="36" width="120" height="74" fill="var(--accent-sky)" stroke="var(--border-color)" stroke-width="2.5"/>
+            <circle cx="88" cy="64" r="11" fill="var(--accent-amber)" stroke="#111315" stroke-width="2.5"/>
+            <path d="M62 106L96 78L124 98L148 80L174 106Z" fill="#111315"/>
+            <line x1="58" y1="126" x2="178" y2="126" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="210" y="24" width="144" height="54" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="224" y1="44" x2="338" y2="44" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="224" y1="60" x2="296" y2="60" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="210" y="92" width="144" height="54" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="224" y1="112" x2="322" y2="112" stroke="#111315" stroke-width="3"/>
+            <rect x="224" y="124" width="54" height="12" fill="#111315"/>
+          </svg>
+        `;
       case 'grid':
       default:
         return `
