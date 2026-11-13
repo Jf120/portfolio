@@ -14,11 +14,11 @@ This repository hosts my personal portfolio website deployed on **GitHub Pages**
 
 ```text
 ├── index.html          # Home landing page + interactive discipline card stack
-├── about.html          # About Me, experience timeline, skills, and contact
+├── about.html          # About Me, full resume timeline, Ensign/BYU-I education, skills, print CV
 ├── projects.html       # Filterable project catalog + case study modal
 ├── photos.html         # Wallpaper collections with horizontal scrollers & lightbox
 ├── 404.html            # Custom GitHub Pages 404 page
-├── css/                # Neo-Brutalist tokens, base, components, and page styles
+├── css/                # Neo-Brutalist tokens, base + print styles, components, and page layouts
 ├── js/                 # Theme toggle, Web Components, card stack, projects & gallery logic
 ├── data/               # JSON manifests for projects and wallpaper collections
 ├── assets/             # Icons, fallback graphic, and wallpaper collections
@@ -28,8 +28,8 @@ This repository hosts my personal portfolio website deployed on **GitHub Pages**
 ## 📂 Site Pages
 
 * **Home (`index.html`):** Interactive stacked card deck (`click`, `wheel`, `swipe`, `arrow keys`, or buttons), core discipline pillars, featured project previews, and collection links.
-* **About Me (`about.html`):** Background spanning software engineering, logistics leadership, and UI/UX design, with timeline, toolkit matrix, and copyable email.
-* **Projects (`projects.html`):** Category-filterable showcase covering JMF Asesores PHP framework, Python automation, volunteer logistics & web redesign, plus editable placeholder entries.
+* **About Me (`about.html`):** Full career timeline (Miguel Vargas Association, JMF Asesores, Clipboard Health, Grupo Provea), Ensign College B.A.S. & BYU–Idaho certificates, toolkit matrix, copyable email, and print-to-PDF support.
+* **Projects (`projects.html`):** Category-filterable showcase highlighting JMF Asesores PHP survey framework & WordPress redesign, Grupo Provea Python/SQL automation, Miguel Vargas logistics, plus editable capstone placeholders.
 * **Photos (`photos.html`):** Original mobile wallpaper collections (`joyful_fall`, `moody_fall`, `moab`) with horizontal carousels, lightbox preview, and full-resolution downloads.
 
 ## 📬 Contact

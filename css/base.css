@@ -182,3 +182,45 @@ ol {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Print / Save Resume PDF Support */
+@media print {
+  body {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #111315 !important;
+  }
+
+  app-navbar,
+  app-footer,
+  .skip-link,
+  .hero-cta-group,
+  .btn,
+  .nb-toast {
+    display: none !important;
+  }
+
+  .nb-card,
+  .page-hero {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: 1.5px solid #111315 !important;
+    break-inside: avoid;
+  }
+
+  .section {
+    padding-block: 1rem !important;
+  }
+
+  p,
+  li,
+  dt,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: #111315 !important;
+  }
+}
+
