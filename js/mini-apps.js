@@ -715,4 +715,353 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderMlpp();
   }
+
+  /* ========================================================================
+     4. BEENIGHT MINI-APP: Dual-Surface TV Broadcast + Mobile Host + Web Audio
+     ======================================================================== */
+  const beeRoot = document.getElementById('beenight-mini-app');
+  if (beeRoot) {
+    const WORDS = [
+      {
+        word: 'SERENDIPITY',
+        phonetic: '/ˌser.ənˈdɪp.ɪ.ti/',
+        difficulty: 'Tier 2 · 150 pts',
+        definition: 'Finding valuable or delightful things unexpectedly.',
+      },
+      {
+        word: 'SILHOUETTE',
+        phonetic: '/ˌsɪl.uˈet/',
+        difficulty: 'Tier 2 · 150 pts',
+        definition: 'Dark outline of someone seen against a bright backdrop.',
+      },
+      {
+        word: 'ONOMATOPOEIA',
+        phonetic: '/ˌɒn.əˌmæt.əˈpiː.ə/',
+        difficulty: 'Tier 3 · 250 pts',
+        definition: 'A word phonetically imitating the sound it names.',
+      },
+      {
+        word: 'PHARAOH',
+        phonetic: '/ˈfeə.rəʊ/',
+        difficulty: 'Tier 1 · 100 pts',
+        definition: 'Ruler in ancient Egypt.',
+      },
+    ];
+
+    const createInitialPlayers = () => [
+      { id: 0, name: 'Eliza', bio: 'Broadway & theater trivia buff', score: 300, streak: 2 },
+      { id: 1, name: 'Chris', bio: 'Reunion storyteller & host ally', score: 250, streak: 1 },
+      { id: 2, name: 'Mateo', bio: 'Quick-draw underdog', score: 150, streak: 1 },
+      { id: 3, name: 'Hannah', bio: 'Calm final-round strategist', score: 100, streak: 0 },
+    ];
+
+    const state = {
+      stage: 'ACTIVE_TURN',
+      turnIdx: 0,
+      wordIdx: 0,
+      hintsRevealed: 1,
+      lightBroadcast: false,
+      audioUnlocked: false,
+      lastEvent: 'state:sync (BroadcastChannel <5ms)',
+      players: createInitialPlayers(),
+    };
+
+    let audioCtx = null;
+    const playTone = (type) => {
+      try {
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtor) return;
+        if (!audioCtx) audioCtx = new AudioCtor();
+        if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+        const now = audioCtx.currentTime;
+
+        if (type === 'correct') {
+          [523.25, 659.25, 783.99, 987.77, 1046.5].forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            const start = now + idx * 0.065;
+            const dur = idx === 4 ? 0.45 : 0.2;
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.001, start);
+            gain.gain.exponentialRampToValueAtTime(0.14, start + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(start);
+            osc.stop(start + dur);
+          });
+        } else {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(165, now);
+          osc.frequency.linearRampToValueAtTime(115, now + 0.28);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.exponentialRampToValueAtTime(0.12, now + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        }
+        state.audioUnlocked = true;
+      } catch {}
+    };
+
+    const stageBtns = Array.from(document.querySelectorAll('[data-bee-stage]'));
+    const tvThemeBtn = document.getElementById('beenight-tv-theme-btn');
+    const resetBtn = document.getElementById('beenight-reset-btn');
+    const syncBadge = document.getElementById('beenight-sync-badge');
+    const hostPane = document.getElementById('beenight-host-pane');
+    const tvPane = document.getElementById('beenight-tv-pane');
+
+    const renderBeeNight = () => {
+      const currentPlayer = state.players[state.turnIdx % state.players.length];
+      const currentWord = WORDS[state.wordIdx % WORDS.length];
+      const sortedPlayers = [...state.players].sort((a, b) => b.score - a.score);
+
+      stageBtns.forEach((btn) => {
+        const isActive = btn.dataset.beeStage === state.stage;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      if (syncBadge) {
+        syncBadge.textContent = state.lastEvent;
+      }
+
+      if (hostPane) {
+        let stageControls = '';
+        if (state.stage === 'LOBBY') {
+          stageControls = `
+            <div class="bee-host-card">
+              <span class="eyebrow">LOBBY CONTESTANT PRESENTATION MODE</span>
+              <p style="font-size: var(--text-sm);">Spotlighted on TV: <strong>${escapeHtml(currentPlayer.name)}</strong> — ${escapeHtml(currentPlayer.bio)}</p>
+              <div class="hero-cta-group" style="margin-top: 0;">
+                <button type="button" class="btn btn-sm btn-surface" data-bee-action="next-bio">Next Contestant Intro</button>
+                <button type="button" class="btn btn-sm btn-primary" data-bee-action="start-turn">Start Turn (ACTIVE_TURN) →</button>
+              </div>
+            </div>
+          `;
+        } else if (state.stage === 'ACTIVE_TURN') {
+          stageControls = `
+            <div class="bee-host-card">
+              <span class="eyebrow">PRIVATE TELEPROMPTER (HIDDEN FROM TV)</span>
+              <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; align-items: baseline;">
+                <strong style="font-size: 1.2rem; font-family: var(--font-mono);">${escapeHtml(currentWord.word)}</strong>
+                <span class="nb-tag nb-tag--amber">${escapeHtml(currentWord.difficulty)}</span>
+              </div>
+              <p style="font-size: var(--text-xs);"><strong>Phonetic:</strong> <code>${escapeHtml(currentWord.phonetic)}</code></p>
+              <p style="font-size: var(--text-xs);"><strong>Def:</strong> ${escapeHtml(currentWord.definition)}</p>
+            </div>
+            <div class="hero-cta-group" style="margin-top: 0;">
+              <button type="button" class="btn btn-sm btn-primary" id="bee-correct-btn" data-bee-action="correct">✓ Correct (+150 + Streak)</button>
+              <button type="button" class="btn btn-sm btn-accent" id="bee-wrong-btn" data-bee-action="wrong">✕ Wrong</button>
+              <button type="button" class="btn btn-sm btn-surface" id="bee-hint-btn" data-bee-action="hint">Reveal Letter (${state.hintsRevealed}/${currentWord.word.length})</button>
+              <button type="button" class="btn btn-sm btn-surface" data-bee-action="skip">Skip Turn →</button>
+            </div>
+          `;
+        } else if (state.stage === 'LEADERBOARD') {
+          stageControls = `
+            <div class="bee-host-card">
+              <span class="eyebrow">STANDINGS &amp; ROUND TRANSITION</span>
+              <p style="font-size: var(--text-sm);">Up next on deck: <strong>${escapeHtml(state.players[(state.turnIdx + 1) % state.players.length].name)}</strong>.</p>
+              <div class="hero-cta-group" style="margin-top: 0;">
+                <button type="button" class="btn btn-sm btn-primary" data-bee-action="next-round">Advance Next Speaker →</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-bee-action="goto-podium">Open Winners Podium</button>
+              </div>
+            </div>
+          `;
+        } else {
+          stageControls = `
+            <div class="bee-host-card">
+              <span class="eyebrow">PODIUM FINALE CONTROLS</span>
+              <p style="font-size: var(--text-sm);">Champion in Lead: <strong>${escapeHtml(sortedPlayers[0].name)}</strong> (${sortedPlayers[0].score} pts).</p>
+              <div class="hero-cta-group" style="margin-top: 0;">
+                <button type="button" class="btn btn-sm btn-primary" data-bee-action="fanfare">🔊 Replay Victory Chime</button>
+                <button type="button" class="btn btn-sm btn-surface" data-bee-action="reset">Reset Party Match</button>
+              </div>
+            </div>
+          `;
+        }
+
+        hostPane.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="eyebrow">1. MOBILE HOST REMOTE (/host?room=BEE-4821)</span>
+            <span class="nb-tag nb-tag--sky">Stage: ${escapeHtml(state.stage)}</span>
+          </div>
+          <p style="font-size: var(--text-xs);">
+            Notice stage-driven decluttering: only controls relevant to <code>${escapeHtml(state.stage)}</code> render. Judging updates the TV screen &amp; synthesizes Web Audio chimes.
+          </p>
+          ${stageControls}
+        `;
+      }
+
+      if (tvPane) {
+        let tvBody = '';
+        if (state.stage === 'LOBBY') {
+          tvBody = `
+            <div class="bee-spotlight">
+              <span class="eyebrow" style="color: #111315;">NOW INTRODUCING ON STAGE</span>
+              <h4>${escapeHtml(currentPlayer.name)}</h4>
+              <p>${escapeHtml(currentPlayer.bio)}</p>
+            </div>
+            <p style="font-size: var(--text-xs);">Waiting for Host QR tap to launch round... (${state.players.length} contestants checked in)</p>
+          `;
+        } else if (state.stage === 'ACTIVE_TURN') {
+          const slots = currentWord.word
+            .split('')
+            .map((ch, idx) => {
+              const show = idx < state.hintsRevealed;
+              return `<span class="bee-letter-tile">${show ? escapeHtml(ch) : '_'}</span>`;
+            })
+            .join('');
+          tvBody = `
+            <div class="bee-spotlight">
+              <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                <span class="eyebrow" style="color: #111315;">SPELLING NOW · STREAK ${currentPlayer.streak}</span>
+                <strong>${escapeHtml(currentPlayer.name)} (${currentPlayer.score} pts)</strong>
+              </div>
+              <h4>Listen carefully to the host...</h4>
+              <div class="bee-letter-slots" aria-label="Progressive hint tiles">${slots}</div>
+            </div>
+            <p style="font-size: var(--text-xs);">${escapeHtml(currentWord.difficulty)} · Words solved stay encrypted from contestants until judged.</p>
+          `;
+        } else if (state.stage === 'LEADERBOARD') {
+          tvBody = `
+            <div class="bee-standings-list">
+              ${sortedPlayers
+                .map(
+                  (p, i) => `
+                  <div class="bee-standing-row${i === 0 ? ' is-leader' : ''}">
+                    <span>#${i + 1} ${escapeHtml(p.name)}</span>
+                    <span>${p.score} pts · Streak ${p.streak}</span>
+                  </div>
+                `
+                )
+                .join('')}
+            </div>
+          `;
+        } else {
+          tvBody = `
+            <div class="bee-spotlight">
+              <span class="eyebrow" style="color: #111315;">HOUSEWARMING CHAMPIONS PODIUM</span>
+              <h4>🏆 1st: ${escapeHtml(sortedPlayers[0].name)} — ${sortedPlayers[0].score} pts</h4>
+              <p>2nd: ${escapeHtml(sortedPlayers[1].name)} (${sortedPlayers[1].score}) · 3rd: ${escapeHtml(sortedPlayers[2].name)} (${sortedPlayers[2].score})</p>
+            </div>
+          `;
+        }
+
+        tvPane.innerHTML = `
+          <div class="bee-tv-stage${state.lightBroadcast ? ' is-light-broadcast' : ''}">
+            <div class="bee-tv-top">
+              <span class="eyebrow">2. LIVING-ROOM TV STAGE (/tv)</span>
+              <span class="nb-tag nb-tag--amber">ROOM: BEE-4821</span>
+            </div>
+            ${tvBody}
+          </div>
+        `;
+      }
+    };
+
+    stageBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.stage = btn.dataset.beeStage || 'ACTIVE_TURN';
+        state.lastEvent = `stage:set -> ${state.stage}`;
+        renderBeeNight();
+      });
+    });
+
+    if (tvThemeBtn) {
+      tvThemeBtn.addEventListener('click', () => {
+        state.lightBroadcast = !state.lightBroadcast;
+        tvThemeBtn.textContent = state.lightBroadcast
+          ? 'TV Palette: Broadcast Dark'
+          : 'TV Palette: Matinee Light';
+        state.lastEvent = `config:updateTheme -> ${state.lightBroadcast ? 'Matinee' : 'Broadcast Dark'}`;
+        renderBeeNight();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        state.players = createInitialPlayers();
+        state.stage = 'ACTIVE_TURN';
+        state.turnIdx = 0;
+        state.wordIdx = 0;
+        state.hintsRevealed = 1;
+        state.lastEvent = 'game:reset -> localStorage restored';
+        renderBeeNight();
+        notify('BeeNight party room reset cleanly');
+      });
+    }
+
+    if (hostPane) {
+      hostPane.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-bee-action]');
+        if (!btn) return;
+        const action = btn.dataset.beeAction;
+        const player = state.players[state.turnIdx % state.players.length];
+        const word = WORDS[state.wordIdx % WORDS.length];
+
+        if (action === 'next-bio') {
+          state.turnIdx = (state.turnIdx + 1) % state.players.length;
+          state.lastEvent = `lobby:focus -> ${state.players[state.turnIdx].name}`;
+        } else if (action === 'start-turn') {
+          state.stage = 'ACTIVE_TURN';
+          state.hintsRevealed = 1;
+          state.lastEvent = 'stage:set -> ACTIVE_TURN';
+        } else if (action === 'hint') {
+          if (state.hintsRevealed < word.word.length) state.hintsRevealed += 1;
+          state.lastEvent = `turn:hintRevealed (${state.hintsRevealed}/${word.word.length})`;
+        } else if (action === 'correct') {
+          player.streak += 1;
+          const pts = 150 + Math.max(0, player.streak - 1) * 50;
+          player.score += pts;
+          state.wordIdx = (state.wordIdx + 1) % WORDS.length;
+          state.stage = 'LEADERBOARD';
+          state.hintsRevealed = 1;
+          playTone('correct');
+          state.lastEvent = `judge:CORRECT (+${pts} pts · Web Audio Chime)`;
+          notify(`${player.name} scored +${pts} pts!`);
+        } else if (action === 'wrong') {
+          player.streak = 0;
+          state.wordIdx = (state.wordIdx + 1) % WORDS.length;
+          state.stage = 'LEADERBOARD';
+          state.hintsRevealed = 1;
+          playTone('wrong');
+          state.lastEvent = `judge:WRONG (Streak reset · Buzzer SFX)`;
+          notify(`${player.name} missed — streak reset`);
+        } else if (action === 'skip') {
+          state.wordIdx = (state.wordIdx + 1) % WORDS.length;
+          state.turnIdx = (state.turnIdx + 1) % state.players.length;
+          state.hintsRevealed = 1;
+          state.lastEvent = 'turn:skip -> next speaker';
+        } else if (action === 'next-round') {
+          state.turnIdx = (state.turnIdx + 1) % state.players.length;
+          state.stage = 'ACTIVE_TURN';
+          state.hintsRevealed = 1;
+          state.lastEvent = `turn:advance -> ${state.players[state.turnIdx].name}`;
+        } else if (action === 'goto-podium') {
+          state.stage = 'PODIUM';
+          playTone('correct');
+          state.lastEvent = 'stage:PODIUM (Fanfare triggered)';
+        } else if (action === 'fanfare') {
+          playTone('correct');
+          state.lastEvent = 'audio:playCorrectChime (C5->C6)';
+        } else if (action === 'reset') {
+          state.players = createInitialPlayers();
+          state.stage = 'ACTIVE_TURN';
+          state.turnIdx = 0;
+          state.wordIdx = 0;
+          state.hintsRevealed = 1;
+          state.lastEvent = 'game:reset -> initial state';
+        }
+        renderBeeNight();
+      });
+    }
+
+    renderBeeNight();
+  }
 });

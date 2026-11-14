@@ -20,6 +20,7 @@
     }
     if (
       last === 'jmf-survey.html' ||
+      last === 'beenight.html' ||
       last === 'mlpp-glossary.html' ||
       last === 'eliza-playbill.html' ||
       last === 'family-captions.html' ||

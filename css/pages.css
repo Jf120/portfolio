@@ -1572,3 +1572,132 @@
   background-color: var(--accent-orange);
   color: #111315;
 }
+
+/* BeeNight Dual-Surface TV Stage & Host Sandbox */
+.bee-tv-stage {
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  border: var(--border-heavy) solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bee-tv-stage p,
+.bee-tv-stage .eyebrow {
+  color: var(--code-text);
+}
+
+.bee-tv-stage.is-light-broadcast {
+  background-color: #fffdf8;
+  color: #111315;
+  border-color: #111315;
+}
+
+.bee-tv-stage.is-light-broadcast p,
+.bee-tv-stage.is-light-broadcast .eyebrow {
+  color: #111315;
+}
+
+.bee-tv-stage.is-light-broadcast .bee-tv-top,
+.bee-tv-stage.is-light-broadcast .bee-spotlight,
+.bee-tv-stage.is-light-broadcast .bee-standing-row {
+  border-color: #111315;
+}
+
+.bee-tv-stage.is-light-broadcast .bee-standing-row:not(.is-leader) {
+  background-color: #f4efe6;
+  color: #111315;
+}
+
+.bee-tv-stage.is-light-broadcast .bee-letter-tile {
+  background-color: #fffdf8;
+  color: #111315;
+  border-color: #111315;
+}
+
+.nb-card--amber .kpi-value {
+  color: var(--ink-on-accent);
+}
+
+.bee-tv-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.bee-spotlight {
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--border-color);
+  background-color: var(--accent-amber);
+  color: #111315;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bee-spotlight h4,
+.bee-spotlight p {
+  color: #111315;
+}
+
+.bee-letter-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.bee-letter-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 34px;
+  background-color: var(--bg-surface);
+  color: var(--ink-primary);
+  border: 2px solid #111315;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: var(--text-sm);
+}
+
+.bee-host-card {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--bg-surface);
+  border: var(--border-width) solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bee-standings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.bee-standing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.45rem 0.65rem;
+  background-color: var(--bg-surface);
+  color: var(--ink-primary);
+  border: 2px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.bee-standing-row.is-leader {
+  background-color: var(--accent-sky);
+  color: #111315;
+  font-weight: 800;
+}
+

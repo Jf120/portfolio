@@ -13,16 +13,18 @@ Inspired by the builder craft in Linus Torvalds's *Just for Fun*, coding isn't c
 * **Core Stack:** Zero-build HTML5, Modular CSS (`tokens`, `base`, `components`, `pages`), and ES6+ Web Components (`js/components.js`)
 * **Interactive Case Study Mini-Apps (`js/mini-apps.js`):** Live Vanilla JS browser sandboxes demonstrating real engineering constraints inside key case studies:
   1. **JMF Survey (`jmf-survey.html`):** Accent-insensitive peer disambiguation, ordered rankings (`Wt 5, 4, 3`), live updating `5×5` weighted sociometric adjacency matrix, and CSV download.
-  2. **Family Captions (`family-captions.html`):** Reunion light-table, multi-contributor switcher, transactional `caption_history` snapshot log on note edits, and live `.txt` sidecar generation.
+  2. **BeeNight (`beenight.html`):** Synced Mobile Host Teleprompter <-> Living-Room TV Broadcast Stage + procedural Web Audio API sound synthesizer (for our deployed **TypeScript 5.5 + Socket.IO** app at [spelling-bee-3n84.onrender.com](https://spelling-bee-3n84.onrender.com/)).
   3. **MLPP Glossary (`mlpp-glossary.html`):** Drupal Views Bulk Operations HTML tag cleanup simulator & live translation/media percentage reporting metrics.
+  4. **Family Captions (`family-captions.html`):** Reunion light-table, multi-contributor switcher, transactional `caption_history` snapshot log on note edits, and live `.txt` sidecar generation.
 * **Data-Driven Catalogs:** JSON manifests inside `data/projects_data.json` and `data/gallery_data.json`.
 
 ```text
-├── index.html            # Recruiter-clear hero, 4-card interactive deck, Top-3 Featured Projects, Philosophy & Photos
+├── index.html            # Recruiter-clear hero, 4-card interactive deck, Top-3 Featured Projects (JMF, BeeNight, MLPP), Philosophy & Photos
 ├── projects.html         # Unified filterable archive (Engineering, Personal, Design & Web, Automation) + Quick Spec modal
 ├── jmf-survey.html       # Case study + Matrix Mini-App: Multi-tenant PHP 8.1 & MongoDB SNA survey platform (~4,000 users)
-├── family-captions.html  # Case study + Light-Table Mini-App: React + Express + node:sqlite (WAL) 20k+ photo archive
+├── beenight.html         # Case study + Stage/Audio Mini-App: TypeScript 5.5, React 18 & Socket.IO live spelling bee SaaS
 ├── mlpp-glossary.html    # Case study + Views Audit Mini-App: MLPP (mayanlanguages.wiki) Drupal Web Dev Internship
+├── family-captions.html  # Case study + Light-Table Mini-App: React + Express + node:sqlite (WAL) 20k+ photo archive
 ├── eliza-playbill.html   # Case study: Zero-dependency 7-page Broadway Playbill birthday SPA
 ├── about.html            # Full reverse-chronological CV, Summer 2027 Ensign/BYU-I credentials, toolkit, and print-ready styles
 ├── photos.html           # 27 original road & landscape mobile wallpapers with lightbox and downloads

@@ -322,7 +322,10 @@
 .nb-card--amber p,
 .nb-card--amber h2,
 .nb-card--amber h3,
-.nb-card--amber h4 {
+.nb-card--amber h4,
+.nb-card--amber .eyebrow,
+.nb-card--amber .kpi-value,
+.nb-card--amber code {
   color: var(--ink-on-accent);
 }
 

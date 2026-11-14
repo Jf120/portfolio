@@ -131,6 +131,22 @@
             <rect x="230" y="110" width="108" height="18" fill="var(--accent-orange)" stroke="var(--border-color)" stroke-width="2"/>
           </svg>
         `;
+      case 'beenight':
+        return `
+          <svg viewBox="0 0 400 170" fill="none" aria-hidden="true">
+            <rect x="34" y="24" width="194" height="114" fill="var(--code-bg)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="34" y="24" width="194" height="24" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="3"/>
+            <polygon points="131,64 151,75 151,97 131,108 111,97 111,75" fill="var(--accent-amber)" stroke="#111315" stroke-width="2.5"/>
+            <rect x="54" y="118" width="154" height="10" fill="var(--accent-sky)"/>
+            <path d="M228 84H272" stroke="var(--border-color)" stroke-width="3" stroke-dasharray="5 4"/>
+            <circle cx="250" cy="84" r="5" fill="var(--accent-orange)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="272" y="34" width="94" height="108" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="284" y="48" width="70" height="26" fill="var(--accent-sky)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="284" y="84" width="32" height="18" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="322" y="84" width="32" height="18" fill="var(--accent-orange)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="284" y="110" width="70" height="18" fill="var(--bg-muted)" stroke="var(--border-color)" stroke-width="2"/>
+          </svg>
+        `;
       case 'grid':
       default:
         return `
