@@ -3,172 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal projects, creative experiments, and case studies by Jorge Flores — building software for fun, family milestones, and everyday life.">
-  <meta name="keywords" content="Jorge Flores, jafc120, personal projects, ElizaPlaybill, Family Captions, coding for fun, Neo-Brutalist portfolio">
-  <title>Personal Builds | jafc.portfolio() — Jorge Flores</title>
+  <meta http-equiv="refresh" content="0; url=./projects.html?category=personal">
+  <meta name="description" content="Personal projects by Jorge Flores have been unified inside the main Projects archive under the Personal filter.">
+  <title>Redirecting to Personal Projects | jafc.portfolio() — Jorge Flores</title>
   <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
   <script src="./js/theme.js"></script>
+  <script>
+    window.location.replace('./projects.html?category=personal');
+  </script>
   <link rel="stylesheet" href="./css/tokens.css">
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/components.css">
   <link rel="stylesheet" href="./css/pages.css">
-  <script defer src="./js/utils.js"></script>
   <script defer src="./js/components.js"></script>
-  <script defer src="./js/personal.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <app-navbar></app-navbar>
 
   <main id="main-content">
-    <section class="page-hero">
-      <div class="container page-hero-grid">
-        <div class="page-hero-copy">
-          <span class="eyebrow">03 // Personal Builds &amp; Creative Playground</span>
-          <h1>Coding For Fun &amp; Everyday Life</h1>
-          <p class="page-hero-lead">
-            I don't wait for a Jira ticket or a client contract to write software—I love programming
-            and use my abilities every chance I get. Whether turning a birthday card into a playable
-            Broadway Playbill or safeguarding 20,000+ family reunion photos, building something real
-            from an empty file makes me feel like a God.
-          </p>
-          <div class="hero-cta-group">
-            <a class="btn btn-primary" href="#personal-catalog">Explore Personal Case Studies ↓</a>
-            <a class="btn btn-surface" href="./projects.html?category=personal">View in Full Archive →</a>
-          </div>
+    <section class="container error-page-wrap">
+      <article class="nb-card error-card">
+        <span class="nb-tag nb-tag--amber" style="width: fit-content;">UNIFIED CATALOG // PERSONAL BUILDS</span>
+        <h1>Personal Projects live inside the Projects Archive</h1>
+        <p>
+          Redirecting you to <strong>Projects (Personal Filter)</strong> where
+          <a href="./family-captions.html">Family Captions</a> and
+          <a href="./eliza-playbill.html">ElizaPlaybill</a> sit alongside enterprise engineering work.
+        </p>
+        <div class="hero-cta-group">
+          <a class="btn btn-primary" href="./projects.html?category=personal">Open Personal Projects →</a>
+          <a class="btn btn-surface" href="./family-captions.html">Family Captions + Mini-App</a>
+          <a class="btn btn-secondary" href="./eliza-playbill.html">ElizaPlaybill Study</a>
         </div>
-
-        <aside class="code-window" aria-label="Personal engineering ethos code block">
-          <div class="code-window-bar">
-            <div class="window-dots" aria-hidden="true">
-              <span class="window-dot window-dot--orange"></span>
-              <span class="window-dot window-dot--amber"></span>
-              <span class="window-dot window-dot--sky"></span>
-            </div>
-            <span>from_scratch.js</span>
-          </div>
-          <pre class="code-block"><code><span class="comment">// Coding is fun when real life becomes the spec</span>
-<span class="keyword">const</span> weekendProjects = [
-  { name: <span class="string">"ElizaPlaybill"</span>, vibe: <span class="string">"Broadway gift SPA"</span> },
-  { name: <span class="string">"FamilyCaptions"</span>, vibe: <span class="string">"20k+ photo archive"</span> },
-];
-
-<span class="keyword">for</span> (<span class="keyword">const</span> idea <span class="keyword">of</span> weekendProjects) {
-  <span class="function">buildFromScratch</span>(idea); <span class="comment">// unmatched creative high</span>
-}</code></pre>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="personal-manifesto-heading">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header-copy">
-            <span class="eyebrow">Creative Fuel</span>
-            <h2 id="personal-manifesto-heading">Pure Creation Out of Thin Air</h2>
-          </div>
-          <span class="nb-tag nb-tag--amber">Zero-to-One Mindset</span>
-        </div>
-
-        <div class="manifesto-grid">
-          <article class="nb-card nb-card--amber manifesto-card">
-            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
-              <span class="eyebrow" style="color: #111315;">Why Programming Is My Playground</span>
-              <h3>Nothing Beats Conjuring Working Software From Zero</h3>
-              <p>
-                Every person on earth faces small creative problems—writing a birthday gift worthy of
-                someone you love, preserving grandparents' voices before memories fade, or showcasing
-                photography without bloated templates. Having software engineering in your hands means
-                you never have to settle for off-the-shelf limits.
-              </p>
-            </div>
-            <blockquote class="manifesto-quote">
-              "I love programming deeply. Coding can be pure fun—starting with zero lines and building
-              an entire interactive experience from scratch makes me feel like a God."
-            </blockquote>
-          </article>
-
-          <article class="nb-card manifesto-card">
-            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
-              <span class="eyebrow">Every Case Study Gets Its Own Home</span>
-              <h3>From Quick Sketches to Dedicated Deep Dives</h3>
-              <p>
-                Every personal project I care enough to ship gets the same engineering rigor and
-                architecture documentation as my enterprise builds. Polishing
-                <a href="./family-captions.html"><strong>Family Captions</strong></a> even sparked my
-                love for <strong>Neo-Brutalism</strong>—the very aesthetic shaping this site today.
-              </p>
-            </div>
-            <div class="hero-cta-group" style="margin-top: 0;">
-              <a class="btn btn-sm btn-primary" href="./family-captions.html">Family Captions Study →</a>
-              <a class="btn btn-sm btn-secondary" href="./eliza-playbill.html">ElizaPlaybill Study →</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="personal-catalog" aria-labelledby="personal-catalog-heading">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header-copy">
-            <span class="eyebrow">Dedicated Deep Dives</span>
-            <h2 id="personal-catalog-heading">Personal Projects &amp; Case Studies</h2>
-          </div>
-          <span class="eyebrow" id="personal-projects-count">Loading personal builds...</span>
-        </div>
-
-        <div class="projects-grid" id="personal-projects-grid">
-          <div class="nb-card"><p>Loading personal case studies...</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Beyond code callout">
-      <div class="container">
-        <div class="cta-banner">
-          <div>
-            <span class="eyebrow" style="color: #111315;">Visual Craft Too</span>
-            <h2>Curious what else I build for the love of making things?</h2>
-            <p style="margin-top: 0.75rem;">
-              Check out 27 original mobile wallpapers shot on the road—plus full-stack enterprise systems
-              in the main project catalog.
-            </p>
-          </div>
-          <div class="cta-actions">
-            <a class="btn btn-surface" href="./photos.html">Wallpaper Gallery →</a>
-            <a class="btn btn-surface" href="./projects.html">All Projects Archive</a>
-            <a class="btn btn-surface" href="./about.html">About Me</a>
-          </div>
-        </div>
-      </div>
+      </article>
     </section>
   </main>
-
-  <div
-    class="nb-modal-backdrop"
-    id="project-modal"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="project-modal-title"
-    hidden
-  >
-    <div class="nb-modal">
-      <div class="nb-modal-header">
-        <div>
-          <span class="eyebrow" id="project-modal-meta">Personal Case Study</span>
-          <h2 id="project-modal-title" style="font-size: 1.5rem; margin-top: 0.2rem;">Project Title</h2>
-        </div>
-        <button type="button" class="btn btn-sm btn-surface" id="project-modal-close" aria-label="Close project details">
-          Close ✕
-        </button>
-      </div>
-      <div class="nb-modal-body" id="project-modal-body"></div>
-    </div>
-  </div>
 
   <app-footer></app-footer>
 </body>

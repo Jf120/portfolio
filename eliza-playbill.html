@@ -27,10 +27,10 @@
       <div class="container page-hero-grid">
         <div class="page-hero-copy">
           <div class="breadcrumb-row">
-            <a class="breadcrumb-link" href="./personal.html">← Personal Builds</a>
-            <a class="breadcrumb-link" href="./projects.html?category=personal">All Personal Projects</a>
+            <a class="breadcrumb-link" href="./projects.html">← All Projects</a>
+            <a class="breadcrumb-link" href="./projects.html?category=personal">Personal Builds</a>
           </div>
-          <span class="eyebrow">Personal Case Study 01 // Interactive Birthday Experience</span>
+          <span class="eyebrow">Personal Case Study 04 // Interactive Birthday Experience</span>
           <h1>ElizaPlaybill</h1>
           <p class="page-hero-lead">
             A bespoke, mobile-first web application modeled after an authentic Broadway
@@ -64,15 +64,15 @@
             </div>
             <div class="facts-row">
               <dt>Occasion</dt>
-              <dd>Eliza's 26th Birthday</dd>
+              <dd>Eliza's 26th Birthday Keepsake</dd>
             </div>
             <div class="facts-row">
               <dt>Sprint</dt>
               <dd>~30 Hours (April 2026)</dd>
             </div>
             <div class="facts-row">
-              <dt>Outcome</dt>
-              <dd>We're Now Married!</dd>
+              <dt>Deployment</dt>
+              <dd>Static HTTPS (Render Free Tier)</dd>
             </div>
           </dl>
 
@@ -379,6 +379,19 @@ carouselImg.<span class="function">addEventListener</span>(<span class="string">
 });</code></pre>
           </aside>
         </div>
+
+        <article class="nb-card" style="margin-top: var(--space-5);">
+          <span class="eyebrow">Post-Launch Retrospective // Edge Cases &amp; Desktop Parity</span>
+          <h3 style="margin-top: 0.35rem;">What I Would Harden Next for Production Reuse</h3>
+          <p style="margin-top: 0.4rem;">
+            Because this gift shipped in a 30-hour sprint specifically for Eliza's phone screen, a
+            subsequent iteration for broad desktop users would add three structural upgrades directly
+            applied in my later portfolio UI work: explicit <code>ArrowLeft</code> / <code>ArrowRight</code>
+            keyboard &amp; on-screen button navigation, timer cancellation (<code>clearTimeout</code> /
+            <code>transitionend</code> guards) against rapid multi-taps on the photo carousel, and
+            percentage-based track offsets avoiding scrollbar width drift.
+          </p>
+        </article>
       </div>
     </section>
 
@@ -397,9 +410,10 @@ carouselImg.<span class="function">addEventListener</span>(<span class="string">
               <span class="eyebrow" style="color: #111315;">Best Possible Product Metric</span>
               <h3>From First Birthday Surprise to Marriage</h3>
               <p>
-                ElizaPlaybill turned a personal creative block into an interactive keepsake tailored to
+                ElizaPlaybill turned a blank-card block into an interactive keepsake tailored to
                 Eliza's love of Broadway and New York—delivered free over HTTPS with zero server
-                maintenance. Best of all, that story worked out: <strong>we are now married!</strong>
+                maintenance. Best of all, coding has always been how I speak from the heart: that
+                chapter led right into us getting married.
               </p>
             </div>
             <a
@@ -425,8 +439,8 @@ carouselImg.<span class="function">addEventListener</span>(<span class="string">
               </p>
             </div>
             <div class="hero-cta-group" style="margin-top: 0;">
-              <a class="btn btn-sm btn-primary" href="./family-captions.html">Next: Family Captions Study →</a>
-              <a class="btn btn-sm btn-surface" href="./personal.html">All Personal Builds</a>
+              <a class="btn btn-sm btn-primary" href="./family-captions.html">Family Captions + Mini-App →</a>
+              <a class="btn btn-sm btn-surface" href="./projects.html?category=personal">All Personal Builds</a>
             </div>
           </article>
         </div>
@@ -438,15 +452,14 @@ carouselImg.<span class="function">addEventListener</span>(<span class="string">
         <div class="cta-banner">
           <div>
             <span class="eyebrow" style="color: #111315;">Keep Exploring</span>
-            <h2>See more personal builds or inspect full-stack architecture</h2>
+            <h2>Inspect my enterprise systems, active internship, or photography</h2>
             <p style="margin-top: 0.75rem;">
-              Read how hardening Family Captions sparked this site's Neo-Brutalist design, or explore
-              JMF Survey.
+              Try the live mini-apps in Family Captions, JMF Survey, and MLPP Glossary.
             </p>
           </div>
           <div class="cta-actions">
-            <a class="btn btn-surface" href="./family-captions.html">Family Captions Study →</a>
-            <a class="btn btn-surface" href="./personal.html">Personal Builds</a>
+            <a class="btn btn-surface" href="./family-captions.html">Family Captions + Mini-App →</a>
+            <a class="btn btn-surface" href="./projects.html?category=personal">Personal Builds</a>
             <a class="btn btn-surface" href="./projects.html">Full Catalog</a>
           </div>
         </div>

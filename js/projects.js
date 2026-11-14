@@ -1,6 +1,6 @@
 /**
  * Projects Page Controller (projects.html)
- * Loads projects_data.json, handles category filtering, and manages accessible case study modal.
+ * Unified catalog loading projects_data.json, handling category filters, and Quick Spec modals.
  */
 document.addEventListener('DOMContentLoaded', () => {
   const { escapeHtml, getSchematicSvg } = window.PortfolioUtils;
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterProjects(projects, filterKey) {
     if (filterKey === 'all') return projects;
-    if (filterKey === 'placeholders') return projects.filter((p) => p.is_placeholder);
     return projects.filter((p) => p.category === filterKey);
   }
 
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gridEl.innerHTML = `
         <div class="nb-card">
           <h3>No matching projects</h3>
-          <p>Try another category filter to view all builds and placeholders.</p>
+          <p>Try selecting another category filter to view engineering and personal work.</p>
         </div>
       `;
       return;
@@ -46,16 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gridEl.innerHTML = filtered
       .map((project) => {
-        const statusClass = project.is_placeholder
-          ? 'nb-tag nb-tag--placeholder'
-          : 'nb-tag nb-tag--amber';
+        const caseStudyLabel = project.has_interactive_demo
+          ? 'Case Study + Mini-App →'
+          : 'Full Case Study →';
 
         const caseStudyPageBtn = project.case_study_url
-          ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.case_study_url)}">Full Case Study →</a>`
+          ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.case_study_url)}">${caseStudyLabel}</a>`
           : '';
 
         const repoButton = project.repo_url
           ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(project.repo_url)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
+          : project.repo_label
+          ? `<span class="nb-tag nb-tag--private">${escapeHtml(project.repo_label)}</span>`
           : '';
 
         const isExternalLive = project.live_url && project.live_url.startsWith('http');
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="project-schematic">
               ${getSchematicSvg(project.schematic)}
               <span class="project-index-chip">${escapeHtml(project.index)} // ${escapeHtml(project.category_label)}</span>
-              <span class="project-status-chip ${statusClass}">${escapeHtml(project.status)}</span>
+              <span class="project-status-chip nb-tag nb-tag--amber">${escapeHtml(project.status)}</span>
             </div>
 
             <div class="project-card-body">
@@ -95,10 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
                   class="btn btn-sm ${project.case_study_url ? 'btn-surface' : 'btn-primary'}"
                   data-open-project="${escapeHtml(project.id)}"
                 >
-                  ${project.case_study_url ? 'Quick Summary' : 'Case Study'}
+                  Quick Spec
                 </button>
-                ${repoButton}
                 ${liveButton}
+                ${repoButton}
               </div>
             </div>
           </article>
@@ -115,32 +116,26 @@ document.addEventListener('DOMContentLoaded', () => {
     modalTitle.textContent = project.title;
     modalMeta.textContent = `${project.index} · ${project.category_label} · ${project.year}`;
 
-    const placeholderNote = project.is_placeholder
-      ? `
-        <div class="nb-card nb-card--amber">
-          <strong>Template Placeholder:</strong> Edit this entry in <code>data/projects_data.json</code>
-          with your project repository, metrics, and screenshots when ready.
-        </div>
-      `
-      : '';
-
     const fullStudyLink = project.case_study_url
-      ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.case_study_url)}">Open Full Case Study →</a>`
+      ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.case_study_url)}">${
+          project.has_interactive_demo ? 'Open Case Study + Mini-App →' : 'Open Full Case Study →'
+        }</a>`
       : '';
 
     const repoLink = project.repo_url
-      ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(project.repo_url)}" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>`
+      ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(project.repo_url)}" target="_blank" rel="noopener noreferrer">View Source on GitHub ↗</a>`
+      : project.repo_label
+      ? `<span class="nb-tag nb-tag--private">${escapeHtml(project.repo_label)}</span>`
       : '';
 
     const isExternalLive = project.live_url && project.live_url.startsWith('http');
     const liveLink = project.live_url
-      ? `<a class="btn btn-sm btn-primary" href="${escapeHtml(project.live_url)}"${
+      ? `<a class="btn btn-sm btn-secondary" href="${escapeHtml(project.live_url)}"${
           isExternalLive ? ' target="_blank" rel="noopener noreferrer"' : ''
         }>Open Live View ↗</a>`
       : '';
 
     modalBody.innerHTML = `
-      ${placeholderNote}
       <div class="project-schematic" style="border: var(--border-width) solid var(--border-color);">
         ${getSchematicSvg(project.schematic)}
       </div>
@@ -238,10 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json();
     })
     .then((projects) => {
-      allProjects = projects;
+      allProjects = projects.filter((p) => !p.is_placeholder);
       renderProjects();
 
-      // If URL has a hash matching a project id, scroll cleanly to it.
       if (window.location.hash) {
         const target = document.getElementById(window.location.hash.slice(1));
         if (target) {
@@ -250,7 +244,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
     .catch((error) => {
-      console.error('Error loading projects data:', error);
-      gridEl.innerHTML = '<div class="nb-card"><p>Could not load projects catalog.</p></div>';
+      console.error('Failed to load projects_data.json:', error);
+      if (countEl) countEl.textContent = 'Unavailable';
+      gridEl.innerHTML = `
+        <div class="nb-card">
+          <h3>Projects could not be loaded</h3>
+          <p>Check that <code>data/projects_data.json</code> is present cleanly on this host.</p>
+        </div>
+      `;
     });
 });

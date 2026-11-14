@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Engineering Case Study: MLPP (Mayan Language Preservation Project) — Web Development Internship on mayanlanguages.wiki featuring Drupal modules, Views Bulk Operations, frontend simplification, and an interactive Data Audit Mini-App.">
+  <meta name="keywords" content="MLPP, Mayan Language Preservation Project, mayanlanguages.wiki, Drupal, Views Bulk Operations, PHP, Web Development Intern, Jorge Flores">
+  <title>MLPP Glossary &amp; Audit Case Study | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+  <script defer src="./js/mini-apps.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <div class="breadcrumb-row">
+            <a class="breadcrumb-link" href="./projects.html">← All Projects</a>
+            <a class="breadcrumb-link" href="./projects.html?category=engineering">Engineering Builds</a>
+          </div>
+          <span class="eyebrow">Case Study 03 // Active Web Development Internship</span>
+          <h1>MLPP Glossary &amp; Data Audit</h1>
+          <p class="page-hero-lead">
+            Core engineering across the <strong>Mayan Language Preservation Project</strong>
+            (<a href="https://mayanlanguages.wiki" target="_blank" rel="noopener noreferrer">mayanlanguages.wiki</a>)
+            glossary infrastructure—redesigning the frontend architecture, simplifying legacy HTML,
+            and resolving Drupal Views data integrity bottlenecks so language scholars can track live
+            translation progress accurately.
+          </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="#mlpp-mini-app">Try Interactive Audit Mini-App ↓</a>
+            <a class="btn btn-secondary" href="https://mayanlanguages.wiki" target="_blank" rel="noopener noreferrer">
+              Visit mayanlanguages.wiki ↗
+            </a>
+          </div>
+        </div>
+
+        <aside class="nb-card profile-facts-card" aria-label="MLPP internship specifications">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">INTERNSHIP.SPEC</span>
+            <span class="eyebrow">Sep – Dec 2026</span>
+          </div>
+
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>Role</dt>
+              <dd>Web Development Intern</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Organization</dt>
+              <dd>Mayan Language Preservation Project</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Leadership</dt>
+              <dd>Dir. Winston Scott · Sup. Wyatt Bruchhauser</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Domain</dt>
+              <dd>mayanlanguages.wiki</dd>
+            </div>
+          </dl>
+
+          <div>
+            <span class="eyebrow" style="display: block; margin-bottom: 0.5rem;">Core Stack</span>
+            <ul class="tag-list">
+              <li class="nb-tag nb-tag--amber">Drupal</li>
+              <li class="nb-tag">Views Bulk Operations</li>
+              <li class="nb-tag">PHP</li>
+              <li class="nb-tag">HTML5 &amp; CSS3</li>
+              <li class="nb-tag">Backend Auditing</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sar-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">01 // Impact Highlights (SAR)</span>
+            <h2 id="sar-heading">Verified Situation · Action · Result</h2>
+          </div>
+          <span class="nb-tag nb-tag--sky">Active Internship Metrics</span>
+        </div>
+
+        <div class="case-table-wrap">
+          <table class="case-table">
+            <thead>
+              <tr>
+                <th>Situation</th>
+                <th>Action</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Blank backend reporting metrics across language glossary views.</td>
+                <td>Cleared breaking empty HTML tags across stored Drupal fields via targeted bulk cleanup.</td>
+                <td><strong>Restored accurate reporting and tracking pipelines.</strong></td>
+              </tr>
+              <tr>
+                <td>Outdated visual styling and fragmented frontend templates hurting UX.</td>
+                <td>Executed full website UI redesign and simplified underlying HTML structure.</td>
+                <td><strong>Modernized frontend experience and page maintainability.</strong></td>
+              </tr>
+              <tr>
+                <td>Zero visibility into dictionary translation progress across languages.</td>
+                <td>Built dynamic Drupal Views percentage calculations for translation &amp; media auditing.</td>
+                <td><strong>Enabled precise real-time completion metrics for contributors.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mlpp-mini-app" aria-labelledby="mlpp-demo-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">02 // Interactive Sandbox Demo</span>
+            <h2 id="mlpp-demo-heading">Mini-App: Views Bulk HTML Cleanup &amp; Translation Auditor</h2>
+          </div>
+          <span class="demo-badge">Live Client-Side Simulation</span>
+        </div>
+
+        <div class="sandbox-shell" role="region" aria-label="Interactive MLPP glossary audit simulator">
+          <div class="sandbox-bar">
+            <div class="sandbox-bar-title">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>mlpp_views_audit_sandbox.js — Synthetic Sample Data</span>
+            </div>
+            <span>Drupal Views · VBO Cleanup Simulation</span>
+          </div>
+
+          <div class="sandbox-body">
+            <div class="sandbox-toolbar">
+              <div class="filter-pills" role="group" aria-label="Filter glossary entries by language">
+                <button type="button" class="filter-btn is-active" data-mlpp-lang="all" aria-pressed="true">
+                  All Languages
+                </button>
+                <button type="button" class="filter-btn" data-mlpp-lang="Q'eqchi'" aria-pressed="false">
+                  Q'eqchi'
+                </button>
+                <button type="button" class="filter-btn" data-mlpp-lang="Kaqchikel" aria-pressed="false">
+                  Kaqchikel
+                </button>
+                <button type="button" class="filter-btn" data-mlpp-lang="K'iche'" aria-pressed="false">
+                  K'iche'
+                </button>
+              </div>
+
+              <div class="sandbox-field-group">
+                <button type="button" class="btn btn-sm btn-primary" id="mlpp-run-cleanup-btn">
+                  Run Views Bulk Cleanup →
+                </button>
+                <button type="button" class="btn btn-sm btn-surface" id="mlpp-reset-dirty-btn">
+                  Simulate Broken Raw HTML
+                </button>
+              </div>
+            </div>
+
+            <div class="case-grid-3">
+              <div class="nb-card" style="padding: var(--space-4);">
+                <span class="eyebrow">Reporting Health</span>
+                <p id="mlpp-kpi-status" style="font-weight: 800; color: var(--ink-primary); margin-top: 0.35rem;">
+                  Loading...
+                </p>
+              </div>
+              <div class="nb-card" style="padding: var(--space-4);">
+                <span class="eyebrow">Translation Progress %</span>
+                <p id="mlpp-kpi-translation" style="font-size: 1.4rem; font-weight: 800; color: var(--ink-primary); margin-top: 0.25rem;">
+                  --
+                </p>
+                <div class="progress-meter" style="margin-top: 0.45rem;">
+                  <div class="progress-meter-fill" id="mlpp-translation-bar" style="width: 12%;"></div>
+                </div>
+              </div>
+              <div class="nb-card" style="padding: var(--space-4);">
+                <span class="eyebrow">Audio / Media Linked %</span>
+                <p id="mlpp-kpi-media" style="font-size: 1.4rem; font-weight: 800; color: var(--ink-primary); margin-top: 0.25rem;">
+                  --
+                </p>
+              </div>
+            </div>
+
+            <div class="case-table-wrap">
+              <table class="case-table">
+                <thead>
+                  <tr>
+                    <th>Lexical Entry</th>
+                    <th>Stored Drupal Field Value</th>
+                    <th>Views Reporting State</th>
+                    <th>Inspect</th>
+                  </tr>
+                </thead>
+                <tbody id="mlpp-audit-tbody"></tbody>
+              </table>
+            </div>
+
+            <div>
+              <span class="eyebrow" style="display: block; margin-bottom: 0.45rem;">Node Markup Diff Inspector</span>
+              <pre class="sidecar-preview" id="mlpp-diff-inspector" aria-live="polite"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="scope-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">03 // Core Engineering Pillars</span>
+            <h2 id="scope-heading">Frontend Simplification &amp; Drupal Infrastructure</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-3">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">01 // SITE ARCHITECTURE</span>
+            <h3>UI Redesign &amp; HTML Simplification</h3>
+            <p>
+              Streamlined cluttered Drupal markup and nested wrappers into clean semantic HTML5
+              components, making glossary search, contributor pages, and mobile navigation faster to
+              maintain and easier for linguists to read.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">02 // DRUPAL MODULES</span>
+            <h3>Views Bulk Operations &amp; Dynamic Tracking</h3>
+            <p>
+              Built and configured custom Views Bulk Operations (VBO) workflows alongside dynamic
+              Drupal Views aggregations—eliminating manual content cleanup bottlenecks while
+              tracking media coverage per language.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">03 // DATA AUDITING</span>
+            <h3>Eliminating Ghost HTML Artifacts</h3>
+            <p>
+              Rich-text editors left non-empty whitespace nodes (like <code>&lt;p&gt;&lt;br&gt;&amp;nbsp;&lt;/p&gt;</code>)
+              that tricked field-presence queries into breaking summary metrics. Sanitizing empty
+              nodes restored clean quantitative counts across the entire wiki.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Case study footer CTA">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <span class="eyebrow" style="color: #111315;">Explore More</span>
+            <h2>See enterprise PHP architecture or my React &amp; SQLite family archive</h2>
+            <p style="margin-top: 0.75rem;">
+              Try the interactive mini-apps inside JMF Survey and Family Captions, or check out my full resume.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-surface" href="./jmf-survey.html">JMF Survey + Mini-App →</a>
+            <a class="btn btn-surface" href="./family-captions.html">Family Captions + Mini-App →</a>
+            <a class="btn btn-surface" href="./about.html">About &amp; Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</body>
+</html>

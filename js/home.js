@@ -1,6 +1,6 @@
 /**
  * Home Page Dynamic Previews (index.html)
- * Populates Featured Projects and Wallpaper Collection previews from JSON catalogs.
+ * Populates Featured Projects (JMF Survey, Family Captions, MLPP) and Wallpaper Previews.
  */
 document.addEventListener('DOMContentLoaded', () => {
   const { escapeHtml, resolveAssetPath, formatCollectionName } = window.PortfolioUtils;
@@ -15,11 +15,29 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((projects) => {
         const featured = projects.filter((item) => item.featured).slice(0, 3);
         featuredProjectsEl.innerHTML = featured
-          .map(
-            (project) => `
+          .map((project) => {
+            const demoTag = project.has_interactive_demo
+              ? '<span class="demo-badge">Interactive Mini-App</span>'
+              : '';
+            const primaryLabel = project.has_interactive_demo
+              ? 'Case Study + Mini-App →'
+              : project.case_study_url
+              ? 'Read Case Study →'
+              : 'Inspect Project →';
+
+            const secondaryLiveBtn =
+              project.live_url && project.live_url.startsWith('http')
+                ? `<a class="btn btn-sm btn-surface" href="${escapeHtml(
+                    project.live_url
+                  )}" target="_blank" rel="noopener noreferrer">Live Site ↗</a>`
+                : '';
+
+            return `
               <article class="nb-card nb-card--interactive pillar-card">
                 <div class="collection-preview-meta">
-                  <span class="nb-tag nb-tag--amber">${escapeHtml(project.index)} // ${escapeHtml(project.category_label)}</span>
+                  <span class="nb-tag nb-tag--amber">${escapeHtml(project.index)} // ${escapeHtml(
+              project.category_label
+            )}</span>
                   <span class="eyebrow">${escapeHtml(project.year)}</span>
                 </div>
                 <h3>${escapeHtml(project.title)}</h3>
@@ -27,21 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-impact-box">${escapeHtml(project.impact)}</div>
                 <ul class="tag-list">
                   ${project.stack
-                    .slice(0, 3)
+                    .slice(0, 4)
                     .map((tech) => `<li class="nb-tag">${escapeHtml(tech)}</li>`)
                     .join('')}
                 </ul>
-                <div style="margin-top: auto; padding-top: 0.5rem;">
+                <div class="hero-cta-group" style="margin-top: auto; padding-top: 0.5rem;">
                   <a
-                    class="btn btn-sm ${project.case_study_url ? 'btn-primary' : 'btn-surface'}"
+                    class="btn btn-sm btn-primary"
                     href="${escapeHtml(project.case_study_url || `./projects.html#${project.id}`)}"
                   >
-                    ${project.case_study_url ? 'Read Case Study →' : 'Inspect Project →'}
+                    ${primaryLabel}
                   </a>
+                  ${secondaryLiveBtn}
+                  ${!secondaryLiveBtn ? demoTag : ''}
                 </div>
               </article>
-            `
-          )
+            `;
+          })
           .join('');
       })
       .catch((error) => {
@@ -85,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   <h3>${escapeHtml(niceName)}</h3>
                   <span class="nb-tag nb-tag--sky">${count} Photos</span>
                 </div>
-                <a class="btn btn-sm btn-primary" href="./photos.html#collection-${escapeHtml(collection.collection_name)}">
+                <a class="btn btn-sm btn-primary" href="./photos.html#collection-${escapeHtml(
+                  collection.collection_name
+                )}">
                   Open Collection →
                 </a>
               </article>

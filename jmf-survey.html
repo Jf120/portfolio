@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/pages.css">
   <script defer src="./js/utils.js"></script>
   <script defer src="./js/components.js"></script>
+  <script defer src="./js/mini-apps.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -26,7 +27,10 @@
     <section class="page-hero">
       <div class="container page-hero-grid">
         <div class="page-hero-copy">
-          <a class="breadcrumb-link" href="./projects.html">← Back to Projects</a>
+          <div class="breadcrumb-row">
+            <a class="breadcrumb-link" href="./projects.html">← All Projects</a>
+            <a class="breadcrumb-link" href="./projects.html?category=engineering">Engineering Builds</a>
+          </div>
           <span class="eyebrow">Case Study 01 // Enterprise SNA Platform</span>
           <h1>JMF Survey</h1>
           <p class="page-hero-lead">
@@ -36,29 +40,30 @@
             adjacency matrices for consulting teams.
           </p>
           <div class="hero-cta-group">
-            <a class="btn btn-primary" href="#architecture">Explore Architecture ↓</a>
-            <a class="btn btn-surface" href="#scale">How It Scaled ↓</a>
+            <a class="btn btn-primary" href="#jmf-mini-app">Try Interactive SNA Mini-App ↓</a>
+            <a class="btn btn-surface" href="#architecture">System Architecture ↓</a>
+            <a class="btn btn-surface" href="#scale">Scale &amp; Resilience ↓</a>
           </div>
         </div>
 
         <aside class="nb-card profile-facts-card" aria-label="Case study specifications">
           <div class="collection-preview-meta">
             <span class="nb-tag nb-tag--amber">CASE_STUDY.SPEC</span>
-            <span class="eyebrow">Production</span>
+            <span class="eyebrow">Private Client Codebase</span>
           </div>
 
           <dl class="facts-list">
             <div class="facts-row">
               <dt>Role</dt>
-              <dd>Sole Full-Stack Developer</dd>
+              <dd>Lead Full-Stack Programmer</dd>
             </div>
             <div class="facts-row">
               <dt>Client</dt>
-              <dd>JMF Asesores</dd>
+              <dd>JMF Asesores (Full-Time + Contract)</dd>
             </div>
             <div class="facts-row">
               <dt>Timeline</dt>
-              <dd>Aug 2024 – Mar 2026</dd>
+              <dd>Jan 2023 – Aug 2024 (FT) · Aug 2024 – Mar 2026</dd>
             </div>
             <div class="facts-row">
               <dt>Peak Scale</dt>
@@ -109,6 +114,81 @@
             <span class="kpi-value">5 Exports</span>
             <p>Multi-sheet weighted <em>N × N</em> matrices, qualitative CSVs, and branch reports.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jmf-mini-app" aria-labelledby="jmf-demo-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">00 // Interactive Sandbox Demo</span>
+            <h2 id="jmf-demo-heading">Mini-App: Peer Disambiguation &amp; Live <em>N × N</em> Matrix</h2>
+          </div>
+          <span class="demo-badge">Live Client-Side Simulation</span>
+        </div>
+
+        <div class="sandbox-shell" role="region" aria-label="Interactive JMF Survey sociometric selector and matrix exporter">
+          <div class="sandbox-bar">
+            <div class="sandbox-bar-title">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>sna_selector_sandbox.js — Anonymized Sample Roster</span>
+            </div>
+            <span>Order Encodes Weight: #1 = 5 · #2 = 4 · #3 = 3</span>
+          </div>
+
+          <div class="sandbox-body">
+            <div class="sandbox-toolbar">
+              <div class="sandbox-field-group">
+                <label class="sandbox-label" for="jmf-respondent-select">Respond As:</label>
+                <select id="jmf-respondent-select" class="sandbox-select"></select>
+              </div>
+
+              <div class="sandbox-field-group">
+                <label class="sandbox-label" for="jmf-roster-search">Filter Roster:</label>
+                <input
+                  type="search"
+                  id="jmf-roster-search"
+                  class="sandbox-input"
+                  placeholder="Name, dept, or branch..."
+                >
+              </div>
+
+              <div class="sandbox-field-group">
+                <button type="button" class="btn btn-sm btn-surface" id="jmf-reset-btn">
+                  Clear Picks
+                </button>
+                <button type="button" class="btn btn-sm btn-primary" id="jmf-export-csv-btn">
+                  Export Sample .CSV ↓
+                </button>
+              </div>
+            </div>
+
+            <div class="sandbox-split">
+              <div class="sandbox-pane">
+                <span class="eyebrow">1. Respondent Peer Selector (Self-Exclusion Enforced)</span>
+                <p style="font-size: var(--text-sm);">
+                  Click colleagues below in rank order to model ties. Accent-insensitive filtering runs
+                  100% client-side with zero network round trips.
+                </p>
+                <div class="roster-grid" id="jmf-roster-grid"></div>
+                <div class="tag-list" id="jmf-selection-chips" aria-live="polite"></div>
+              </div>
+
+              <div class="sandbox-pane">
+                <span class="eyebrow">2. Real-Time Weighted <em>N × N</em> Directed Adjacency Matrix</span>
+                <p style="font-size: var(--text-sm);">
+                  Your active respondent row highlights in blue. Click <strong>Export Sample .CSV</strong>
+                  to generate a formatted network matrix file straight from browser memory.
+                </p>
+                <div class="case-table-wrap" id="jmf-matrix-wrap"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -417,6 +497,38 @@
             </tbody>
           </table>
         </div>
+
+        <div class="case-grid-3" style="margin-top: var(--space-6);">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">RESILIENCE // CELLULAR DROPS</span>
+            <h3>Draft Persistence Before Atomic Commit</h3>
+            <p>
+              Field workers on spotty mobile data cannot lose twenty minutes of colleague selections
+              if a connection flickers. Incremental picks cache safely in <code>localStorage</code>
+              by tenant and respondent identity until the final atomic submission confirms receipt.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">INTEGRITY // SERVER GUARDS</span>
+            <h3>Tenant Isolation &amp; Duplicate Locks</h3>
+            <p>
+              Server endpoints validate expiration windows, tenant collection scope, self-exclusion
+              constraints, and completion flags directly before persistence—preventing ballot
+              stuffing or race-condition double submissions on rapid submit clicks.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">BOTTLENECK // BANDWIDTH</span>
+            <h3>Zero Binary Traffic on PHP Workers</h3>
+            <p>
+              Pre-compressing headshots to lightweight 300×320 JPEGs and routing browser fetches
+              straight to AWS S3 kept container PHP-FPM/Apache threads exclusively focused on compact
+              JSON payloads during ~4,000-user launches.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -425,17 +537,16 @@
         <div class="cta-banner">
           <div>
             <span class="eyebrow" style="color: #111315;">Explore More</span>
-            <h2>Want to review other builds or discuss system architecture?</h2>
+            <h2>Explore my active Drupal internship or interactive React archive</h2>
             <p style="margin-top: 0.75rem;">
-              Browse more engineering and operations case studies or check out my full background.
+              Try the live client-side mini-apps inside MLPP Glossary and Family Captions, or open
+              my full resume.
             </p>
           </div>
           <div class="cta-actions">
-            <a class="btn btn-surface" href="./projects.html">← All Projects</a>
+            <a class="btn btn-surface" href="./mlpp-glossary.html">MLPP Case Study + Mini-App →</a>
+            <a class="btn btn-surface" href="./family-captions.html">Family Captions + Mini-App →</a>
             <a class="btn btn-surface" href="./about.html">About &amp; Resume</a>
-            <button type="button" class="btn btn-surface" data-copy-email="jafc120@gmail.com">
-              Copy Email
-            </button>
           </div>
         </div>
       </div>

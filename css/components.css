@@ -374,11 +374,6 @@
   color: var(--ink-on-accent);
 }
 
-.nb-tag--placeholder {
-  background-color: var(--bg-elevated);
-  border-style: dashed;
-}
-
 /* --- Code Window & Syntax Theme --- */
 .code-window {
   background-color: var(--code-bg);

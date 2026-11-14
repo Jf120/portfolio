@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/pages.css">
   <script defer src="./js/utils.js"></script>
   <script defer src="./js/components.js"></script>
+  <script defer src="./js/mini-apps.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -27,8 +28,8 @@
       <div class="container page-hero-grid">
         <div class="page-hero-copy">
           <div class="breadcrumb-row">
-            <a class="breadcrumb-link" href="./personal.html">← Personal Builds</a>
-            <a class="breadcrumb-link" href="./projects.html?category=personal">All Personal Projects</a>
+            <a class="breadcrumb-link" href="./projects.html">← All Projects</a>
+            <a class="breadcrumb-link" href="./projects.html?category=personal">Personal Builds</a>
           </div>
           <span class="eyebrow">Personal Case Study 02 // Collaborative Genealogy Archive</span>
           <h1>Family Captions</h1>
@@ -40,7 +41,8 @@
             <strong>Neo-Brutalist web design</strong>.
           </p>
           <div class="hero-cta-group">
-            <a class="btn btn-primary" href="#architecture">Explore Architecture ↓</a>
+            <a class="btn btn-primary" href="#family-mini-app">Try Light-Table Mini-App ↓</a>
+            <a class="btn btn-surface" href="#architecture">System Architecture ↓</a>
             <a class="btn btn-surface" href="#engineering">Engineering Deep Dive ↓</a>
           </div>
         </div>
@@ -48,7 +50,7 @@
         <aside class="nb-card profile-facts-card" aria-label="Family Captions specifications">
           <div class="collection-preview-meta">
             <span class="nb-tag nb-tag--amber">PERSONAL_BUILD.SPEC</span>
-            <span class="eyebrow">Family Tool</span>
+            <span class="eyebrow">Private Family Archive</span>
           </div>
 
           <dl class="facts-list">
@@ -74,7 +76,7 @@
             <span class="eyebrow" style="display: block; margin-bottom: 0.5rem;">Core Stack</span>
             <ul class="tag-list">
               <li class="nb-tag nb-tag--amber">React 18 + Vite 5</li>
-              <li class="nb-tag">Node.js v26 + Express 4</li>
+              <li class="nb-tag">Node.js + Express 4</li>
               <li class="nb-tag">node:sqlite (WAL)</li>
               <li class="nb-tag">Sharp + Multer</li>
               <li class="nb-tag">Python (osxphotos)</li>
@@ -112,6 +114,112 @@
             <span class="kpi-value">ZIP + .TXT</span>
             <p>Streaming selective ZIP archives pairing photos with human-readable story files &amp; JSON.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="family-mini-app" aria-labelledby="family-demo-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">00 // Interactive Sandbox Demo</span>
+            <h2 id="family-demo-heading">Mini-App: Light-Table Captioning &amp; Audit History</h2>
+          </div>
+          <span class="demo-badge">Live Client-Side Simulation</span>
+        </div>
+
+        <div class="sandbox-shell" role="region" aria-label="Interactive Family Captions light-table and edit audit simulator">
+          <div class="sandbox-bar">
+            <div class="sandbox-bar-title">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>reunion_lighttable_sandbox.js — Non-Destructive Audit Mode</span>
+            </div>
+            <span>SQLite WAL Simulation · UUID Safe</span>
+          </div>
+
+          <div class="sandbox-body">
+            <div class="sandbox-toolbar">
+              <div class="sandbox-field-group">
+                <label class="sandbox-label" for="family-contributor-select">Signed In Relative:</label>
+                <select id="family-contributor-select" class="sandbox-select">
+                  <option value="Uncle Bob">Uncle Bob</option>
+                  <option value="Chris">Chris (Creator)</option>
+                  <option value="Aunt Elena">Aunt Elena</option>
+                  <option value="Jorge">Jorge</option>
+                </select>
+              </div>
+              <span class="eyebrow">Zero passwords · Edit your own note to see <code>caption_history</code> fire</span>
+            </div>
+
+            <div class="sandbox-split">
+              <div class="sandbox-pane">
+                <span class="eyebrow">1. Pick a Photo Card &amp; Read Existing Peer Memories</span>
+                <div class="lighttable-grid" id="family-lighttable"></div>
+                <span class="eyebrow">Existing Stories Above Form (Never Overwritten by Peers)</span>
+                <div class="history-list" id="family-existing-captions" aria-live="polite"></div>
+              </div>
+
+              <div class="sandbox-pane">
+                <span class="eyebrow">2. Add or Update Memory (Transactional Snapshot)</span>
+                <form id="family-caption-form" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <div class="case-grid-2" style="gap: 0.65rem;">
+                    <input
+                      type="text"
+                      id="family-people-input"
+                      class="sandbox-input"
+                      placeholder="Who is in this photo?"
+                      aria-label="People in photo"
+                    >
+                    <input
+                      type="text"
+                      id="family-place-input"
+                      class="sandbox-input"
+                      placeholder="Place &amp; approx. year"
+                      aria-label="Place and year"
+                    >
+                  </div>
+
+                  <div class="sandbox-field-group">
+                    <label class="sandbox-label" for="family-confidence-select">Confidence:</label>
+                    <select id="family-confidence-select" class="sandbox-select">
+                      <option value="pretty sure">Pretty sure</option>
+                      <option value="just guessing">Just guessing</option>
+                    </select>
+                  </div>
+
+                  <textarea
+                    id="family-story-input"
+                    class="sandbox-textarea"
+                    placeholder="Share a memory, inside story, or correction..."
+                    aria-label="Photo memory story"
+                  ></textarea>
+
+                  <div class="sandbox-field-group">
+                    <button type="submit" class="btn btn-sm btn-primary" id="family-submit-btn">
+                      Save Note →
+                    </button>
+                    <button type="button" class="btn btn-sm btn-surface" id="family-cancel-edit-btn" hidden>
+                      Cancel Edit
+                    </button>
+                  </div>
+                </form>
+
+                <div>
+                  <span class="eyebrow" style="display: block; margin-bottom: 0.35rem;"><code>caption_history</code> Audit Drawer</span>
+                  <div class="history-list" id="family-history-log" aria-live="polite"></div>
+                </div>
+
+                <div>
+                  <span class="eyebrow" style="display: block; margin-bottom: 0.35rem;">Portable <code>.txt</code> ZIP Sidecar Preview</span>
+                  <pre class="sidecar-preview" id="family-sidecar-preview"></pre>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -445,17 +553,17 @@
 
           <article class="nb-card manifesto-card">
             <div style="display: flex; flex-direction: column; gap: var(--space-3);">
-              <span class="eyebrow">Open Architecture &amp; Next Iterations</span>
-              <h3>Built to Stay Maintainable &amp; Portable</h3>
+              <span class="eyebrow">Accessibility Rigor &amp; Next Iterations</span>
+              <h3>Built for Every Generation &amp; Screen</h3>
               <p>
-                Running on just four production npm dependencies makes future additions—like bundling
-                <code>IBM Plex Mono</code> locally for offline rural reunions, conflict-merge admin tools,
-                or writing verified metadata back into Apple Photos by UUID—completely clean thanks to
-                a strict data model.
+                Running on four core dependencies preserves clarity alongside strict interface
+                guardrails: a <code>16px</code> text floor, <code>52px</code> hit targets, zero
+                faded opacity on disabled states, full keyboard navigation across queues, and clean
+                UUID round-trips ready for offline reunion hosting or Apple Photos write-backs.
               </p>
             </div>
             <div class="hero-cta-group" style="margin-top: 0;">
-              <a class="btn btn-sm btn-primary" href="./eliza-playbill.html">Read ElizaPlaybill Study →</a>
+              <a class="btn btn-sm btn-primary" href="./mlpp-glossary.html">Next: MLPP Internship Study →</a>
               <a class="btn btn-sm btn-surface" href="./jmf-survey.html">Read JMF Survey Study →</a>
             </div>
           </article>
@@ -468,15 +576,15 @@
         <div class="cta-banner">
           <div>
             <span class="eyebrow" style="color: #111315;">Explore More</span>
-            <h2>See how programming drives both everyday joy and enterprise scale</h2>
+            <h2>See how programming serves work, community, and family</h2>
             <p style="margin-top: 0.75rem;">
-              Browse all personal builds, inspect full-stack enterprise architecture, or copy my email.
+              Inspect my active MLPP internship, browse ElizaPlaybill, or explore the full project archive.
             </p>
           </div>
           <div class="cta-actions">
-            <a class="btn btn-surface" href="./personal.html">← Personal Builds</a>
+            <a class="btn btn-surface" href="./projects.html?category=personal">Personal Builds →</a>
             <a class="btn btn-surface" href="./eliza-playbill.html">ElizaPlaybill Study</a>
-            <a class="btn btn-surface" href="./projects.html">All Projects</a>
+            <a class="btn btn-surface" href="./mlpp-glossary.html">MLPP Internship + Mini-App</a>
           </div>
         </div>
       </div>

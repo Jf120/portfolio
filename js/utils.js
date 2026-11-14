@@ -112,6 +112,25 @@
             <rect x="224" y="124" width="54" height="12" fill="#111315"/>
           </svg>
         `;
+      case 'glossary':
+        return `
+          <svg viewBox="0 0 400 170" fill="none" aria-hidden="true">
+            <rect x="34" y="24" width="140" height="122" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="34" y="24" width="140" height="28" fill="var(--accent-sky)" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="50" y1="68" x2="156" y2="68" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="50" y1="88" x2="132" y2="88" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="50" y="106" width="104" height="22" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="2.5"/>
+            <path d="M174 85H214" stroke="var(--border-color)" stroke-width="3"/>
+            <circle cx="194" cy="85" r="5" fill="var(--accent-orange)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="214" y="24" width="152" height="122" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="230" y="42" width="120" height="18" fill="var(--bg-muted)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="230" y="42" width="96" height="18" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="230" y="76" width="120" height="18" fill="var(--bg-muted)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="230" y="76" width="76" height="18" fill="var(--accent-sky)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="230" y="110" width="120" height="18" fill="var(--bg-muted)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="230" y="110" width="108" height="18" fill="var(--accent-orange)" stroke="var(--border-color)" stroke-width="2"/>
+          </svg>
+        `;
       case 'grid':
       default:
         return `

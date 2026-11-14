@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Selected software systems, Python automation scripts, UI/UX redesigns, and project placeholders by Jorge Flores Coronado.">
-  <meta name="keywords" content="Jorge Flores projects, PHP framework, SQL optimization, Python automation, Neo-Brutalist portfolio">
+  <meta name="description" content="Production systems, interactive case-study mini-apps, React &amp; PHP architectures, Drupal internships, and personal family builds by Jorge Flores Coronado.">
+  <meta name="keywords" content="Jorge Flores projects, PHP framework, Drupal VBO, React, Node.js, SQLite, Python automation, interactive mini-apps, Neo-Brutalist portfolio">
   <title>Projects | jafc.portfolio() — Jorge Flores</title>
   <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,30 +27,44 @@
     <section class="page-hero">
       <div class="container page-hero-grid">
         <div class="page-hero-copy">
-          <span class="eyebrow">02 // Archive &amp; Case Studies</span>
+          <span class="eyebrow">02 // Archive, Case Studies &amp; Live Mini-Apps</span>
           <h1>Projects &amp; Systems</h1>
           <p class="page-hero-lead">
-            Production systems, automation scripts, UI/UX builds, and personal passion projects—alongside
-            structured template placeholders ready to expand via <code>data/projects_data.json</code>.
+            Enterprise platforms, active MLPP Drupal engineering, automation tooling, and heartfelt
+            personal builds (family archives &amp; interactive gifts). Flagship studies include working
+            client-side Mini-Apps you can run right inside the browser.
           </p>
           <div class="hero-cta-group">
-            <a class="btn btn-primary" href="./personal.html">Explore Personal Hub →</a>
-            <a class="btn btn-surface" href="./jmf-survey.html">Featured Enterprise Case Study →</a>
+            <a class="btn btn-primary" href="./jmf-survey.html#jmf-mini-app">JMF Survey + Mini-App →</a>
+            <a class="btn btn-surface" href="./mlpp-glossary.html#mlpp-mini-app">MLPP Audit + Mini-App →</a>
+            <a class="btn btn-secondary" href="./family-captions.html#family-mini-app">Family Captions + Mini-App →</a>
           </div>
         </div>
 
-        <aside class="code-window" aria-label="Projects JSON data hint">
-          <div class="code-window-bar">
-            <div class="window-dots" aria-hidden="true">
-              <span class="window-dot window-dot--orange"></span>
-              <span class="window-dot window-dot--amber"></span>
-              <span class="window-dot window-dot--sky"></span>
-            </div>
-            <span>data/projects_data.json</span>
+        <aside class="nb-card profile-facts-card" aria-label="Interactive mini-apps and stack summary">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">LIVE_DEMOS.INDEX</span>
+            <span class="eyebrow">3 Mini-Apps + Case Studies</span>
           </div>
-          <pre class="code-block"><code><span class="comment">// Every case study gets its own dedicated page</span>
-<span class="keyword">const</span> source = <span class="string">"./data/projects_data.json"</span>;
-<span class="function">renderCatalog</span>(source, { filterable: <span class="keyword">true</span> });</code></pre>
+
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>01 · JMF Survey</dt>
+              <dd><a href="./jmf-survey.html#jmf-mini-app">Peer Picker &amp; N×N Matrix →</a></dd>
+            </div>
+            <div class="facts-row">
+              <dt>02 · Family Captions</dt>
+              <dd><a href="./family-captions.html#family-mini-app">Light-Table &amp; Audit Tx →</a></dd>
+            </div>
+            <div class="facts-row">
+              <dt>03 · MLPP Glossary</dt>
+              <dd><a href="./mlpp-glossary.html#mlpp-mini-app">Views HTML Auditor →</a></dd>
+            </div>
+            <div class="facts-row">
+              <dt>Active Learning</dt>
+              <dd>Next Build in TypeScript</dd>
+            </div>
+          </dl>
         </aside>
       </div>
     </section>
@@ -70,14 +84,11 @@
             <button type="button" class="filter-btn" data-filter="personal" aria-pressed="false">
               Personal
             </button>
-            <button type="button" class="filter-btn" data-filter="automation" aria-pressed="false">
-              Automation
-            </button>
             <button type="button" class="filter-btn" data-filter="design" aria-pressed="false">
               Design &amp; Web
             </button>
-            <button type="button" class="filter-btn" data-filter="placeholders" aria-pressed="false">
-              Placeholders
+            <button type="button" class="filter-btn" data-filter="automation" aria-pressed="false">
+              Automation
             </button>
           </div>
 

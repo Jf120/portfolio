@@ -5,9 +5,8 @@
 (function () {
   const NAV_ITEMS = [
     { href: 'index.html', label: 'Home' },
-    { href: 'about.html', label: 'About Me' },
     { href: 'projects.html', label: 'Projects' },
-    { href: 'personal.html', label: 'Personal' },
+    { href: 'about.html', label: 'About' },
     { href: 'photos.html', label: 'Photos' },
   ];
 
@@ -19,11 +18,14 @@
     if (!last || !last.includes('.')) {
       return 'index.html';
     }
-    if (last === 'jmf-survey.html') {
+    if (
+      last === 'jmf-survey.html' ||
+      last === 'mlpp-glossary.html' ||
+      last === 'eliza-playbill.html' ||
+      last === 'family-captions.html' ||
+      last === 'personal.html'
+    ) {
       return 'projects.html';
-    }
-    if (last === 'eliza-playbill.html' || last === 'family-captions.html') {
-      return 'personal.html';
     }
     return last;
   }
@@ -192,8 +194,8 @@
                   <span class="brand-text">jafc.portfolio()</span>
                 </a>
                 <p>
-                  Jorge Flores Coronado — Software systems, operational strategy, UI/UX, and mobile photography.
-                  Based in Salt Lake City, UT.
+                  Jorge Flores — Frontend &amp; Full-Stack Software Engineer (Ensign College '27).
+                  Coding with craft, family, and clarity in Salt Lake City, UT.
                 </p>
               </div>
 
@@ -201,9 +203,9 @@
                 <h2 class="footer-heading">Navigation</h2>
                 <ul class="footer-links">
                   <li><a href="./index.html">Home</a></li>
-                  <li><a href="./about.html">About Me</a></li>
-                  <li><a href="./projects.html">Projects</a></li>
-                  <li><a href="./personal.html">Personal Builds</a></li>
+                  <li><a href="./projects.html">All Projects &amp; Case Studies</a></li>
+                  <li><a href="./projects.html?category=personal">Personal Builds</a></li>
+                  <li><a href="./about.html">About &amp; Resume</a></li>
                   <li><a href="./photos.html">Photos &amp; Wallpapers</a></li>
                 </ul>
               </div>
@@ -219,7 +221,7 @@
             </div>
 
             <div class="footer-bottom">
-              <span>© ${displayYear} Jorge Flores (jafc120). Pure HTML, CSS &amp; JS for GitHub Pages.</span>
+              <span>© ${displayYear} Jorge Flores (jafc120). Zero-dependency HTML, CSS &amp; JS on GitHub Pages.</span>
               <a href="#top" class="btn btn-sm btn-surface">↑ Back to top</a>
             </div>
           </div>
@@ -231,22 +233,29 @@
   class CollectionIntro extends HTMLElement {
     connectedCallback() {
       this.innerHTML = `
-        <div class="code-window">
-          <div class="code-window-bar">
-            <div class="window-dots" aria-hidden="true">
-              <span class="window-dot window-dot--orange"></span>
-              <span class="window-dot window-dot--amber"></span>
-              <span class="window-dot window-dot--sky"></span>
-            </div>
-            <span>wallpapers.config.js</span>
+        <aside class="nb-card profile-facts-card" aria-label="Photography field specs">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">FIELD_LENS.SPEC</span>
+            <span class="eyebrow">Creative Hobby</span>
           </div>
-          <pre class="code-block"><code><span class="comment">// photographer wannabe</span>
-<span class="keyword">const</span> subject = <span class="string">"whatever is on my sight"</span>;
-<span class="keyword">const</span> filters = [<span class="string">"graininess"</span>, <span class="string">"vignette"</span>, <span class="string">"exposure"</span>, <span class="string">"contrast"</span>];
-<span class="function">render</span>(<span class="function">vibrance</span>(subject, filters));
-
-<span class="comment">// download to get full quality picture</span></code></pre>
-        </div>
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>Subjects</dt>
+              <dd>Moab Red Rock · Autumn Light · Street</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Color Pipeline</dt>
+              <dd>Grain · Shadow Depth · Natural Contrast</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Exports</dt>
+              <dd>Full-Res Mobile Wallpapers (Free)</dd>
+            </div>
+          </dl>
+          <p style="font-size: var(--text-sm);">
+            Photography keeps my visual eye sharp for UI contrast, composition, and pacing.
+          </p>
+        </aside>
       `;
     }
   }

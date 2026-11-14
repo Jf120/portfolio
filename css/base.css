@@ -184,11 +184,17 @@ ol {
 }
 
 /* Print / Save Resume PDF Support */
+@page {
+  margin: 0.55in;
+}
+
 @media print {
   body {
     background: #ffffff !important;
     background-image: none !important;
     color: #111315 !important;
+    font-size: 10.5pt !important;
+    line-height: 1.45 !important;
   }
 
   app-navbar,
@@ -196,20 +202,49 @@ ol {
   .skip-link,
   .hero-cta-group,
   .btn,
-  .nb-toast {
+  .nb-toast,
+  .no-print {
     display: none !important;
   }
 
-  .nb-card,
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
   .page-hero {
+    padding-block: 0 0.75rem !important;
+    border-bottom: 2px solid #111315 !important;
+    background: #ffffff !important;
+  }
+
+  .page-hero-grid {
+    display: grid !important;
+    grid-template-columns: 1.4fr 0.8fr !important;
+    gap: 1rem !important;
+  }
+
+  .nb-card {
     background: #ffffff !important;
     box-shadow: none !important;
     border: 1.5px solid #111315 !important;
+    padding: 0.85rem 1rem !important;
     break-inside: avoid;
   }
 
   .section {
-    padding-block: 1rem !important;
+    padding-block: 0.65rem !important;
+  }
+
+  .section-header {
+    margin-bottom: 0.75rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  .timeline-list,
+  .skills-grid,
+  .edu-grid {
+    gap: 0.65rem !important;
   }
 
   p,
@@ -219,8 +254,15 @@ ol {
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  .eyebrow,
+  .nb-tag {
     color: #111315 !important;
+  }
+
+  .nb-tag {
+    background: #f4efe6 !important;
+    border-color: #111315 !important;
   }
 }
 
