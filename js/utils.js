@@ -147,6 +147,21 @@
             <rect x="284" y="110" width="70" height="18" fill="var(--bg-muted)" stroke="var(--border-color)" stroke-width="2"/>
           </svg>
         `;
+      case 'timeline':
+        return `
+          <svg viewBox="0 0 400 170" fill="none" aria-hidden="true">
+            <line x1="44" y1="86" x2="356" y2="86" stroke="var(--border-color)" stroke-width="3.5"/>
+            <circle cx="96" cy="86" r="9" fill="var(--accent-amber)" stroke="var(--border-color)" stroke-width="3"/>
+            <circle cx="200" cy="86" r="9" fill="var(--accent-sky)" stroke="var(--border-color)" stroke-width="3"/>
+            <circle cx="304" cy="86" r="9" fill="var(--accent-orange)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="52" y="22" width="88" height="46" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="62" y="32" width="68" height="16" fill="var(--accent-amber)" stroke="#111315" stroke-width="2"/>
+            <rect x="156" y="104" width="88" height="46" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="166" y="114" width="68" height="16" fill="var(--accent-sky)" stroke="#111315" stroke-width="2"/>
+            <rect x="260" y="22" width="88" height="46" fill="var(--bg-surface)" stroke="var(--border-color)" stroke-width="3"/>
+            <rect x="270" y="32" width="68" height="16" fill="var(--accent-orange)" stroke="#111315" stroke-width="2"/>
+          </svg>
+        `;
       case 'grid':
       default:
         return `

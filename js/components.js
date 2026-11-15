@@ -24,6 +24,7 @@
       last === 'mlpp-glossary.html' ||
       last === 'eliza-playbill.html' ||
       last === 'family-captions.html' ||
+      last === 'timeline.html' ||
       last === 'personal.html'
     ) {
       return 'projects.html';

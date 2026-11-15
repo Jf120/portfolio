@@ -16,6 +16,7 @@ Inspired by the builder craft in Linus Torvalds's *Just for Fun*, coding isn't c
   2. **BeeNight (`beenight.html`):** Synced Mobile Host Teleprompter <-> Living-Room TV Broadcast Stage + procedural Web Audio API sound synthesizer (for our deployed **TypeScript 5.5 + Socket.IO** app at [spelling-bee-3n84.onrender.com](https://spelling-bee-3n84.onrender.com/)).
   3. **MLPP Glossary (`mlpp-glossary.html`):** Drupal Views Bulk Operations HTML tag cleanup simulator & live translation/media percentage reporting metrics.
   4. **Family Captions (`family-captions.html`):** Reunion light-table, multi-contributor switcher, transactional `caption_history` snapshot log on note edits, and live `.txt` sidecar generation.
+  5. **Timeline (`timeline.html`):** 3-tier EXIF/regex/review date resolver, lazy `heic2any` drop simulator, UTC-midnight vs. `parseLocalDateInput` timezone guard, and `IndexedDB` (`by-timestamp`) chronicle stepper.
 * **Data-Driven Catalogs:** JSON manifests inside `data/projects_data.json` and `data/gallery_data.json`.
 
 ```text
@@ -25,6 +26,7 @@ Inspired by the builder craft in Linus Torvalds's *Just for Fun*, coding isn't c
 ├── beenight.html         # Case study + Stage/Audio Mini-App: TypeScript 5.5, React 18 & Socket.IO live spelling bee SaaS
 ├── mlpp-glossary.html    # Case study + Views Audit Mini-App: MLPP (mayanlanguages.wiki) Drupal Web Dev Internship
 ├── family-captions.html  # Case study + Light-Table Mini-App: React + Express + node:sqlite (WAL) 20k+ photo archive
+├── timeline.html         # Case study + Date/Timezone Mini-App: Local-first React 19, TypeScript 6 & IndexedDB photo chronicle
 ├── eliza-playbill.html   # Case study: Zero-dependency 7-page Broadway Playbill birthday SPA
 ├── about.html            # Full reverse-chronological CV, Summer 2027 Ensign/BYU-I credentials, toolkit, and print-ready styles
 ├── photos.html           # 27 original road & landscape mobile wallpapers with lightbox and downloads

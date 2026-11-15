@@ -1701,3 +1701,51 @@
   font-weight: 800;
 }
 
+/* Timeline 3-Tier Date Resolver & Chronicle Sandbox */
+.tl-queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tl-queue-card {
+  padding: 0.65rem 0.85rem;
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tl-queue-card.is-selected {
+  border-left: 6px solid var(--accent-amber);
+  box-shadow: var(--shadow-sm);
+}
+
+.tl-chronicle-card {
+  padding: var(--space-4);
+  background-color: var(--accent-amber);
+  color: #111315;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tl-chronicle-card h4,
+.tl-chronicle-card p,
+.tl-chronicle-card strong {
+  color: #111315;
+}
+
+.tl-gps-box {
+  padding: 0.65rem 0.85rem;
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+

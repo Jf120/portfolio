@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Case Study: Timeline — Local-first browser photo chronicle built in React 19, TypeScript 6, Vite 8, Tailwind CSS v4, IndexedDB, exifreader, lazy heic2any, and Leaflet maps.">
+  <meta name="keywords" content="Timeline, Photo Chronicle, React 19, TypeScript 6, Vite 8, IndexedDB, EXIF, HEIC, Leaflet, Local-First, Neo-Brutalist, Jorge Flores">
+  <title>Timeline Case Study | jafc.portfolio() — Jorge Flores</title>
+  <link rel="icon" type="image/x-icon" href="./assets/pixeled_phone.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+  <script src="./js/theme.js"></script>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pages.css">
+  <script defer src="./js/utils.js"></script>
+  <script defer src="./js/components.js"></script>
+  <script defer src="./js/mini-apps.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <app-navbar></app-navbar>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <div class="breadcrumb-row">
+            <a class="breadcrumb-link" href="./projects.html">← All Projects</a>
+            <a class="breadcrumb-link" href="./projects.html?category=personal">Personal Builds</a>
+          </div>
+          <span class="eyebrow">Personal Case Study 05 // Local-First Photo Chronicle</span>
+          <h1>Timeline — Photo Story Chronicle</h1>
+          <p class="page-hero-lead">
+            A 100% client-side, privacy-preserving photo chronicle built in <strong>React 19</strong>,
+            <strong>TypeScript 6</strong>, and <strong>IndexedDB</strong> that turns raw childhood and personal
+            photo dumps into a chronological, map-pinned story—eliminating the hours of manual slide layout
+            required by PowerPoint or Google Slides.
+          </p>
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="#timeline-mini-app">Try EXIF &amp; Timezone Mini-App ↓</a>
+            <a class="btn btn-secondary" href="#architecture">System Architecture ↓</a>
+            <a class="btn btn-surface" href="./projects.html?category=personal">All Personal Builds →</a>
+          </div>
+        </div>
+
+        <aside class="nb-card profile-facts-card" aria-label="Timeline technical specifications">
+          <div class="collection-preview-meta">
+            <span class="nb-tag nb-tag--amber">PERSONAL_BUILD.SPEC</span>
+            <span class="eyebrow">Local-First SPA</span>
+          </div>
+
+          <dl class="facts-list">
+            <div class="facts-row">
+              <dt>Role</dt>
+              <dd>Creator &amp; Sole Engineer</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Origin</dt>
+              <dd>Sharing Childhood &amp; Life Stories</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Persistence</dt>
+              <dd>IndexedDB Blobs (<code>by-timestamp</code>)</dd>
+            </div>
+            <div class="facts-row">
+              <dt>Main Bundle</dt>
+              <dd>584 KB (-70% via Lazy HEIC)</dd>
+            </div>
+          </dl>
+
+          <div>
+            <span class="eyebrow" style="display: block; margin-bottom: 0.5rem;">Core Stack</span>
+            <ul class="tag-list">
+              <li class="nb-tag nb-tag--amber">TypeScript 6</li>
+              <li class="nb-tag">React 19 + Vite 8</li>
+              <li class="nb-tag">Tailwind CSS v4</li>
+              <li class="nb-tag">IndexedDB (idb)</li>
+              <li class="nb-tag">exifreader</li>
+              <li class="nb-tag">heic2any (Lazy)</li>
+              <li class="nb-tag">Leaflet Maps</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Key technical metrics">
+      <div class="container">
+        <div class="kpi-grid">
+          <article class="nb-card nb-card--amber kpi-card">
+            <span class="eyebrow" style="color: #111315;">Initial JS Payload</span>
+            <span class="kpi-value">-70%</span>
+            <p>Cut from 1.93 MB to 584 KB (188 KB gzip) by dynamically importing <code>heic2any</code> on demand.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Date Resolution</span>
+            <span class="kpi-value">3-Tier</span>
+            <p>EXIF <code>DateTimeOriginal</code> → regex filename parser → interactive Date Review Queue.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Worker Compression</span>
+            <span class="kpi-value">&le; 1 MB</span>
+            <p>Pre-extracts EXIF &amp; GPS DMS before Web Worker compression to <code>1920px</code> binary Blobs.</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Server &amp; Cloud Cost</span>
+            <span class="kpi-value">$0 / mo</span>
+            <p>100% device-local IndexedDB storage keeps private childhood photos off third-party clouds.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline-mini-app" aria-labelledby="timeline-demo-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">00 // Interactive Sandbox Demo</span>
+            <h2 id="timeline-demo-heading">Mini-App: 3-Tier Date Resolver, Timezone Guard &amp; Chronicle</h2>
+          </div>
+          <span class="demo-badge">Interactive Pipeline Simulator</span>
+        </div>
+
+        <div class="sandbox-shell" role="region" aria-label="Interactive Timeline EXIF, timezone, and IndexedDB simulator">
+          <div class="sandbox-bar">
+            <div class="sandbox-bar-title">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>timeline_pipeline_sandbox.ts — EXIF + Local Date + IndexedDB</span>
+            </div>
+            <span id="timeline-sync-badge">idb:hydrated (by-timestamp index · 4 photos)</span>
+          </div>
+
+          <div class="sandbox-body">
+            <div class="sandbox-toolbar">
+              <div class="filter-pills" role="group" aria-label="Filter timeline sandbox mode">
+                <button type="button" class="filter-btn is-active" data-tl-filter="all" aria-pressed="true">
+                  All Memories (4)
+                </button>
+                <button type="button" class="filter-btn" data-tl-filter="review" aria-pressed="false">
+                  Needs Date Review
+                </button>
+                <button type="button" class="filter-btn" data-tl-filter="gps" aria-pressed="false">
+                  GPS Mapped
+                </button>
+              </div>
+
+              <div class="sandbox-field-group">
+                <button type="button" class="btn btn-sm btn-secondary" id="timeline-heic-btn">
+                  + Drop iPhone .HEIC Photo
+                </button>
+                <button type="button" class="btn btn-sm btn-surface" id="timeline-tz-btn">
+                  Parser: parseLocalDateInput (Safe)
+                </button>
+                <button type="button" class="btn btn-sm btn-surface" id="timeline-reset-btn">
+                  Reset Chronicle
+                </button>
+              </div>
+            </div>
+
+            <div class="sandbox-split">
+              <div class="sandbox-pane" id="timeline-ingest-pane"></div>
+              <div class="sandbox-pane" id="timeline-chronicle-pane"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="story-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">01 // Origin &amp; Product Scope</span>
+            <h2 id="story-heading">Replacing Slide-Deck Formatting With Automated Storytelling</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-3">
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">01 // THE PERSONAL NEED</span>
+            <h3>Sharing Childhood Stories Effortlessly</h3>
+            <p>
+              Born from helping two busy partners share childhood photos and life stories with each other
+              without spending an entire weekend dragging pictures into PowerPoint slides and manually
+              sorting years.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">02 // PRIVACY BY DESIGN</span>
+            <h3>100% Local IndexedDB Binary Blobs</h3>
+            <p>
+              Childhood and family photos are deeply personal. Storing compressed binary <code>Blob</code>
+              objects inside browser <code>IndexedDB</code> removes cloud bucket costs and keeps sensitive
+              memories strictly on the user's device.
+            </p>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">03 // PRESENTATION MODE</span>
+            <h3>Keyboard-Driven Chronicle &amp; Maps</h3>
+            <p>
+              Once dropped, photos automatically sort along a Neo-Brutalist timeline featuring
+              <code>ArrowUp</code> / <code>ArrowDown</code> stepping, an <code>IntersectionObserver</code>
+              year minimap, lightbox zoom, and embedded Leaflet GPS maps.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture" aria-labelledby="architecture-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">02 // System Architecture</span>
+            <h2 id="architecture-heading">Metadata-First Ingestion &amp; IndexedDB Pipeline</h2>
+          </div>
+          <span class="nb-tag nb-tag--sky">React 19 · TypeScript 6 · Vite 8</span>
+        </div>
+
+        <div class="arch-diagram-frame" role="region" aria-label="Timeline client-side architecture flow">
+          <div class="arch-flow">
+            <div class="arch-node">
+              <span class="eyebrow">1. Pre-Compression Read</span>
+              <h3>EXIF + Lazy HEIC</h3>
+              <p>Extracts <code>DateTimeOriginal</code> &amp; DMS GPS via <code>exifreader</code> before compression strips headers; lazy-loads <code>heic2any</code> only on <code>.heic</code> drops.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--accent">
+              <span class="eyebrow" style="color: #111315;">2. Date Resolution</span>
+              <h3>3-Tier Fallback</h3>
+              <p>1. EXIF timestamp → 2. Filename regex (<code>IMG_YYYYMMDD</code>) → 3. Flagged <code>needsReview: true</code> modal queue.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node">
+              <span class="eyebrow">3. Local Persistence</span>
+              <h3>IndexedDB (<code>idb</code>)</h3>
+              <p>Web Worker compresses to <code>&le;1 MB</code> / <code>1920px</code> and writes binary <code>Blob</code> records indexed on <code>by-timestamp</code>.</p>
+            </div>
+
+            <div class="arch-arrow" aria-hidden="true">→</div>
+
+            <div class="arch-node arch-node--sky">
+              <span class="eyebrow" style="color: #111315;">4. Story Surface</span>
+              <h3>Chronicle &amp; Leaflet</h3>
+              <p>StrictMode-safe <code>useObjectUrl</code> previews, <code>YearMinimap</code>, keyboard stepper, and DMS-to-Decimal map pins.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <aside class="code-window" aria-label="On-demand HEIC conversion snippet">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>src/lib/processImage.ts — Lazy HEIC Decoder</span>
+            </div>
+            <pre class="code-block"><code><span class="keyword">async function</span> <span class="function">normalizeToProcessableFile</span>(file: File): Promise&lt;File&gt; {
+  <span class="keyword">if</span> (!<span class="function">isHeicFile</span>(file)) <span class="keyword">return</span> file;
+
+  <span class="comment">// Dynamic import keeps 1.35 MB decoder out of the 584 KB main bundle</span>
+  <span class="keyword">const</span> { <span class="keyword">default</span>: heic2any } = <span class="keyword">await import</span>(<span class="string">'heic2any'</span>);
+  <span class="keyword">const</span> convertedBlob = <span class="keyword">await</span> <span class="function">heic2any</span>({
+    blob: file,
+    toType: <span class="string">'image/jpeg'</span>,
+    quality: <span class="number">0.8</span>,
+  });
+
+  <span class="keyword">const</span> blob = Array.<span class="function">isArray</span>(convertedBlob) ? convertedBlob[<span class="number">0</span>] : convertedBlob;
+  <span class="keyword">return new</span> <span class="function">File</span>([blob], file.name.<span class="function">replace</span>(/\.(heic|heif)$/i, <span class="string">'.jpg'</span>), {
+    type: <span class="string">'image/jpeg'</span>,
+    lastModified: file.lastModified,
+  });
+}</code></pre>
+          </aside>
+
+          <aside class="code-window" aria-label="Timezone-safe date input parser snippet">
+            <div class="code-window-bar">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot window-dot--orange"></span>
+                <span class="window-dot window-dot--amber"></span>
+                <span class="window-dot window-dot--sky"></span>
+              </div>
+              <span>src/lib/utils.ts — Local Timezone Guard</span>
+            </div>
+            <pre class="code-block"><code><span class="comment">// Prevents new Date("2022-09-06") UTC midnight off-by-one day shift</span>
+<span class="keyword">export function</span> <span class="function">parseLocalDateInput</span>(dateValue: string, preserveTimeFrom?: number): number {
+  <span class="keyword">const</span> match = dateValue.<span class="function">match</span>(/^(\d{4})-(\d{2})-(\d{2})$/);
+  <span class="keyword">if</span> (!match) <span class="keyword">return</span> <span class="function">fallbackOrNow</span>(preserveTimeFrom);
+
+  <span class="keyword">const</span> year = <span class="function">Number</span>(match[<span class="number">1</span>]);
+  <span class="keyword">const</span> month = <span class="function">Number</span>(match[<span class="number">2</span>]) - <span class="number">1</span>;
+  <span class="keyword">const</span> day = <span class="function">Number</span>(match[<span class="number">3</span>]);
+
+  <span class="comment">// Anchors to local noon (12:00:00) so Western timezones never slip back 1 day</span>
+  <span class="keyword">return new</span> <span class="function">Date</span>(year, month, day, <span class="number">12</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="function">getTime</span>();
+}</code></pre>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="challenges-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">03 // Hard Problems Solved</span>
+            <h2 id="challenges-heading">Engineering Highlights &amp; Browser Edge Cases</h2>
+          </div>
+        </div>
+
+        <div class="scale-list">
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">01</div>
+            <div class="timeline-content">
+              <h3>Eliminating UTC Midnight Off-by-One Date Shifts</h3>
+              <p>
+                Native <code>&lt;input type="date"&gt;</code> controls emit strings like
+                <code>"2022-09-06"</code>. Passing that string to <code>new Date("2022-09-06")</code>
+                parses as <strong>UTC midnight</strong>, shifting displayed dates backward by one full day
+                (<code>September 5, 2022</code>) across Western Hemisphere timezones. Writing
+                <code>parseLocalDateInput</code> to split <code>YYYY-MM-DD</code> and construct a local
+                <code>Date</code> at noon (preserving existing time-of-day when editing) guarantees exact
+                calendar dates everywhere.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">02</div>
+            <div class="timeline-content">
+              <h3>StrictMode-Safe <code>Blob</code> <code>ObjectURL</code> Lifecycle Management</h3>
+              <p>
+                Creating preview URLs with <code>URL.createObjectURL(blob)</code> inside
+                <code>useEffect</code> and calling <code>setState</code> synchronously triggers cascading
+                renders and risks leaking or prematurely revoking URLs during React 19 StrictMode double
+                mounts. A custom <code>useObjectUrl</code> hook defers creation to a microtask guarded by a
+                <code>cancelled</code> flag, pairs each URL with its exact <code>Blob</code> reference, and
+                deterministically revokes it on cleanup.
+              </p>
+            </div>
+          </article>
+
+          <article class="nb-card scale-step">
+            <div class="scale-step-num" aria-hidden="true">03</div>
+            <div class="timeline-content">
+              <h3>Cutting Initial Bundle Weight by ~70% While Preserving EXIF &amp; HEIC</h3>
+              <p>
+                Bundling <code>heic2any</code> eagerly bloated the initial JS payload to <strong>1.93 MB</strong>,
+                while standard image compressors stripped EXIF metadata before timestamps or GPS coordinates
+                could be read. Reading EXIF/DMS coordinates <em>prior</em> to Web Worker compression and
+                switching <code>heic2any</code> to a dynamic <code>import('heic2any')</code> cut the main
+                bundle to <strong>584 KB (188 KB gzipped)</strong>.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="outcome-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">04 // Impact &amp; Reflection</span>
+            <h2 id="outcome-heading">Why Local-First Personal Tools Are So Rewarding</h2>
+          </div>
+        </div>
+
+        <div class="case-grid-2">
+          <article class="nb-card nb-card--amber manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow" style="color: #111315;">Built for Us</span>
+              <h3>More Time Reliving Memories, Zero Time Aligning Text Boxes</h3>
+              <p>
+                Instead of spending hours fighting slide templates, we can drop dozens of childhood scans
+                and phone photos into Timeline, batch-verify only the undated pictures, and step through our
+                shared story with keyboard shortcuts and live location pins.
+              </p>
+            </div>
+            <div class="hero-cta-group" style="margin-top: 0;">
+              <a class="btn btn-sm btn-surface" href="#timeline-mini-app">Test Date &amp; Timezone Sandbox ↑</a>
+            </div>
+          </article>
+
+          <article class="nb-card manifesto-card">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <span class="eyebrow">Engineering Takeaway</span>
+              <h3>Browser-Native Systems Engineering</h3>
+              <p>
+                Building without a backend forces disciplined engineering around binary <code>Blob</code>
+                indexing in IndexedDB, Web Worker compression pipelines, DMS-to-Decimal coordinate math,
+                and timezone-safe calendar parsing—verified end-to-end with zero ESLint/TypeScript errors
+                and automated Playwright browser tests.
+              </p>
+            </div>
+            <div class="hero-cta-group" style="margin-top: 0;">
+              <a class="btn btn-sm btn-primary" href="./family-captions.html">Family Captions + Mini-App →</a>
+              <a class="btn btn-sm btn-surface" href="./eliza-playbill.html">ElizaPlaybill Study →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Case study footer CTA">
+      <div class="container">
+        <div class="cta-banner">
+          <div>
+            <span class="eyebrow" style="color: #111315;">Explore More</span>
+            <h2>See more personal builds or production full-stack systems</h2>
+            <p style="margin-top: 0.75rem;">
+              Explore Family Captions, ElizaPlaybill, BeeNight, JMF Survey, and my active MLPP internship.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-surface" href="./family-captions.html">Family Captions + Mini-App →</a>
+            <a class="btn btn-surface" href="./eliza-playbill.html">ElizaPlaybill Study →</a>
+            <a class="btn btn-surface" href="./projects.html?category=personal">All Personal Builds</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</body>
+</html>

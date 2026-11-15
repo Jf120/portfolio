@@ -1064,4 +1064,332 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderBeeNight();
   }
+
+  /* ========================================================================
+     5. TIMELINE MINI-APP: 3-Tier Date Resolver, Timezone Guard & Chronicle
+     ======================================================================== */
+  const tlRoot = document.getElementById('timeline-mini-app');
+  if (tlRoot) {
+    const createInitialPhotos = () => [
+      {
+        id: 'mem-1',
+        filename: 'IMG_0192.JPG',
+        title: 'First Bicycle in Guatemala City',
+        caption: 'Training wheels off on the neighborhood sidewalk.',
+        tier: 'Tier 1 · EXIF DateTimeOriginal',
+        dateIso: '1999-05-14',
+        year: 1999,
+        needsReview: false,
+        gpsDms: '14°38\'05"N 90°30\'47"W',
+        gpsDec: '14.6347, -90.5131 (Guatemala City)',
+        sizeInfo: '3.4 MB → 610 KB Blob',
+      },
+      {
+        id: 'mem-2',
+        filename: 'IMG_20140719_162044.jpg',
+        title: 'Cobán Highland Roadtrip',
+        caption: 'EXIF stripped by messaging app—recovered via filename regex.',
+        tier: 'Tier 2 · Filename Regex (IMG_YYYYMMDD)',
+        dateIso: '2014-07-19',
+        year: 2014,
+        needsReview: false,
+        gpsDms: '',
+        gpsDec: '',
+        sizeInfo: '2.1 MB → 490 KB Blob',
+      },
+      {
+        id: 'mem-3',
+        filename: 'childhood_shoebox_scan_04.jpg',
+        title: 'Family Reunion Backyard',
+        caption: 'Scanned print with file.lastModified = today; routed to Review Queue.',
+        tier: 'Tier 3 · Flagged (needsReview: true)',
+        dateIso: '2022-09-06',
+        year: 2022,
+        needsReview: true,
+        gpsDms: '',
+        gpsDec: '',
+        sizeInfo: '4.2 MB → 720 KB Blob',
+      },
+      {
+        id: 'mem-4',
+        filename: 'DSC_0841.JPG',
+        title: 'Autumn Canyon Trail',
+        caption: 'Afternoon hike with full EXIF & GPS coordinates preserved.',
+        tier: 'Tier 1 · EXIF DateTimeOriginal',
+        dateIso: '2023-10-14',
+        year: 2023,
+        needsReview: false,
+        gpsDms: '40°39\'51"N 111°49\'18"W',
+        gpsDec: '40.6642, -111.8217 (Salt Lake County, UT)',
+        sizeInfo: '4.8 MB → 780 KB Blob',
+      },
+    ];
+
+    const state = {
+      filter: 'all',
+      useSafeLocalParser: true,
+      heicDropped: false,
+      activeIdx: 0,
+      lastEvent: 'idb:hydrated (by-timestamp index · 4 photos)',
+      photos: createInitialPhotos(),
+    };
+
+    const formatDisplayDate = (isoStr, useSafe) => {
+      const m = String(isoStr).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!m) return isoStr;
+      const y = Number(m[1]);
+      const mo = Number(m[2]) - 1;
+      const d = Number(m[3]);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      if (useSafe) {
+        return `${months[mo]} ${d}, ${y} (12:00 Local Noon)`;
+      }
+      // Simulate Western Hemisphere UTC-6 midnight shift (shifts backward 1 calendar day)
+      const utcShifted = new Date(Date.UTC(y, mo, d, 0, 0, 0) - 6 * 3600 * 1000);
+      return `${months[utcShifted.getUTCMonth()]} ${utcShifted.getUTCDate()}, ${utcShifted.getUTCFullYear()} (⚠️ UTC Midnight -1d Shift!)`;
+    };
+
+    const filterBtns = Array.from(tlRoot.querySelectorAll('[data-tl-filter]'));
+    const heicBtn = document.getElementById('timeline-heic-btn');
+    const tzBtn = document.getElementById('timeline-tz-btn');
+    const resetBtn = document.getElementById('timeline-reset-btn');
+    const syncBadge = document.getElementById('timeline-sync-badge');
+    const ingestPane = document.getElementById('timeline-ingest-pane');
+    const chroniclePane = document.getElementById('timeline-chronicle-pane');
+
+    const renderTimeline = () => {
+      const sorted = [...state.photos].sort((a, b) => a.dateIso.localeCompare(b.dateIso));
+      const filtered = sorted.filter((p) => {
+        if (state.filter === 'review') return p.needsReview;
+        if (state.filter === 'gps') return Boolean(p.gpsDec);
+        return true;
+      });
+
+      if (state.activeIdx >= sorted.length) state.activeIdx = 0;
+      const activePhoto = sorted[state.activeIdx] || sorted[0];
+
+      filterBtns.forEach((btn) => {
+        const mode = btn.dataset.tlFilter;
+        const isActive = mode === state.filter;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+        if (mode === 'all') btn.textContent = `All Memories (${sorted.length})`;
+        if (mode === 'review') {
+          const revCount = sorted.filter((p) => p.needsReview).length;
+          btn.textContent = `Needs Date Review (${revCount})`;
+        }
+        if (mode === 'gps') {
+          const gpsCount = sorted.filter((p) => Boolean(p.gpsDec)).length;
+          btn.textContent = `GPS Mapped (${gpsCount})`;
+        }
+      });
+
+      if (syncBadge) syncBadge.textContent = state.lastEvent;
+
+      if (ingestPane) {
+        const cardsHtml = filtered.length
+          ? filtered
+              .map((p) => {
+                const isSelected = p.id === activePhoto.id;
+                const badgeCls = p.needsReview ? 'nb-tag--orange' : p.gpsDec ? 'nb-tag--sky' : 'nb-tag--amber';
+                return `
+                  <div class="tl-queue-card${isSelected ? ' is-selected' : ''}">
+                    <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                      <strong style="font-family: var(--font-mono); font-size: var(--text-xs);">${escapeHtml(p.filename)}</strong>
+                      <span class="nb-tag ${badgeCls}">${escapeHtml(p.tier)}</span>
+                    </div>
+                    <p style="font-size: var(--text-xs);">${escapeHtml(p.title)} · <code>${escapeHtml(p.sizeInfo)}</code></p>
+                    <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                      <span style="font-family: var(--font-mono); font-size: var(--text-xs);">
+                        Resolved: <strong>${escapeHtml(formatDisplayDate(p.dateIso, state.useSafeLocalParser))}</strong>
+                      </span>
+                      <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                        ${
+                          p.needsReview
+                            ? `<button type="button" class="btn btn-sm btn-primary" data-tl-approve="${escapeHtml(p.id)}">✓ Confirm Date</button>`
+                            : ''
+                        }
+                        <button type="button" class="btn btn-sm btn-surface" data-tl-select="${escapeHtml(p.id)}">Inspect →</button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              })
+              .join('')
+          : `<p style="font-size: var(--text-xs);">No memories match this filter. Switch back to All Memories.</p>`;
+
+        ingestPane.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="eyebrow">1. 3-TIER INGESTION &amp; DATE REVIEW QUEUE</span>
+            <span class="nb-tag ${state.useSafeLocalParser ? 'nb-tag--sky' : 'nb-tag--orange'}">
+              ${state.useSafeLocalParser ? 'Local Noon Guard Active' : 'UTC Midnight Bug Simulated'}
+            </span>
+          </div>
+          <p style="font-size: var(--text-xs);">
+            Pre-extracts EXIF &amp; GPS before Web Worker compression. Toggle the Date Parser button above to see how <code>parseLocalDateInput</code> prevents Western Hemisphere off-by-one date shifts.
+          </p>
+          <div class="tl-queue-list">${cardsHtml}</div>
+        `;
+      }
+
+      if (chroniclePane && activePhoto) {
+        const yearPills = sorted
+          .map(
+            (p, idx) => `
+              <button type="button" class="filter-btn${p.id === activePhoto.id ? ' is-active' : ''}" data-tl-step="${idx}">
+                ${p.year}
+              </button>
+            `
+          )
+          .join('');
+
+        chroniclePane.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="eyebrow">2. PRESENTATION CHRONICLE (by-timestamp)</span>
+            <span class="nb-tag nb-tag--amber">ENTRY #0${state.activeIdx + 1} / 0${sorted.length}</span>
+          </div>
+          <div class="filter-pills" aria-label="Year minimap">${yearPills}</div>
+          <div class="tl-chronicle-card">
+            <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="eyebrow" style="color: #111315;">${escapeHtml(activePhoto.filename)}</span>
+              <strong>${escapeHtml(formatDisplayDate(activePhoto.dateIso, state.useSafeLocalParser))}</strong>
+            </div>
+            <h4>${escapeHtml(activePhoto.title)}</h4>
+            <p>${escapeHtml(activePhoto.caption)}</p>
+          </div>
+          <div class="tl-gps-box">
+            <span class="eyebrow">EXIF DMS → DECIMAL LEAFLET MAP PIN</span>
+            <p style="font-size: var(--text-xs); font-family: var(--font-mono);">
+              ${
+                activePhoto.gpsDec
+                  ? `📍 DMS: ${escapeHtml(activePhoto.gpsDms)} → Decimal: ${escapeHtml(activePhoto.gpsDec)}`
+                  : '📍 No GPS EXIF present on this memory (Map panel hidden in Presentation Mode).'
+              }
+            </p>
+          </div>
+          <div class="hero-cta-group" style="margin-top: 0;">
+            <button type="button" class="btn btn-sm btn-surface" data-tl-nav="-1">← Prev Memory (ArrowUp)</button>
+            <button type="button" class="btn btn-sm btn-primary" data-tl-nav="1">Next Memory (ArrowDown) →</button>
+          </div>
+        `;
+      }
+    };
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.filter = btn.dataset.tlFilter || 'all';
+        state.lastEvent = `chronicle:filter -> ${state.filter}`;
+        renderTimeline();
+      });
+    });
+
+    if (heicBtn) {
+      heicBtn.addEventListener('click', () => {
+        if (!state.heicDropped) {
+          state.heicDropped = true;
+          state.photos.push({
+            id: 'mem-5',
+            filename: 'IMG_4092.HEIC → .jpg',
+            title: 'Arches Red Rock Sunset (Lazy HEIC)',
+            caption: 'Converted on demand via dynamic import("heic2any") with EXIF & GPS preserved.',
+            tier: 'Tier 1 · Lazy heic2any + EXIF',
+            dateIso: '2025-04-18',
+            year: 2025,
+            needsReview: false,
+            gpsDms: '38°41\'00"N 109°34\'00"W',
+            gpsDec: '38.6833, -109.5667 (Moab, UT)',
+            sizeInfo: '5.1 MB HEIC → 640 KB JPEG Blob',
+          });
+          heicBtn.textContent = '✓ .HEIC Decoded (heic2any Loaded)';
+          state.lastEvent = 'import("heic2any") -> converted IMG_4092.HEIC + saved Blob';
+          notify('Lazy-loaded heic2any & indexed IMG_4092.HEIC!');
+        } else {
+          state.lastEvent = 'heic2any:cached (already imported on demand)';
+        }
+        renderTimeline();
+      });
+    }
+
+    if (tzBtn) {
+      tzBtn.addEventListener('click', () => {
+        state.useSafeLocalParser = !state.useSafeLocalParser;
+        tzBtn.textContent = state.useSafeLocalParser
+          ? 'Parser: parseLocalDateInput (Safe)'
+          : 'Parser: Raw new Date() (UTC -1d Bug)';
+        state.lastEvent = state.useSafeLocalParser
+          ? 'utils:parseLocalDateInput -> anchored at 12:00 local noon'
+          : 'bug:new Date("YYYY-MM-DD") -> parsed as UTC midnight (-1 day shift!)';
+        renderTimeline();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        state.photos = createInitialPhotos();
+        state.filter = 'all';
+        state.useSafeLocalParser = true;
+        state.heicDropped = false;
+        state.activeIdx = 0;
+        if (heicBtn) heicBtn.textContent = '+ Drop iPhone .HEIC Photo';
+        if (tzBtn) tzBtn.textContent = 'Parser: parseLocalDateInput (Safe)';
+        state.lastEvent = 'idb:reset -> restored 4 initial memories';
+        renderTimeline();
+        notify('Timeline chronicle reset');
+      });
+    }
+
+    if (ingestPane) {
+      ingestPane.addEventListener('click', (e) => {
+        const approveBtn = e.target.closest('[data-tl-approve]');
+        if (approveBtn) {
+          const id = approveBtn.dataset.tlApprove;
+          const item = state.photos.find((p) => p.id === id);
+          if (item) {
+            item.needsReview = false;
+            item.tier = 'Tier 3 · Verified via parseLocalDateInput';
+            state.lastEvent = `review:verified (${item.filename} -> ${item.dateIso})`;
+            notify(`Verified date for ${item.filename}`);
+            renderTimeline();
+          }
+          return;
+        }
+
+        const selectBtn = e.target.closest('[data-tl-select]');
+        if (selectBtn) {
+          const id = selectBtn.dataset.tlSelect;
+          const sorted = [...state.photos].sort((a, b) => a.dateIso.localeCompare(b.dateIso));
+          const idx = sorted.findIndex((p) => p.id === id);
+          if (idx !== -1) {
+            state.activeIdx = idx;
+            state.lastEvent = `useObjectUrl:mounted (${sorted[idx].filename})`;
+            renderTimeline();
+          }
+        }
+      });
+    }
+
+    if (chroniclePane) {
+      chroniclePane.addEventListener('click', (e) => {
+        const stepBtn = e.target.closest('[data-tl-step]');
+        if (stepBtn) {
+          state.activeIdx = Number(stepBtn.dataset.tlStep) || 0;
+          state.lastEvent = `yearMinimap:jump -> index ${state.activeIdx}`;
+          renderTimeline();
+          return;
+        }
+
+        const navBtn = e.target.closest('[data-tl-nav]');
+        if (navBtn) {
+          const delta = Number(navBtn.dataset.tlNav) || 1;
+          const len = state.photos.length;
+          state.activeIdx = (state.activeIdx + delta + len) % len;
+          state.lastEvent = `keyboardNav:step -> ENTRY #0${state.activeIdx + 1}`;
+          renderTimeline();
+        }
+      });
+    }
+
+    renderTimeline();
+  }
 });
+
