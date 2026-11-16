@@ -232,6 +232,56 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    const iframeContainer = document.getElementById('jmf-iframe-container');
+    const embedIframe = document.getElementById('jmf-embed-iframe');
+    const localFallback = document.getElementById('jmf-local-fallback');
+    const reloadIframeBtn = document.getElementById('jmf-reload-iframe-btn');
+    const barLabel = document.getElementById('jmf-sandbox-bar-label');
+    const statusLabel = document.getElementById('jmf-embed-status');
+    const modeButtons = Array.from(jmfRoot.querySelectorAll('[data-jmf-mode]'));
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-jmf-mode');
+        modeButtons.forEach((b) =>
+          b.classList.toggle('is-active', b.getAttribute('data-jmf-mode') === mode)
+        );
+        const isIframe = mode === 'iframe';
+        if (iframeContainer) iframeContainer.hidden = !isIframe;
+        if (localFallback) localFallback.hidden = isIframe;
+        if (reloadIframeBtn) reloadIframeBtn.hidden = !isIframe;
+        if (barLabel) {
+          barLabel.textContent = isIframe
+            ? 'https://jmfsurvey-demo.onrender.com/?embed=1'
+            : 'sna_selector_sandbox.js — Local Fallback Roster';
+        }
+        if (statusLabel) {
+          statusLabel.textContent = isIframe
+            ? 'Live Iframe · Anonymized SNA Cohort'
+            : 'Order Encodes Weight: #1 = 5 · #2 = 4 · #3 = 3';
+        }
+      });
+    });
+
+    if (reloadIframeBtn && embedIframe) {
+      reloadIframeBtn.addEventListener('click', () => {
+        embedIframe.src = 'https://jmfsurvey-demo.onrender.com/?embed=1';
+        notify('Reloading embedded JMF Survey mini-app...');
+      });
+    }
+
+    window.addEventListener('message', (event) => {
+      if (
+        event.data &&
+        event.data.type === 'JAFC_MINI_APP_HEIGHT' &&
+        typeof event.data.height === 'number' &&
+        embedIframe
+      ) {
+        const nextHeight = Math.max(640, Math.min(2000, Math.ceil(event.data.height)));
+        embedIframe.style.height = `${nextHeight}px`;
+      }
+    });
+
     renderJmf();
   }
 

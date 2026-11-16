@@ -40,7 +40,8 @@
             adjacency matrices for consulting teams.
           </p>
           <div class="hero-cta-group">
-            <a class="btn btn-primary" href="#jmf-mini-app">Try Interactive SNA Mini-App ↓</a>
+            <a class="btn btn-primary" href="#jmf-mini-app">Try Embedded SNA Mini-App ↓</a>
+            <a class="btn btn-secondary" href="https://jmfsurvey-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Open Full Demo App ↗</a>
             <a class="btn btn-surface" href="#architecture">System Architecture ↓</a>
             <a class="btn btn-surface" href="#scale">Scale &amp; Resilience ↓</a>
           </div>
@@ -122,10 +123,10 @@
       <div class="container">
         <div class="section-header">
           <div class="section-header-copy">
-            <span class="eyebrow">00 // Interactive Sandbox Demo</span>
+            <span class="eyebrow">00 // Live Hosted Interactive Demo</span>
             <h2 id="jmf-demo-heading">Mini-App: Peer Disambiguation &amp; Live <em>N × N</em> Matrix</h2>
           </div>
-          <span class="demo-badge">Live Client-Side Simulation</span>
+          <span class="demo-badge">Embedded Live App (Render)</span>
         </div>
 
         <div class="sandbox-shell" role="region" aria-label="Interactive JMF Survey sociometric selector and matrix exporter">
@@ -136,56 +137,95 @@
                 <span class="window-dot window-dot--amber"></span>
                 <span class="window-dot window-dot--sky"></span>
               </div>
-              <span>sna_selector_sandbox.js — Anonymized Sample Roster</span>
+              <span id="jmf-sandbox-bar-label">https://jmfsurvey-demo.onrender.com/?embed=1</span>
             </div>
-            <span>Order Encodes Weight: #1 = 5 · #2 = 4 · #3 = 3</span>
+            <span id="jmf-embed-status">Live Iframe · Anonymized SNA Cohort</span>
           </div>
 
           <div class="sandbox-body">
             <div class="sandbox-toolbar">
-              <div class="sandbox-field-group">
-                <label class="sandbox-label" for="jmf-respondent-select">Respond As:</label>
-                <select id="jmf-respondent-select" class="sandbox-select"></select>
+              <div class="sandbox-field-group" role="group" aria-label="Demo execution mode">
+                <span class="sandbox-label">Mode:</span>
+                <button type="button" class="filter-btn is-active" data-jmf-mode="iframe">
+                  Live Hosted App (Iframe)
+                </button>
+                <button type="button" class="filter-btn" data-jmf-mode="local">
+                  Instant Local Fallback
+                </button>
               </div>
 
               <div class="sandbox-field-group">
-                <label class="sandbox-label" for="jmf-roster-search">Filter Roster:</label>
-                <input
-                  type="search"
-                  id="jmf-roster-search"
-                  class="sandbox-input"
-                  placeholder="Name, dept, or branch..."
+                <button type="button" class="btn btn-sm btn-surface" id="jmf-reload-iframe-btn">
+                  Reload Embed ↻
+                </button>
+                <a
+                  class="btn btn-sm btn-primary"
+                  href="https://jmfsurvey-demo.onrender.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-              </div>
-
-              <div class="sandbox-field-group">
-                <button type="button" class="btn btn-sm btn-surface" id="jmf-reset-btn">
-                  Clear Picks
-                </button>
-                <button type="button" class="btn btn-sm btn-primary" id="jmf-export-csv-btn">
-                  Export Sample .CSV ↓
-                </button>
+                  Open Full Screen ↗
+                </a>
               </div>
             </div>
 
-            <div class="sandbox-split">
-              <div class="sandbox-pane">
-                <span class="eyebrow">1. Respondent Peer Selector (Self-Exclusion Enforced)</span>
-                <p style="font-size: var(--text-sm);">
-                  Click colleagues below in rank order to model ties. Accent-insensitive filtering runs
-                  100% client-side with zero network round trips.
-                </p>
-                <div class="roster-grid" id="jmf-roster-grid"></div>
-                <div class="tag-list" id="jmf-selection-chips" aria-live="polite"></div>
+            <div class="sandbox-iframe-wrap" id="jmf-iframe-container">
+              <iframe
+                id="jmf-embed-iframe"
+                class="sandbox-iframe"
+                src="https://jmfsurvey-demo.onrender.com/?embed=1"
+                title="JMF Survey Interactive SNA Mini-App"
+                loading="lazy"
+                allow="clipboard-write"
+              ></iframe>
+            </div>
+
+            <div id="jmf-local-fallback" hidden>
+              <div class="sandbox-toolbar" style="margin-bottom: var(--space-4);">
+                <div class="sandbox-field-group">
+                  <label class="sandbox-label" for="jmf-respondent-select">Respond As:</label>
+                  <select id="jmf-respondent-select" class="sandbox-select"></select>
+                </div>
+
+                <div class="sandbox-field-group">
+                  <label class="sandbox-label" for="jmf-roster-search">Filter Roster:</label>
+                  <input
+                    type="search"
+                    id="jmf-roster-search"
+                    class="sandbox-input"
+                    placeholder="Name, dept, or branch..."
+                  >
+                </div>
+
+                <div class="sandbox-field-group">
+                  <button type="button" class="btn btn-sm btn-surface" id="jmf-reset-btn">
+                    Clear Picks
+                  </button>
+                  <button type="button" class="btn btn-sm btn-primary" id="jmf-export-csv-btn">
+                    Export Sample .CSV ↓
+                  </button>
+                </div>
               </div>
 
-              <div class="sandbox-pane">
-                <span class="eyebrow">2. Real-Time Weighted <em>N × N</em> Directed Adjacency Matrix</span>
-                <p style="font-size: var(--text-sm);">
-                  Your active respondent row highlights in blue. Click <strong>Export Sample .CSV</strong>
-                  to generate a formatted network matrix file straight from browser memory.
-                </p>
-                <div class="case-table-wrap" id="jmf-matrix-wrap"></div>
+              <div class="sandbox-split">
+                <div class="sandbox-pane">
+                  <span class="eyebrow">1. Respondent Peer Selector (Self-Exclusion Enforced)</span>
+                  <p style="font-size: var(--text-sm);">
+                    Click colleagues below in rank order to model ties. Accent-insensitive filtering runs
+                    100% client-side with zero network round trips.
+                  </p>
+                  <div class="roster-grid" id="jmf-roster-grid"></div>
+                  <div class="tag-list" id="jmf-selection-chips" aria-live="polite"></div>
+                </div>
+
+                <div class="sandbox-pane">
+                  <span class="eyebrow">2. Real-Time Weighted <em>N × N</em> Directed Adjacency Matrix</span>
+                  <p style="font-size: var(--text-sm);">
+                    Your active respondent row highlights in blue. Click <strong>Export Sample .CSV</strong>
+                    to generate a formatted network matrix file straight from browser memory.
+                  </p>
+                  <div class="case-table-wrap" id="jmf-matrix-wrap"></div>
+                </div>
               </div>
             </div>
           </div>

@@ -1344,6 +1344,30 @@
   box-shadow: var(--shadow-sm);
 }
 
+.sandbox-iframe-wrap {
+  width: 100%;
+  background-color: var(--bg-page);
+  border: var(--border-heavy) solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.sandbox-iframe {
+  display: block;
+  width: 100%;
+  height: 760px;
+  min-height: 640px;
+  border: 0;
+  background-color: var(--bg-page);
+}
+
+@media (max-width: 640px) {
+  .sandbox-iframe {
+    height: 680px;
+    min-height: 580px;
+  }
+}
+
 /* JMF Roster & Matrix Sandbox */
 .roster-grid {
   display: grid;
