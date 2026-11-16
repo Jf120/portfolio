@@ -86,6 +86,29 @@
   --code-string: #ffb703;
   --code-function: #fb8500;
   --code-number: #b5cea8;
+
+  /* Secondary "Tactile Minimal" (.nb-mini) Tokens for Sandboxes & Iframe Mini-Apps */
+  --mini-border-subtle: 1px;
+  --mini-border-strong: 1.5px;
+  --mini-border-accent: 3px;
+  --mini-radius-xs: 3px;
+  --mini-radius-sm: 4px;
+  --mini-radius-md: 6px;
+  --mini-shadow-btn: 2px 2px 0 var(--mini-shadow-color);
+  --mini-shadow-btn-hover: 3px 3px 0 var(--mini-shadow-color);
+
+  --mini-bg-canvas: #f8f5ee;
+  --mini-bg-surface: #ffffff;
+  --mini-bg-muted: #efeae0;
+  --mini-bg-hover: #f3efe6;
+  --mini-amber-tint: #fff6db;
+  --mini-sky-tint: #eaf5fb;
+  --mini-ink-primary: #14171a;
+  --mini-ink-secondary: #4a535c;
+  --mini-ink-muted: #6c7680;
+  --mini-border-color: #1e2328;
+  --mini-divider-color: #dcd5c7;
+  --mini-shadow-color: #1e2328;
 }
 
 /* Dark Theme — Abyssal Navy-Slate & Warm Bone Ink (Zero Purple) */
@@ -113,4 +136,18 @@
   --code-string: #ffb703;
   --code-function: #fb8500;
   --code-number: #b8d8be;
+
+  /* Secondary "Tactile Minimal" (.nb-mini) Tokens — Dark Mode */
+  --mini-bg-canvas: #111c26;
+  --mini-bg-surface: #182635;
+  --mini-bg-muted: #1f3144;
+  --mini-bg-hover: #22364b;
+  --mini-amber-tint: rgba(255, 183, 3, 0.14);
+  --mini-sky-tint: rgba(142, 202, 230, 0.14);
+  --mini-ink-primary: #f1ece1;
+  --mini-ink-secondary: #b7cad8;
+  --mini-ink-muted: #849bb0;
+  --mini-border-color: #cfd8e3;
+  --mini-divider-color: #2b3f54;
+  --mini-shadow-color: #060b10;
 }

@@ -263,6 +263,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    if (embedIframe) {
+      embedIframe.addEventListener('load', () => {
+        try {
+          const currentTheme =
+            (window.ThemeManager && window.ThemeManager.getTheme()) ||
+            document.documentElement.dataset.theme ||
+            'light';
+          if (embedIframe.contentWindow) {
+            embedIframe.contentWindow.postMessage(
+              { type: 'JAFC_THEME_CHANGE', theme: currentTheme },
+              '*'
+            );
+          }
+        } catch (_err) {
+          // Ignore cross-origin errors.
+        }
+      });
+    }
+
     if (reloadIframeBtn && embedIframe) {
       reloadIframeBtn.addEventListener('click', () => {
         embedIframe.src = 'https://jmfsurvey-demo.onrender.com/?embed=1';
@@ -1301,7 +1320,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="filter-pills" aria-label="Year minimap">${yearPills}</div>
           <div class="tl-chronicle-card">
             <div style="display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="eyebrow" style="color: #111315;">${escapeHtml(activePhoto.filename)}</span>
+              <span class="eyebrow">${escapeHtml(activePhoto.filename)}</span>
               <strong>${escapeHtml(formatDisplayDate(activePhoto.dateIso, state.useSafeLocalParser))}</strong>
             </div>
             <h4>${escapeHtml(activePhoto.title)}</h4>

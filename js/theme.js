@@ -57,6 +57,23 @@
     });
   }
 
+  function notifyEmbeddedIframes(theme) {
+    document.querySelectorAll('.sandbox-iframe').forEach((frame) => {
+      try {
+        if (frame.contentWindow) {
+          frame.contentWindow.postMessage({ type: 'JAFC_THEME_CHANGE', theme }, '*');
+        }
+      } catch (_err) {
+        // Ignore cross-origin postMessage errors before frame load.
+      }
+    });
+    try {
+      window.dispatchEvent(new CustomEvent('jafc:themechange', { detail: { theme } }));
+    } catch (_err) {
+      // Ignore event dispatch errors.
+    }
+  }
+
   function setTheme(theme, persist = true) {
     const applied = applyTheme(theme);
     if (persist) {
@@ -67,6 +84,7 @@
       }
     }
     syncAllToggles(applied);
+    notifyEmbeddedIframes(applied);
     return applied;
   }
 
