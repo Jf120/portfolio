@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="./css/pages.css">
   <script defer src="./js/utils.js"></script>
   <script defer src="./js/components.js"></script>
-  <script defer src="./js/mini-apps.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -31,14 +30,14 @@
             <a class="breadcrumb-link" href="./projects.html">← All Projects</a>
             <a class="breadcrumb-link" href="./projects.html?category=engineering">Engineering Builds</a>
           </div>
-          <span class="eyebrow">Case Study 02 // TypeScript Multi-Screen SaaS</span>
+          <span class="eyebrow">Case Study 02 // Public TypeScript Multi-Screen SaaS</span>
           <h1>BeeNight — Live Spelling Bee</h1>
           <p class="page-hero-lead">
             A real-time, multi-screen interactive game-show platform built in <strong>TypeScript 5.5</strong>
-            &amp; <strong>React 18</strong> that brings <em>Kahoot!</em> energy to live verbal spelling bees.
-            Originally built for our apartment housewarming party with my wife, then re-architected into a
-            zero-database, local-first multi-room SaaS uniting a TV broadcast stage, QR-paired smartphone host
-            remote, and admin studio.
+            &amp; <strong>React 18</strong> that brings the energy and responsiveness of <em>Kahoot!</em> to live,
+            in-person spelling bees. Born as a custom game show for our apartment housewarming party with my wife,
+            then re-architected into a <strong>Local-First, Ephemeral Multi-Room SaaS</strong> where anyone can
+            host a live spelling bee with zero account sign-up, zero database cost, and complete tenant privacy.
           </p>
           <div class="hero-cta-group">
             <a
@@ -49,7 +48,7 @@
             >
               Launch Live BeeNight App ↗
             </a>
-            <a class="btn btn-secondary" href="#beenight-mini-app">Try Stage + Audio Mini-App ↓</a>
+            <a class="btn btn-secondary" href="#code-highlights">Inspect TypeScript Deep Dives ↓</a>
             <a class="btn btn-surface" href="#architecture">System Architecture ↓</a>
           </div>
         </div>
@@ -57,7 +56,7 @@
         <aside class="nb-card profile-facts-card" aria-label="BeeNight technical specifications">
           <div class="collection-preview-meta">
             <span class="nb-tag nb-tag--amber">TYPESCRIPT_SAAS.SPEC</span>
-            <span class="eyebrow">Live on Render</span>
+            <span class="eyebrow">Public Live App on Render</span>
           </div>
 
           <dl class="facts-list">
@@ -66,16 +65,20 @@
               <dd>Creator &amp; Sole Engineer</dd>
             </div>
             <div class="facts-row">
-              <dt>Origin</dt>
-              <dd>Housewarming Party → Public SaaS</dd>
+              <dt>Evolution</dt>
+              <dd>Housewarming LAN → Multi-Room SaaS</dd>
             </div>
             <div class="facts-row">
-              <dt>Sync Latency</dt>
-              <dd>&lt;5ms BroadcastChannel + Socket.IO</dd>
+              <dt>State &amp; Sync</dt>
+              <dd>localStorage + BroadcastChannel + Socket.IO</dd>
             </div>
             <div class="facts-row">
-              <dt>DB Hosting Cost</dt>
-              <dd>$0 / month (Local-First + TTL Relay)</dd>
+              <dt>Relay Runtime</dt>
+              <dd>Node.js (--experimental-strip-types)</dd>
+            </div>
+            <div class="facts-row">
+              <dt>DB &amp; S3 Cost</dt>
+              <dd>$0 / month (12h TTL Ephemeral RAM)</dd>
             </div>
           </dl>
 
@@ -84,11 +87,12 @@
             <ul class="tag-list">
               <li class="nb-tag nb-tag--amber">TypeScript 5.5</li>
               <li class="nb-tag">React 18 + Vite 5</li>
-              <li class="nb-tag">Node.js + Socket.IO</li>
-              <li class="nb-tag">BroadcastChannel</li>
+              <li class="nb-tag">React Router v6</li>
+              <li class="nb-tag">Express 4 + Socket.IO 4.7</li>
               <li class="nb-tag">Tailwind CSS 3.4</li>
-              <li class="nb-tag">Web Audio API</li>
-              <li class="nb-tag">SHA-256 (Pure TS)</li>
+              <li class="nb-tag">BroadcastChannel API</li>
+              <li class="nb-tag">Web Audio + Speech API</li>
+              <li class="nb-tag">FIPS 180-4 SHA-256</li>
             </ul>
           </div>
         </aside>
@@ -99,130 +103,153 @@
       <div class="container">
         <div class="kpi-grid">
           <article class="nb-card nb-card--amber kpi-card">
-            <span class="eyebrow" style="color: #111315;">Core Language</span>
-            <span class="kpi-value">TS 5.5</span>
-            <p>Isomorphic domain engine shared cleanly across React client and Node relay server.</p>
-          </article>
-
-          <article class="nb-card kpi-card">
-            <span class="eyebrow">Tab-to-TV Sync</span>
+            <span class="eyebrow" style="color: #111315;">Tab-to-TV Sync</span>
             <span class="kpi-value">&lt; 5ms</span>
-            <p>Intra-browser <code>BroadcastChannel</code> stays instant even if party Wi-Fi drops.</p>
+            <p>Intra-browser <code>BroadcastChannel</code> (`beenight_sync_v1`) stays instant even if party Wi-Fi drops.</p>
           </article>
 
           <article class="nb-card kpi-card">
             <span class="eyebrow">Avatar Compression</span>
             <span class="kpi-value">&gt; 99%</span>
-            <p>Client HTML5 Canvas downscales 5MB photos to ~20KB (<code>256×256</code>) for quota safety.</p>
+            <p>HTML5 Canvas downscales 3–8MB guest photos into ~15–25KB (<code>256×256</code> JPEG at 0.82 quality).</p>
           </article>
 
           <article class="nb-card kpi-card">
-            <span class="eyebrow">Room Capacity</span>
-            <span class="kpi-value">500</span>
-            <p>Concurrent ephemeral rooms supported in RAM with $0 external database overhead.</p>
+            <span class="eyebrow">Audio Asset Payload</span>
+            <span class="kpi-value">0 KB</span>
+            <p>100% procedural Web Audio API synthesis (dual-oscillator chimes, buzzers, ticks, drumrolls &amp; fanfare).</p>
+          </article>
+
+          <article class="nb-card kpi-card">
+            <span class="eyebrow">Multi-Tenant Capacity</span>
+            <span class="kpi-value">500 Rooms</span>
+            <p>Concurrent isolated rooms (<code>room:BEE-XXXX</code>) in RAM with 12h TTL eviction and $0/mo DB overhead.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="beenight-mini-app" aria-labelledby="beenight-demo-heading">
+    <section class="section" aria-labelledby="origin-heading">
       <div class="container">
         <div class="section-header">
           <div class="section-header-copy">
-            <span class="eyebrow">00 // Interactive Sandbox Demo</span>
-            <h2 id="beenight-demo-heading">Mini-App: Dual-Surface Stage Machine &amp; Web Audio SFX</h2>
+            <span class="eyebrow">01 // Origin, Surfaces &amp; Stage State Machine</span>
+            <h2 id="origin-heading">Three Coordinated Screens for Live Verbal Performance</h2>
           </div>
-          <span class="demo-badge">Simulated Live Room · SFX Enabled</span>
+          <a
+            class="btn btn-sm btn-primary"
+            href="https://spelling-bee-3n84.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Live App ↗
+          </a>
         </div>
 
-        <div class="sandbox-shell" role="region" aria-label="Interactive BeeNight stage and audio simulator">
-          <div class="sandbox-bar">
-            <div class="sandbox-bar-title">
-              <div class="window-dots" aria-hidden="true">
-                <span class="window-dot window-dot--orange"></span>
-                <span class="window-dot window-dot--amber"></span>
-                <span class="window-dot window-dot--sky"></span>
-              </div>
-              <span>beenight_stage_sandbox.js — Host Remote &lt;-&gt; TV Broadcast</span>
-            </div>
-            <span id="beenight-sync-badge">state:sync (BroadcastChannel &lt;5ms)</span>
-          </div>
-
-          <div class="sandbox-body">
-            <div class="sandbox-toolbar">
-              <div class="filter-pills" role="group" aria-label="Jump between game state machine stages">
-                <button type="button" class="filter-btn" data-bee-stage="LOBBY" aria-pressed="false">
-                  Lobby
-                </button>
-                <button type="button" class="filter-btn is-active" data-bee-stage="ACTIVE_TURN" aria-pressed="true">
-                  Active Turn
-                </button>
-                <button type="button" class="filter-btn" data-bee-stage="LEADERBOARD" aria-pressed="false">
-                  Leaderboard
-                </button>
-                <button type="button" class="filter-btn" data-bee-stage="PODIUM" aria-pressed="false">
-                  Podium
-                </button>
-              </div>
-
-              <div class="sandbox-field-group">
-                <button type="button" class="btn btn-sm btn-surface" id="beenight-tv-theme-btn">
-                  TV Palette: Matinee Light
-                </button>
-                <button type="button" class="btn btn-sm btn-surface" id="beenight-reset-btn">
-                  Reset Room
-                </button>
-              </div>
-            </div>
-
-            <div class="sandbox-split">
-              <div class="sandbox-pane" id="beenight-host-pane"></div>
-              <div class="sandbox-pane" id="beenight-tv-pane"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="surfaces-heading">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header-copy">
-            <span class="eyebrow">01 // Coordinated Surfaces</span>
-            <h2 id="surfaces-heading">Three Views, One Live Show</h2>
-          </div>
+        <div class="nb-card" style="margin-bottom: var(--space-5);">
+          <span class="pillar-index">ORIGIN STORY // HOUSEWARMING PARTY → PUBLIC SAAS</span>
+          <h3 style="margin-top: 0.35rem;">Why Existing Trivia Apps Fell Short</h3>
+          <p style="margin-top: 0.5rem;">
+            When my wife and I moved into our new apartment together, we decided to host an interactive spelling
+            bee for our housewarming party. Existing party trivia tools were designed around multiple-choice
+            phone quizzes rather than <strong>live verbal stage performance</strong>—where an emcee judges spoken
+            spelling in real time while a living-room TV drives crowd engagement. After the housewarming party
+            became a hit with our friends, I re-architected BeeNight from a single-household LAN build into a
+            public, multi-room SaaS platform with <strong>5 live-switchable broadcast themes</strong>, platform-locked
+            branding (<code>PLATFORM_BRANDING</code> separated from mutable <code>GameConfig</code>), and
+            progressive disclosure separating essential setup (<em>Rules &amp; Theme</em>) from power-user
+            modifiers (<em>Advanced Features</em>).
+          </p>
         </div>
 
         <div class="case-grid-3">
           <article class="nb-card pillar-card">
-            <span class="pillar-index">01 // /tv STAGE</span>
-            <h3>10-Foot TV Broadcast Display</h3>
+            <span class="pillar-index">01 // /tv BROADCAST STAGE</span>
+            <h3>Living-Room 10-Foot Display</h3>
             <p>
-              Built to cast via HDMI or full-screen window—featuring contestant spotlight cards, countdown
-              timers, progressive letter reveals, live standings, synthesized game-show audio, and
-              confetti celebrations.
+              Cinematic TV display featuring contestant spotlight cards, countdown timers, progressive hint
+              reveals, animated leaderboards, synthesized game-show audio, and <code>canvas-confetti</code>
+              celebrations. Decluttered on Lobby, Ranks, and Podium views with a presence-aware
+              <strong>Pair Host QR</strong> button that collapses into a subtle status badge once a Host connects.
             </p>
           </article>
 
           <article class="nb-card pillar-card">
-            <span class="pillar-index">02 // /host REMOTE</span>
-            <h3>Mobile Host Teleprompter</h3>
+            <span class="pillar-index">02 // /host TELEPROMPTER</span>
+            <h3>Mobile Emcee Remote Control</h3>
             <p>
-              Smartphone-first emcee control displaying private phonetic pronunciations, definitions, and
-              stage-contextual controls (<code>LOBBY</code>, <code>ACTIVE_TURN</code>,
-              <code>LEADERBOARD</code>, <code>PODIUM</code>) to eliminate mis-taps during live play.
+              Smartphone remote giving the host private phonetic pronunciations, definitions, example sentences,
+              <code>window.speechSynthesis</code> audio playback, one-tap judgment controls (<code>Correct</code>,
+              <code>Wrong</code>, <code>Skip</code>), and stage-contextual presentation controls over LAN or
+              public HTTPS.
             </p>
           </article>
 
           <article class="nb-card pillar-card">
-            <span class="pillar-index">03 // /admin STUDIO</span>
-            <h3>Zero-Login Prep &amp; CSV Import</h3>
+            <span class="pillar-index">03 // /admin PRODUCTION STUDIO</span>
+            <h3>Pre-Show Roster &amp; Word Bank Suite</h3>
             <p>
-              Organizer production desk for uploading CSV rosters, non-destructively framing contestant
-              portraits, curating tiered word banks, switching 5 live broadcast themes, and exporting
-              JSON backups.
+              Zero-login production desk for importing contestant rosters via sanitized CSV, non-destructively
+              framing guest portraits, curating tiered word banks, configuring streak multipliers and sudden-death
+              finals, stepping through a 25-action undo stack, and exporting/importing JSON backups.
             </p>
           </article>
+        </div>
+
+        <div class="case-table-wrap" style="margin-top: var(--space-6);">
+          <table class="case-table" aria-label="Stage-driven UI state machine mapping">
+            <thead>
+              <tr>
+                <th scope="col">Game Stage (<code>gameState.stage</code>)</th>
+                <th scope="col">Host Controller Projection (<code>HostView.tsx</code>)</th>
+                <th scope="col">TV Broadcast Behavior (<code>TvView.tsx</code>)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>LOBBY</code></td>
+                <td>
+                  Renders exclusively <code>LobbyPresentationCard.tsx</code> so the emcee can step through
+                  pre-game contestant bios and portraits without exposing active round buttons.
+                </td>
+                <td>
+                  Full-bleed contestant introduction spotlight and presence-aware QR pairing modal with human-readable
+                  passphrase (e.g., <code>HONEY-CROWN-42</code>).
+                </td>
+              </tr>
+              <tr>
+                <td><code>ACTIVE_TURN</code></td>
+                <td>
+                  Renders the active speller card, private teleprompter (phonetics, definition, example sentence),
+                  progressive hint triggers, and sticky bottom judgment bar (<code>Correct</code>, <code>Wrong</code>, <code>Skip</code>).
+                </td>
+                <td>
+                  10-foot speller spotlight, live countdown timer, masked letter slots with progressive hint
+                  reveals, and procedural Web Audio chimes/buzzers.
+                </td>
+              </tr>
+              <tr>
+                <td><code>LEADERBOARD</code></td>
+                <td>
+                  Renders <code>HostLeaderboardCard.tsx</code> with live survival statistics, elimination counts,
+                  and one-tap round transition controls.
+                </td>
+                <td>
+                  Animated standings table with streak indicators, survival badges, and clean footer-free broadcast framing.
+                </td>
+              </tr>
+              <tr>
+                <td><code>PODIUM</code></td>
+                <td>
+                  Renders <code>HostPodiumCard.tsx</code> (Winners Podium Controller) with remote TV confetti and
+                  victory fanfare triggers.
+                </td>
+                <td>
+                  1st/2nd/3rd place championship podium with <code>canvas-confetti</code> bursts and synthesized fanfare.
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -232,88 +259,225 @@
         <div class="section-header">
           <div class="section-header-copy">
             <span class="eyebrow">02 // System Architecture</span>
-            <h2 id="architecture-heading">Local-First Isomorphic Event Engine</h2>
+            <h2 id="architecture-heading">Local-First Isomorphic Reducer &amp; Dual-Transport Relay</h2>
           </div>
-          <span class="nb-tag nb-tag--sky">Dual-Transport Sync</span>
+          <span class="nb-tag nb-tag--sky">Zero-DB Multi-Tenant SaaS</span>
         </div>
+
+        <p style="margin-bottom: var(--space-5); max-width: 75ch;">
+          To transition BeeNight from a private housewarming prototype into a public multi-tenant SaaS without
+          paying for database hosting or storing personally identifiable guest photos on a server, all game rules
+          live in a single zero-dependency TypeScript engine (<code>src/domain/gameEngine.ts</code>) shared
+          isomorphically between the React client and the stateless Node.js Socket.IO relay.
+        </p>
 
         <div class="arch-diagram-frame" role="region" aria-label="BeeNight local-first architecture flow">
           <div class="arch-flow">
             <div class="arch-node">
-              <span class="eyebrow">Organizer Browser</span>
-              <h3>Admin Studio + TV Stage</h3>
-              <p>Owns durable state in <code>localStorage</code> with instant intra-browser sync via <code>BroadcastChannel</code> (&lt;5ms).</p>
+              <span class="eyebrow">Host Laptop Browser (Source of Truth)</span>
+              <h3>Admin (/admin) + TV (/tv)</h3>
+              <p>
+                Persists state in <code>localStorage</code> (<code>beenight.gameState.v1</code>) and syncs across
+                tabs in <strong>&lt;5ms</strong> via <code>BroadcastChannel</code> (<code>beenight_sync_v1</code>).
+              </p>
             </div>
 
             <div class="arch-arrow" aria-hidden="true">↔</div>
 
             <div class="arch-node arch-node--accent">
-              <span class="eyebrow" style="color: #111315;">Shared Domain Core</span>
-              <h3>Pure TypeScript Engine</h3>
-              <p>Scoring, streak multipliers, sudden-death finals, 25-step undo snapshots, and strict key whitelisting.</p>
+              <span class="eyebrow" style="color: #111315;">Isomorphic Domain Core</span>
+              <h3>Pure TS Engine (gameEngine.ts)</h3>
+              <p>
+                Scoring formulas, streak multipliers, sudden-death finals, 25-step undo snapshots, CSV sanitization,
+                and strict config whitelisting.
+              </p>
             </div>
 
             <div class="arch-arrow" aria-hidden="true">↔</div>
 
             <div class="arch-node">
-              <span class="eyebrow">Ephemeral Relay</span>
-              <h3>Node.js + Socket.IO 4.7</h3>
-              <p>Stateless room map (12h TTL, LRU cap of 500 rooms). Re-hydrates automatically on client reconnect.</p>
+              <span class="eyebrow">Stateless Node.js Relay</span>
+              <h3>Ephemeral Room Map (stateStore.ts)</h3>
+              <p>
+                Scoped rooms (<code>room:BEE-XXXX</code>) held in RAM with a 12-hour TTL and 500-room LRU cap.
+                Re-hydrates via <code>state:push</code> on reconnect.
+              </p>
             </div>
 
             <div class="arch-arrow" aria-hidden="true">↔</div>
 
             <div class="arch-node arch-node--sky">
-              <span class="eyebrow" style="color: #111315;">Emcee Phone</span>
-              <h3>QR-Paired Host Remote</h3>
-              <p>Capability-token URL pairing authenticates the smartphone over LAN or public HTTPS instantaneously.</p>
+              <span class="eyebrow" style="color: #111315;">Mobile Devices (LAN / Web)</span>
+              <h3>Host Remote (/host?room=BEE-XXXX)</h3>
+              <p>
+                Capability-token QR pairing (<code>&amp;auth=&lt;sha256&gt;</code>) authenticates the emcee's phone
+                instantly with zero cross-talk between concurrent parties.
+              </p>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="code-highlights" aria-labelledby="code-highlights-heading">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-copy">
+            <span class="eyebrow">03 // Key Technical Highlights &amp; Code Deep Dives</span>
+            <h2 id="code-highlights-heading">Four Production TypeScript Modules Under the Hood</h2>
+          </div>
+          <span class="nb-tag nb-tag--amber">Zero External Crypto / Audio Deps</span>
+        </div>
 
         <div class="case-grid-2">
-          <aside class="code-window" aria-label="Config whitelisting snippet">
-            <div class="code-window-bar">
-              <div class="window-dots" aria-hidden="true">
-                <span class="window-dot window-dot--orange"></span>
-                <span class="window-dot window-dot--amber"></span>
-                <span class="window-dot window-dot--sky"></span>
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">HIGHLIGHT 01 // src/domain/gameEngine.ts</span>
+            <h3>Isomorphic Config Whitelisting &amp; Schema Self-Healing</h3>
+            <p>
+              Because BeeNight hydrates state from browser <code>localStorage</code>, imported JSON backup files,
+              and untrusted WebSocket payloads, schema drift or legacy keys could corrupt runtime state or overwrite
+              platform-owned branding. Using <code>DEFAULT_GAME_CONFIG</code> as the single runtime source of truth
+              eliminates manual validation boilerplate while guaranteeing that deprecated or unauthorized fields
+              (such as legacy <code>eventTitle</code> / <code>eventSubtitle</code>) are stripped during both
+              hydration (<code>normalizeHydratedGameState</code>) and live <code>admin:updateConfig</code> events.
+            </p>
+            <aside class="code-window" style="margin-top: auto;" aria-label="Config whitelisting snippet">
+              <div class="code-window-bar">
+                <div class="window-dots" aria-hidden="true">
+                  <span class="window-dot window-dot--orange"></span>
+                  <span class="window-dot window-dot--amber"></span>
+                  <span class="window-dot window-dot--sky"></span>
+                </div>
+                <span>src/domain/gameEngine.ts — Runtime Config Guard</span>
               </div>
-              <span>gameEngine.ts — Config Schema Guard</span>
-            </div>
-            <pre class="code-block"><code><span class="keyword">const</span> ALLOWED_CONFIG_KEYS = <span class="keyword">new</span> <span class="function">Set</span>(Object.<span class="function">keys</span>(DEFAULT_GAME_CONFIG));
+              <pre class="code-block"><code><span class="keyword">const</span> ALLOWED_CONFIG_KEYS = <span class="keyword">new</span> <span class="function">Set</span>&lt;string&gt;(
+  Object.<span class="function">keys</span>(DEFAULT_GAME_CONFIG)
+);
 
-<span class="comment">// Prevents imported JSON or WebSocket payloads from smuggling protected keys</span>
+<span class="comment">// Whitelists untrusted config patches down to DEFAULT_GAME_CONFIG keys.</span>
+<span class="comment">// Drops retired branding keys from backups or relayed socket events.</span>
 <span class="keyword">export function</span> <span class="function">pickKnownConfigKeys</span>(patch: unknown): Partial&lt;GameConfig&gt; {
   <span class="keyword">if</span> (!patch || <span class="keyword">typeof</span> patch !== <span class="string">'object'</span>) <span class="keyword">return</span> {};
   <span class="keyword">return</span> Object.<span class="function">fromEntries</span>(
-    Object.<span class="function">entries</span>(patch <span class="keyword">as</span> Record&lt;string, unknown&gt;)
-      .<span class="function">filter</span>(([key]) =&gt; ALLOWED_CONFIG_KEYS.<span class="function">has</span>(key))
+    Object.<span class="function">entries</span>(patch <span class="keyword">as</span> Record&lt;string, unknown&gt;).<span class="function">filter</span>(([key]) =&gt;
+      ALLOWED_CONFIG_KEYS.<span class="function">has</span>(key)
+    )
   ) <span class="keyword">as</span> Partial&lt;GameConfig&gt;;
 }</code></pre>
-          </aside>
+            </aside>
+          </article>
 
-          <aside class="code-window" aria-label="Procedural Web Audio synthesizer snippet">
-            <div class="code-window-bar">
-              <div class="window-dots" aria-hidden="true">
-                <span class="window-dot window-dot--orange"></span>
-                <span class="window-dot window-dot--amber"></span>
-                <span class="window-dot window-dot--sky"></span>
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">HIGHLIGHT 02 // src/utils/crypto.ts</span>
+            <h3>Pure-TypeScript FIPS 180-4 SHA-256 &amp; QR Capability Pairing</h3>
+            <p>
+              When a Host scans the TV's QR code over a local Wi-Fi network (<code>http://192.168.x.x:5173</code>),
+              browsers treat non-HTTPS LAN origins as insecure contexts and disable <code>window.crypto.subtle</code>.
+              I implemented a zero-dependency FIPS 180-4 SHA-256 engine in pure TypeScript. Each session generates a
+              memorable passphrase (e.g., <code>HONEY-CROWN-42</code>), stores only <code>passphraseSalt</code> and
+              <code>passphraseHash</code>, and embeds the capability hash in the QR URL
+              (<code>?room=BEE-XXXX&amp;auth=&lt;hash&gt;</code>) for instant one-scan authentication.
+            </p>
+            <aside class="code-window" style="margin-top: auto;" aria-label="SHA-256 implementation snippet">
+              <div class="code-window-bar">
+                <div class="window-dots" aria-hidden="true">
+                  <span class="window-dot window-dot--orange"></span>
+                  <span class="window-dot window-dot--amber"></span>
+                  <span class="window-dot window-dot--sky"></span>
+                </div>
+                <span>src/utils/crypto.ts — Pure-TS SHA-256 &amp; Salted Verify</span>
               </div>
-              <span>audio.ts — Procedural Web Audio SFX</span>
-            </div>
-            <pre class="code-block"><code><span class="comment">// Zero external MP3/WAV files: triangle + octave harmonic envelope</span>
+              <pre class="code-block"><code><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">64</span>; i++) {
+  <span class="keyword">const</span> S1 = <span class="function">rightRotate</span>(e, <span class="number">6</span>) ^ <span class="function">rightRotate</span>(e, <span class="number">11</span>) ^ <span class="function">rightRotate</span>(e, <span class="number">25</span>);
+  <span class="keyword">const</span> ch = (e &amp; f) ^ (~e &amp; g);
+  <span class="keyword">const</span> temp1 = (h + S1 + ch + SHA256_K[i] + w[i]) &gt;&gt;&gt; <span class="number">0</span>;
+  <span class="keyword">const</span> S0 = <span class="function">rightRotate</span>(a, <span class="number">2</span>) ^ <span class="function">rightRotate</span>(a, <span class="number">13</span>) ^ <span class="function">rightRotate</span>(a, <span class="number">22</span>);
+  <span class="keyword">const</span> maj = (a &amp; b) ^ (a &amp; c) ^ (b &amp; c);
+  <span class="keyword">const</span> temp2 = (S0 + maj) &gt;&gt;&gt; <span class="number">0</span>;
+  h = g; g = f; f = e; e = (d + temp1) &gt;&gt;&gt; <span class="number">0</span>;
+  d = c; c = b; b = a; a = (temp1 + temp2) &gt;&gt;&gt; <span class="number">0</span>;
+}
+
+<span class="keyword">export function</span> <span class="function">hashPassphrase</span>(passphrase: string, salt: string): string {
+  <span class="keyword">const</span> normalized = <span class="function">normalizePassphrase</span>(passphrase);
+  <span class="keyword">return</span> normalized ? <span class="function">sha256Hex</span>(<span class="string">`beenight:v1:${salt}:${normalized}`</span>) : <span class="string">''</span>;
+}</code></pre>
+            </aside>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">HIGHLIGHT 03 // src/components/ParticipantAvatar.tsx</span>
+            <h3>Non-Destructive Face Focal Framing for Contestant Avatars</h3>
+            <p>
+              Party guests submit portraits in wildly different aspect ratios (vertical selfies, group shots,
+              off-center crops). Re-encoding images on every pan/zoom adjustment would degrade JPEG quality and
+              bloat <code>localStorage</code>. Instead, <code>ParticipantAvatar.tsx</code> pairs a single
+              <code>256×256</code> compressed JPEG data URL with three focal coordinates
+              (<code>photoFocusX</code>, <code>photoFocusY</code>, <code>photoScale</code>). Binding both
+              <code>objectPosition</code> and <code>transformOrigin</code> to the same percentage coordinates scales
+              directly around the contestant's face across circular badges and 16:9 TV spotlight cards.
+            </p>
+            <aside class="code-window" style="margin-top: auto;" aria-label="ParticipantAvatar focal framing snippet">
+              <div class="code-window-bar">
+                <div class="window-dots" aria-hidden="true">
+                  <span class="window-dot window-dot--orange"></span>
+                  <span class="window-dot window-dot--amber"></span>
+                  <span class="window-dot window-dot--sky"></span>
+                </div>
+                <span>src/components/ParticipantAvatar.tsx — Focal Framing</span>
+              </div>
+              <pre class="code-block"><code><span class="keyword">const</span> clampedFocusX = Math.<span class="function">max</span>(<span class="number">0</span>, Math.<span class="function">min</span>(<span class="number">100</span>, Number(photoFocusX) || <span class="number">50</span>));
+<span class="keyword">const</span> clampedFocusY = Math.<span class="function">max</span>(<span class="number">0</span>, Math.<span class="function">min</span>(<span class="number">100</span>, Number(photoFocusY) || <span class="number">50</span>));
+<span class="keyword">const</span> clampedScale = Math.<span class="function">max</span>(<span class="number">1</span>, Math.<span class="function">min</span>(<span class="number">2.5</span>, Number(photoScale) || <span class="number">1</span>));
+
+&lt;img
+  src={resolvedPhotoUrl}
+  alt={name}
+  className=<span class="string">"w-full h-full object-cover transition-transform duration-150"</span>
+  style={{
+    objectPosition: <span class="string">`${clampedFocusX}% ${clampedFocusY}%`</span>,
+    transform: clampedScale &gt; <span class="number">1</span> ? <span class="string">`scale(${clampedScale})`</span> : <span class="keyword">undefined</span>,
+    transformOrigin: <span class="string">`${clampedFocusX}% ${clampedFocusY}%`</span>,
+  }}
+/&gt;</code></pre>
+            </aside>
+          </article>
+
+          <article class="nb-card pillar-card">
+            <span class="pillar-index">HIGHLIGHT 04 // src/utils/audio.ts</span>
+            <h3>Procedural Web Audio API Game-Show Synthesizer</h3>
+            <p>
+              To give the living-room TV broadcast authentic game-show feedback with zero external MP3/WAV assets
+              or network preloading delays, <code>audio.ts</code> synthesizes all sound effects (correct chimes,
+              wrong buzzers, countdown ticks, drumrolls, and podium fanfare) procedurally in real time. Layering a
+              fundamental <code>triangle</code> wave with an octave-doubled <code>sine</code> harmonic
+              (<code>freq * 2</code>) and shaping the envelope via <code>exponentialRampToValueAtTime</code>
+              produces a warm, click-free C5→C6 major 7th chime while passive <code>pointerdown</code> /
+              <code>keydown</code> listeners automatically unlock suspended browser <code>AudioContext</code> instances.
+            </p>
+            <aside class="code-window" style="margin-top: auto;" aria-label="Procedural Web Audio synthesizer snippet">
+              <div class="code-window-bar">
+                <div class="window-dots" aria-hidden="true">
+                  <span class="window-dot window-dot--orange"></span>
+                  <span class="window-dot window-dot--amber"></span>
+                  <span class="window-dot window-dot--sky"></span>
+                </div>
+                <span>src/utils/audio.ts — Dual-Oscillator Victory Chime</span>
+              </div>
+              <pre class="code-block"><code><span class="comment">// C5 -> E5 -> G5 -> B5 -> C6 sparkly major 7th chime</span>
 <span class="keyword">const</span> notes = [<span class="number">523.25</span>, <span class="number">659.25</span>, <span class="number">783.99</span>, <span class="number">987.77</span>, <span class="number">1046.5</span>];
 notes.<span class="function">forEach</span>((freq, idx) =&gt; {
   <span class="keyword">const</span> osc = ctx.<span class="function">createOscillator</span>();
+  <span class="keyword">const</span> subOsc = ctx.<span class="function">createOscillator</span>();
   <span class="keyword">const</span> gain = ctx.<span class="function">createGain</span>();
-  osc.type = <span class="string">'triangle'</span>;
+  osc.type = <span class="string">'triangle'</span>; subOsc.type = <span class="string">'sine'</span>;
   osc.frequency.<span class="function">setValueAtTime</span>(freq, now + idx * <span class="number">0.075</span>);
-  gain.gain.<span class="function">exponentialRampToValueAtTime</span>(<span class="number">0.0001</span>, start + duration);
-  osc.<span class="function">connect</span>(gain);
-  gain.<span class="function">connect</span>(ctx.destination);
+  subOsc.frequency.<span class="function">setValueAtTime</span>(freq * <span class="number">2</span>, now + idx * <span class="number">0.075</span>);
+  gain.gain.<span class="function">exponentialRampToValueAtTime</span>(<span class="number">0.24</span>, startTime + <span class="number">0.02</span>);
+  gain.gain.<span class="function">exponentialRampToValueAtTime</span>(<span class="number">0.0001</span>, startTime + duration);
 });</code></pre>
-          </aside>
+            </aside>
+          </article>
         </div>
       </div>
     </section>
@@ -322,8 +486,8 @@ notes.<span class="function">forEach</span>((freq, idx) =&gt; {
       <div class="container">
         <div class="section-header">
           <div class="section-header-copy">
-            <span class="eyebrow">03 // Hard Problems Solved</span>
-            <h2 id="engineering-heading">Engineering Highlights</h2>
+            <span class="eyebrow">04 // Architectural Challenges &amp; Outcomes</span>
+            <h2 id="engineering-heading">Hard Problems Solved in the SaaS Migration</h2>
           </div>
         </div>
 
@@ -331,13 +495,17 @@ notes.<span class="function">forEach</span>((freq, idx) =&gt; {
           <article class="nb-card scale-step">
             <div class="scale-step-num">01</div>
             <div>
-              <h3>Pure-TypeScript SHA-256 for Non-HTTPS LAN Pairing</h3>
+              <h3>Migrating from Single-Instance Disk Persistence to Multi-Tenant Public SaaS</h3>
               <p style="margin-top: 0.45rem;">
-                When hosts test or run sessions over local Wi-Fi IPs, browsers mark non-HTTPS origins as
-                insecure contexts and disable <code>window.crypto.subtle</code>. Implementing a standalone
-                FIPS 180-4 SHA-256 digest in pure TypeScript lets salted capability-token QR links
-                (<code>?room=BEE-XXXX&amp;auth=&lt;hash&gt;</code>) authenticate seamlessly across both
-                LAN HTTP and public HTTPS.
+                <strong>The Problem:</strong> The initial housewarming party build persisted state to a single
+                <code>data/gameState.json</code> file and <code>/uploads</code> folder on the Node.js server.
+                Launching that architecture publicly would cause every concurrent party to overwrite the same game
+                state and expose personal guest photos across tenants.<br>
+                <strong>The Solution:</strong> Extracted the reducer into a pure isomorphic engine
+                (<code>src/domain/gameEngine.ts</code>), moved durable persistence to the organizer's browser via
+                <code>src/services/localStorageRepo.ts</code>, and refactored <code>server/stateStore.ts</code>
+                into a stateless, room-scoped (<code>room:BEE-XXXX</code>) in-memory relay with automatic
+                <code>state:push</code> re-hydration if the relay server restarts mid-party.
               </p>
             </div>
           </article>
@@ -345,14 +513,16 @@ notes.<span class="function">forEach</span>((freq, idx) =&gt; {
           <article class="nb-card scale-step">
             <div class="scale-step-num">02</div>
             <div>
-              <h3>Fitting 50+ Contestant Avatars Under <code>localStorage</code> Quotas</h3>
+              <h3>Fitting High-Resolution Guest Photos Inside Browser <code>localStorage</code> Quotas</h3>
               <p style="margin-top: 0.45rem;">
-                Uploading 5MB guest selfies directly into a 5MB browser quota immediately crashes with
-                <code>QuotaExceededError</code>. A client-side HTML5 Canvas compressor crops and encodes
-                portraits into <code>256×256</code> JPEG data URLs (~15–25KB each, &gt;99% smaller),
-                paired with three focal coordinates (<code>photoFocusX</code>, <code>photoFocusY</code>,
-                <code>photoScale</code>) driving <code>objectPosition</code> and <code>transformOrigin</code>
-                across mobile badges and 16:9 TV spotlights.
+                <strong>The Problem:</strong> Browser <code>localStorage</code> enforces a strict ~5MB origin limit.
+                Uploading raw smartphone photos (3–8MB each) for 20+ party contestants immediately throws a
+                <code>QuotaExceededError</code>.<br>
+                <strong>The Solution:</strong> Built an HTML5 Canvas image compression pipeline
+                (<code>src/utils/imageCompressor.ts</code>) that center-crops and downscales uploaded portraits
+                client-side into <code>256×256</code> JPEG data URLs (<code>quality: 0.82</code>), reducing each
+                photo from ~5MB to <strong>~15–25KB (&gt;99% reduction)</strong>. Even a 50-contestant roster with
+                custom photos and a 25-action undo stack consumes less than 1.5MB of <code>localStorage</code>.
               </p>
             </div>
           </article>
@@ -360,12 +530,15 @@ notes.<span class="function">forEach</span>((freq, idx) =&gt; {
           <article class="nb-card scale-step">
             <div class="scale-step-num">03</div>
             <div>
-              <h3>Decluttering the Live Host View via Strict Stage Projection</h3>
+              <h3>Preventing Host Cognitive Overload During Live Stage Transitions</h3>
               <p style="margin-top: 0.45rem;">
-                In front of a room full of friends, showing pre-game roster tools beside active round
-                buttons invites accidental clicks. Refactoring the Host Remote into a strict projection of
-                <code>gameState.stage</code> keeps only relevant controls visible per phase, while keeping
-                the app deployable at zero database cost.
+                <strong>The Problem:</strong> During a fast-paced party, showing lobby presentation controls, word
+                teleprompter cards, and round-reset buttons simultaneously on a small phone screen made it easy for
+                the emcee to tap the wrong control.<br>
+                <strong>The Solution:</strong> Redesigned <code>HostView.tsx</code> around strict stage-contextual
+                component projection (<code>LobbyPresentationCard</code>, active turn teleprompter,
+                <code>HostLeaderboardCard</code>, and <code>HostPodiumCard</code>) and decluttered
+                <code>TvView.tsx</code> by removing persistent footers on Lobby, Ranks, and Podium views.
               </p>
             </div>
           </article>
@@ -377,11 +550,11 @@ notes.<span class="function">forEach</span>((freq, idx) =&gt; {
       <div class="container">
         <div class="cta-banner">
           <div>
-            <span class="eyebrow" style="color: #111315;">Try It Yourself</span>
-            <h2>Host your own live spelling bee round right now</h2>
+            <span class="eyebrow" style="color: #111315;">Public Live Application</span>
+            <h2>Spin up a live spelling bee room in under two minutes</h2>
             <p style="margin-top: 0.75rem;">
-              Launch the deployed TypeScript + Socket.IO application on Render, or explore my PHP enterprise
-              and Drupal systems work.
+              BeeNight is live and open to the public—import guests via CSV, pair your phone via QR code, and test
+              the multi-screen broadcast stage directly on Render.
             </p>
           </div>
           <div class="cta-actions">
@@ -393,8 +566,8 @@ notes.<span class="function">forEach</span>((freq, idx) =&gt; {
             >
               Launch Live BeeNight ↗
             </a>
-            <a class="btn btn-surface" href="./jmf-survey.html">JMF Survey + Mini-App →</a>
-            <a class="btn btn-surface" href="./mlpp-glossary.html">MLPP Audit + Mini-App →</a>
+            <a class="btn btn-surface" href="./jmf-survey.html">JMF Survey + Live Demo →</a>
+            <a class="btn btn-surface" href="./timeline.html">Timeline Case Study →</a>
           </div>
         </div>
       </div>
