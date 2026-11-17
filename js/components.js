@@ -10,26 +10,43 @@
     { href: 'photos.html', label: 'Photos' },
   ];
 
-  function getActivePageFilename() {
-    const path = window.location.pathname || '/';
-    const segments = path.split('/').filter(Boolean);
-    const last = (segments[segments.length - 1] || '').toLowerCase();
+  const PROJECT_SLUGS = new Set([
+    'projects',
+    'jmf-survey',
+    'beenight',
+    'mlpp-glossary',
+    'eliza-playbill',
+    'family-captions',
+    'timeline',
+    'personal',
+  ]);
 
-    if (!last || !last.includes('.')) {
-      return 'index.html';
+  function getActivePageFilename() {
+    const path = (window.location.pathname || '/').toLowerCase();
+    const segments = path.split('/').filter(Boolean);
+    const last = segments[segments.length - 1] || '';
+    const slug = last.replace(/\.html?$/i, '');
+
+    if (slug === 'photos') {
+      return 'photos.html';
     }
-    if (
-      last === 'jmf-survey.html' ||
-      last === 'beenight.html' ||
-      last === 'mlpp-glossary.html' ||
-      last === 'eliza-playbill.html' ||
-      last === 'family-captions.html' ||
-      last === 'timeline.html' ||
-      last === 'personal.html'
-    ) {
+    if (slug === 'about') {
+      return 'about.html';
+    }
+    if (PROJECT_SLUGS.has(slug)) {
       return 'projects.html';
     }
-    return last;
+    if (slug === 'index' || !slug) {
+      return 'index.html';
+    }
+
+    // Fallback check against document title in case of custom base path or preview router
+    const title = (document.title || '').toLowerCase();
+    if (title.includes('photo') || title.includes('wallpaper')) return 'photos.html';
+    if (title.includes('about')) return 'about.html';
+    if (title.includes('project') || title.includes('case study')) return 'projects.html';
+
+    return 'index.html';
   }
 
   function showToast(message) {
@@ -62,7 +79,12 @@
         const isCurrent = item.href === currentPage;
         return `
           <li>
-            <a class="nav-link" href="./${item.href}" ${isCurrent ? 'aria-current="page"' : ''}>
+            <a
+              class="nav-link${isCurrent ? ' is-active' : ''}"
+              href="./${item.href}"
+              data-nav-href="${item.href}"
+              ${isCurrent ? 'aria-current="page"' : ''}
+            >
               ${item.label}
             </a>
           </li>
@@ -73,9 +95,14 @@
         const isCurrent = item.href === currentPage;
         return `
           <li>
-            <a class="nav-link" href="./${item.href}" ${isCurrent ? 'aria-current="page"' : ''}>
+            <a
+              class="nav-link${isCurrent ? ' is-active' : ''}"
+              href="./${item.href}"
+              data-nav-href="${item.href}"
+              ${isCurrent ? 'aria-current="page"' : ''}
+            >
               <span>${item.label}</span>
-              <span aria-hidden="true">${isCurrent ? '●' : '→'}</span>
+              <span data-nav-indicator aria-hidden="true">${isCurrent ? '●' : '→'}</span>
             </a>
           </li>
         `;
@@ -129,6 +156,26 @@
           </div>
         </header>
       `;
+
+      const allNavLinks = Array.from(this.querySelectorAll('.nav-link[data-nav-href]'));
+      allNavLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          const targetHref = link.getAttribute('data-nav-href');
+          allNavLinks.forEach((other) => {
+            const match = other.getAttribute('data-nav-href') === targetHref;
+            other.classList.toggle('is-active', match);
+            if (match) {
+              other.setAttribute('aria-current', 'page');
+            } else {
+              other.removeAttribute('aria-current');
+            }
+            const indicator = other.querySelector('[data-nav-indicator]');
+            if (indicator) {
+              indicator.textContent = match ? '●' : '→';
+            }
+          });
+        });
+      });
 
       const themeBtn = this.querySelector('#theme-toggle');
       if (window.ThemeManager && themeBtn) {

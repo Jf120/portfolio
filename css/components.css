@@ -103,7 +103,18 @@
   box-shadow: var(--shadow-sm);
 }
 
-.nav-link[aria-current='page'] {
+.nav-link:active {
+  background-color: var(--accent-amber);
+  color: var(--ink-on-accent);
+  border-color: var(--border-color);
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.nav-link[aria-current='page'],
+.nav-link.is-active,
+.nav-link[aria-current='page']:hover,
+.nav-link.is-active:hover {
   background-color: var(--accent-amber);
   color: var(--ink-on-accent);
   border-color: var(--border-color);
